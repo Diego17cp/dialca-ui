@@ -1,0 +1,29 @@
+# Dependencies
+node_modules
+
+# Build output
+dist/
+build/
+
+# Playground (only testing)
+playground/
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+bun.lockb
+
+# Environment variables
+.env
+
+# Editor
+.vscode/
+.idea/
+*~
+*.swp
+*.swc
+
+# Temporary files
+tmp/
+temp/
