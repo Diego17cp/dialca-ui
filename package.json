@@ -11,8 +11,7 @@
   "scripts": {
     "build": "tsup && postcss ./src/styles/tailwind.css -o ./dist/tailwind.css",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "postcss ./playground/tailwind.css -o ./playground/dist/tailwind.css --watch",
-    "dev": "concurrently \"pnpm build:css\" \"serve ./playground\""
+    "dev": "vite"
   },
   "peerDependencies": {
     "react": "^18.0.0",
@@ -25,14 +24,14 @@
     "@tailwindcss/postcss": "4.1.11",
     "@types/react": "19.1.9",
     "@types/react-dom": "19.1.7",
-    "concurrently": "9.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
     "postcss": "8.5.6",
-    "postcss-cli": "11.0.1",
+    "postcss-cli": "^11.0.1",
     "react": "19.1.1",
     "react-dom": "19.1.1",
-    "serve": "14.2.4",
     "tailwindcss": "4.1.11",
     "tsup": "8.5.0",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "vite": "^7.1.1"
   }
 }
