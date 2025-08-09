@@ -6,7 +6,7 @@ dist/
 build/
 
 # Playground (only testing)
-playground/
+playground/dist/
 vite.config.js
 
 # Lock files
