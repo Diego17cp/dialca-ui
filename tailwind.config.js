@@ -3,7 +3,7 @@
 module.exports = {
     content: [
         "./src/**/*.{js,ts,jsx,tsx,mdx}",
-        "./playground/**/*.{js,ts,jsx,tsx,mdx}"
+        "./playground/**/*.{js,ts,jsx,tsx,mdx,html}"
     ],
     theme: {
         extend: {},
