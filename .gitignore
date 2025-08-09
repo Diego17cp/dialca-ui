@@ -7,7 +7,7 @@ build/
 
 # Playground (only testing)
 playground/dist/
-vite.config.js
+# vite.config.js
 
 # Lock files
 pnpm-lock.yaml
