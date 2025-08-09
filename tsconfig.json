@@ -9,7 +9,10 @@
     // See also https://aka.ms/tsconfig/module
     "module": "esnext",
     "target": "esnext",
-    "types": [],
+    "types": ["react", "react-dom"],
+    // "lib": ["dom", "esnext", "DOM.Iterable"],
+    // "allowSyntheticDefaultImports": true,
+    "moduleResolution": "bundler",
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
