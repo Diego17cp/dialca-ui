@@ -6,7 +6,8 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "types.d.ts"
   ],
   "scripts": {
     "build": "tsup && postcss ./src/styles/tailwind.css -o ./dist/tailwind.css",
@@ -14,8 +15,9 @@
     "dev": "vite"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "react-icons": ">=5.5.0"
   },
   "keywords": [],
   "author": "dialcaDev",
@@ -24,11 +26,12 @@
     "@tailwindcss/postcss": "4.1.11",
     "@types/react": "19.1.9",
     "@types/react-dom": "19.1.7",
-    "@vitejs/plugin-react": "^5.0.0",
+    "@vitejs/plugin-react": "5.0.0",
     "postcss": "8.5.6",
     "postcss-cli": "^11.0.1",
     "react": "19.1.1",
     "react-dom": "19.1.1",
+    "react-icons": "5.5.0",
     "tailwindcss": "4.1.11",
     "tsup": "8.5.0",
     "typescript": "5.9.2",
