@@ -52,8 +52,8 @@ export interface InputProps
 	};
 	useDefaultIcon?: boolean;
 	passwordIcons?: {
-		visible: React.ReactNode;
-		hidden: React.ReactNode;
+		visible?: React.ReactNode;
+		hidden?: React.ReactNode;
 	};
 }
 export const InputField = forwardRef<HTMLInputElement, InputProps>(
@@ -125,8 +125,8 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 				);
 			if (isPassword && onToggleVisibility) {
 				const passwordIcon = showPassword
-					? passwordIcons?.visible || <FaEyeSlash size={20} />
-					: passwordIcons?.hidden || <FaEye size={20} />;
+					? passwordIcons?.visible || <FaEyeSlash size={22} />
+					: passwordIcons?.hidden || <FaEye size={22} />;
 				return (
 					<button
 						type="button"
@@ -161,6 +161,7 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 						className={cn(
 							getStyles("input"),
 							startIcon ? "pl-12" : undefined,
+							endIcon || icon || loader || (isPassword && onToggleVisibility) ? "pr-12" : undefined,
 							className,
 							classes.input
 						)}
@@ -173,6 +174,7 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 						className={cn(
 							getStyles("label"),
 							startIcon ? "left-12" : undefined,
+							value ? "-top-0.5 -translate-y-1/2 text-[.85rem] " : "",
 							classes.label
 						)}
 					>
