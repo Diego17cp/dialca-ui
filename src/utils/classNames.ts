@@ -23,7 +23,7 @@ const mergeVariants = <T extends Record<string, any>>(base: T, override: Partial
 const inputDefaultVariants: Record<string, DialcaUI.InputStates> = {
     default: {
         normal: {
-            container: 'relative space-y-2',
+            container: 'relative',
             input: `
                 w-full p-3.5 border-2 border-solid rounded-lg outline-none focus:ring-2 
                 transition-all duration-300 ease-in-out peer text-lg bg-transparent
@@ -42,10 +42,10 @@ const inputDefaultVariants: Record<string, DialcaUI.InputStates> = {
         },
         error: {
             input: "border-red-500 focus:ring-red-400 focus:border-red-400",
-            label: "peer-focus:text-red-500",
+            label: "peer-focus:text-red-500 text-red-500",
             button: "text-red-500 hover:text-red-700",
             icon: "text-red-500",
-            error: "text-red-500 text-sm mt-1 ml-1 flex items-center gap-1"
+            error: "text-red-500 text-sm mt-2 ml-1 flex items-center gap-1"
         },
         disabled: {
             input: "bg-gray-100 text-gray-500 cursor-not-allowed",
