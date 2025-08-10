@@ -70,8 +70,6 @@ const inputVariantOverrides: Record<string, Partial<DialcaUI.InputStates>> = {
     }
 }
 
-
-
 // ============
 // Hooks
 // ============
@@ -83,10 +81,16 @@ export const useInputVariantStyles = (
     states: { hasErrors?: boolean; disabled?: boolean; focused?: boolean } = {},
     extendDefault: boolean = true
 ) => {
+    const mappedStates = {
+        normal: true,
+        error: states.hasErrors,
+        disabled: states.disabled,
+        focused: states.focused
+    }
     return useVariantStyles<DialcaUI.InputStates, DialcaUI.InputVariant>(
         variant,
         customVariants,
-        states,
+        mappedStates,
         extendDefault,
         inputDefaultVariants,
         inputVariantOverrides
@@ -118,16 +122,16 @@ const useVariantStyles = <TStates extends Record<string, any>, TVariant extends 
     const selectedVariant = processedVariants[variant] || processedVariants.default || {} as TStates;
     const getStyles = (element: keyof TVariant) => {
         let styles: string[] = []
+        if (selectedVariant.normal) {
+            const normalStyles = (selectedVariant.normal as any)[element]
+            if (normalStyles) styles.push(normalStyles)
+        }
         Object.entries(states).forEach(([stateName, isActive]) => {
-            if (isActive && selectedVariant[stateName]) {
+            if (isActive && stateName !== 'normal' && selectedVariant[stateName]) {
                 const stateStyles = (selectedVariant[stateName] as any)[element]
                 if (stateStyles) styles.push(stateStyles)
             }
         })
-        if (styles.length === 0 && selectedVariant.normal) {
-            const normalStyles = (selectedVariant.normal as any)[element]
-            if (normalStyles) styles.push(normalStyles)
-        }
         return cn(...styles)
     }
 
