@@ -27,7 +27,7 @@ const inputDefaultVariants: Record<string, DialcaUI.InputStates> = {
             input: `
                 w-full p-3.5 border-2 border-solid rounded-lg outline-none focus:ring-2 
                 transition-all duration-300 ease-in-out peer text-lg bg-transparent
-                text-lg border-gray-300 focus:ring-[#085691] focus:border-[#085691]
+                border-gray-300 focus:ring-[#085691] focus:border-[#085691]
             `,
             label: `
                 absolute left-[1em] px-1.5 py-0 pointer-events-none transition-all duration-300 ease-in-out
@@ -56,7 +56,7 @@ const inputDefaultVariants: Record<string, DialcaUI.InputStates> = {
 const inputVariantOverrides: Record<string, Partial<DialcaUI.InputStates>> = {
     dark: {
         normal: {
-            input: 'w-full p-3.5 border-2 focus:ring-2 transition-all text-lg peer duration-300 ease-in-out focus:outline-none bg-gray-800 text-white border-gray-600 focus:ring-gray-400 focus:border-gray-400', // ✅ Agregar focus colors
+            input: 'w-full p-3.5 border-2 focus:ring-2 transition-all text-lg peer duration-300 ease-in-out focus:outline-none bg-gray-800 text-white border-gray-600 focus:ring-gray-400 focus:border-gray-400',
             label: 'absolute top-[45%] left-[1em] px-1.5 py-0 pointer-events-none transition-all duration-300 ease-in-out bg-gray-800 peer-placeholder-shown:top-[45%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500 peer-focus:-top-0.5 peer-focus:-translate-y-1/2 peer-focus:text-sm peer-focus:bg-gray-800',
             button: 'text-gray-300 hover:text-white', 
             icon: 'text-gray-300'
@@ -69,6 +69,78 @@ const inputVariantOverrides: Record<string, Partial<DialcaUI.InputStates>> = {
         }
     }
 }
+// TextArea
+const txtAreaDefaultVariants: Record<string, DialcaUI.TxtAreaStates> = {
+    default: {
+        normal: {
+            container: 'relative',
+            textarea: `
+                w-full p-3.5 border-2 border-solid rounded-lg outline-none focus:ring-2 
+                transition-all duration-300 ease-in-out peer text-lg bg-transparent
+                border-gray-300 focus:ring-[#085691] focus:border-[#085691]
+                min-h-12 max-h-40 resize-none field-sizing-content scrollbar-thin
+            `,
+            label: `
+                absolute left-[1em] px-1.5 py-0 pointer-events-none transition-all duration-300 ease-in-out
+                bg-white
+                peer-placeholder-shown:top-[45%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500
+                peer-focus:-top-0.5 peer-focus:-translate-y-1/2 peer-focus:text-sm
+                peer-focus:bg-white peer-focus:text-[#085691]
+            `,
+            icon: "absolute top-3 right-3 px-0.5 py-0 text-[#085691] text-[1.3rem]",
+            loader: "absolute top-3 right-3 animate-spin",
+            charCounter: "absolute right-3 bottom-3 z-10"
+        },
+        error: {
+            textarea: "border-red-500 focus:ring-red-400 focus:border-red-400",
+            label: "peer-focus:text-red-500 text-red-500",
+            icon: "text-red-500",
+            error: "text-red-500 text-sm mt-2 ml-1 flex items-center gap-1"
+        },
+        disabled: {
+            textarea: "bg-gray-100 text-gray-500 cursor-not-allowed",
+            label: "peer-focus:text-gray-500"
+        },
+        resizing: {
+            textarea: "resize-y"
+        }
+    }
+}
+const txtAreaVariantOverrides: Record<string, Partial<DialcaUI.TxtAreaStates>> = {
+    dark: {
+        normal: {
+            textarea: `
+                w-full p-3.5 border-2 border-solid rounded-sm outline-none focus:ring-2 
+                transition-all duration-300 ease-in-out peer text-lg
+                bg-gray-800 text-white border-gray-600 focus:ring-gray-400 focus:border-gray-400
+                min-h-12 max-h-40 resize-none field-sizing-content scrollbar-thin
+            `,
+            label: `
+                absolute left-[1em] px-1.5 py-0 pointer-events-none transition-all duration-300 ease-in-out
+                bg-gray-800 font-body
+                peer-placeholder-shown:top-[40%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-500
+                peer-focus:-top-0.5 peer-focus:-translate-y-1/2 peer-focus:text-[.85rem]
+                peer-focus:bg-gray-800 peer-focus:text-gray-300 text-gray-300
+            `,
+            icon: "absolute top-3 right-3 px-0.5 py-0 bg-transparent text-gray-300 text-[1.3rem] transition-all duration-300 ease-in-out"
+        },
+        error: {
+            textarea: "border-red-400 focus:ring-red-300 focus:border-red-400",
+            label: "peer-focus:text-red-400 text-red-400",
+            icon: "text-red-400"
+        }
+    },
+    resizable: {
+        normal: {
+            textarea: `
+                w-full p-3.5 border-2 border-solid rounded-lg outline-none focus:ring-2 
+                transition-all duration-300 ease-in-out peer text-lg bg-transparent
+                border-gray-300 focus:ring-purple-400 focus:border-purple-400
+                min-h-24 max-h-96 resize-y field-sizing-content scrollbar-thin
+            `
+        }
+    }
+};
 
 // ============
 // Hooks
@@ -94,6 +166,28 @@ export const useInputVariantStyles = (
         extendDefault,
         inputDefaultVariants,
         inputVariantOverrides
+    )
+}
+export const useTxtAreaVariantStyles = (
+    variant: string = "default",
+    customVariants: Record<string, DialcaUI.TxtAreaStates> = {},
+    states: { hasErrors?: boolean; disabled?: boolean; focused?: boolean; resizing?: boolean; } = {},
+    extendDefault: boolean = true
+) => {
+    const mappedStates = {
+        normal: true,
+        error: states.hasErrors,
+        disabled: states.disabled,
+        focused: states.focused,
+        resizing: states.resizing
+    }
+    return useVariantStyles<DialcaUI.TxtAreaStates, DialcaUI.TxtAreaVariant>(
+        variant,
+        customVariants,
+        mappedStates,
+        extendDefault,
+        txtAreaDefaultVariants,
+        txtAreaVariantOverrides
     )
 }
 
