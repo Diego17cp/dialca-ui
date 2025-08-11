@@ -36,9 +36,9 @@ const inputDefaultVariants: Record<string, DialcaUI.InputStates> = {
                 peer-focus:-top-0.5 peer-focus:-translate-y-1/2 peer-focus:text-sm
                 peer-focus:bg-white peer-focus:text-[#085691]
             `, 
-            button: "absolute top-[45%] right-[.8em] -translate-y-1/2 text-[#085691] hover:text-[#053866] transition-all duration-300 ease-in-out cursor-pointer",
-            icon: "absolute top-[45%] right-[.8em] -translate-y-1/2 text-[#085691]",
-            loader: "absolute top-[40%] right-[.8em]"
+            button: "absolute top-[50%] right-[.8em] -translate-y-1/2 text-[#085691] hover:text-[#053866] transition-all duration-300 ease-in-out cursor-pointer",
+            icon: "absolute top-[50%] right-[.8em] -translate-y-1/2 text-[#085691]",
+            loader: "absolute top-[50%] right-[.8em]"
         },
         error: {
             input: "border-red-500 focus:ring-red-400 focus:border-red-400",
@@ -141,6 +141,42 @@ const txtAreaVariantOverrides: Record<string, Partial<DialcaUI.TxtAreaStates>> =
         }
     }
 };
+// DropZone
+const dropZoneDefaultVariants: Record<string, DialcaUI.DropZoneStates> = {
+    default: {
+        normal: {
+            container: 'border-2 border-dashed border-gray-300 hover:border-[#3A7DC0] hover:bg-gray-100 p-8 rounded-lg text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center min-h-40',
+            icon: 'text-4xl mb-3 text-[#085691]',
+            title: 'font-medium text-lg',
+            description: 'text-base text-gray-500 mt-2',
+            error: 'text-red-500 text-sm mt-2 ml-1 flex items-center gap-1'
+        },
+        error: {
+            container: 'border-red-500 border-3',
+            icon: 'text-red-500',
+        },
+        dragging: {
+            container: 'border-[#3A7DC0] bg-[#3A7DC0]/5',
+        }
+    }
+}
+const dropZoneVariantOverrides: Record<string, Partial<DialcaUI.DropZoneStates>> = {
+    dark: {
+        normal: {
+            container: 'border-2 bg-gray-800 border-dashed border-[#3A7DC0] hover:border-[#3a8dc0] hover:bg-gray-800/95 p-8 rounded-lg text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center min-h-40',
+            icon: 'text-4xl mb-3 text-[#3A7DC0]',
+            title: 'font-medium text-gray-400 text-lg',
+            description: 'text-base text-gray-400 mt-2',
+        },
+        error: {
+            container: 'border-red-400 border-3',
+            icon: 'text-red-400',
+        },
+        dragging: {
+            container: 'border-[#3A8DC0] bg-[#3A8DC0]/5',
+        }
+    }
+}
 
 // ============
 // Hooks
@@ -188,6 +224,26 @@ export const useTxtAreaVariantStyles = (
         extendDefault,
         txtAreaDefaultVariants,
         txtAreaVariantOverrides
+    )
+}
+export const useDropZoneVariantStyles = (
+    variant: string = "default",
+    customVariants: Record<string, DialcaUI.DropZoneStates> = {},
+    states: { isDragging?: boolean; hasErrors?: boolean } = {},
+    extendDefault: boolean = true
+) => {
+    const mappedStates = {
+        normal: true,
+        error: states.hasErrors,
+        dragging: states.isDragging
+    }
+    return useVariantStyles<DialcaUI.DropZoneStates, DialcaUI.DropZoneVariant>(
+        variant,
+        customVariants,
+        mappedStates,
+        extendDefault,
+        dropZoneDefaultVariants,
+        dropZoneVariantOverrides
     )
 }
 
