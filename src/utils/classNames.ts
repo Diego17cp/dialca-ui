@@ -177,6 +177,64 @@ const dropZoneVariantOverrides: Record<string, Partial<DialcaUI.DropZoneStates>>
         }
     }
 }
+// Loader
+const loaderDefaultVariants: Record<string, DialcaUI.LoaderStates> = {
+    default: {
+        normal: {
+            container: 'flex items-center justify-center flex-col gap-2',
+            outerRing: 'border-2 border-transparent animate-spin rounded-full border-t-[#3A7DC0] flex items-center justify-center',
+            innerRing: 'border-2 border-transparent animate-spin rounded-full border-t-[#085691]',
+            content: 'text-[#3A7DC0] text-sm font-medium'
+        },
+        error: {
+            outerRing: 'border-t-red-500!',
+            innerRing: 'border-t-red-700!',
+            content: 'text-red-500!'
+        },
+        success: {
+            outerRing: 'border-t-green-500!',
+            innerRing: 'border-t-green-700!', 
+            content: 'text-green-500!'
+        },
+        disabled: {
+            outerRing: 'border-t-gray-400 opacity-50',
+            innerRing: 'border-t-gray-500 opacity-50',
+            content: 'text-gray-400'
+        }
+    }
+}
+const loaderVariantOverrides: Record<string, Partial<DialcaUI.LoaderStates>> = {
+    dark: {
+        normal: {
+            outerRing: 'border-2 border-transparent animate-spin rounded-full border-t-[#d79b5f] flex items-center justify-center',
+            innerRing: 'border-2 border-transparent animate-spin rounded-full border-t-[#f3c892]',
+            content: 'text-gray-300'
+        }
+    },
+    
+    pulse: {
+        normal: {
+            container: 'flex items-center justify-center',
+            outerRing: 'bg-[#085691] animate-pulse! rounded-full flex items-center justify-center',
+            innerRing: 'bg-[#3A7DC0] animate-pulse! rounded-full opacity-60 delay-100'
+        }
+    },
+    
+    dots: {
+        normal: {
+            container: 'flex items-center justify-center space-x-1',
+            outerRing: 'w-3 h-3 bg-[#3A7DC0] rounded-full animate-bounce',
+            innerRing: 'w-3 h-3 bg-[#085691] rounded-full animate-bounce delay-100'
+        }
+    },
+    
+    minimal: {
+        normal: {
+            outerRing: 'border border-gray-300 animate-spin rounded-full border-t-[#3A7DC0]',
+            innerRing: 'hidden' // Solo un anillo
+        }
+    }
+}
 
 // ============
 // Hooks
@@ -244,6 +302,31 @@ export const useDropZoneVariantStyles = (
         extendDefault,
         dropZoneDefaultVariants,
         dropZoneVariantOverrides
+    )
+}
+export const useLoaderVariantStyles = (
+    variant: string = 'default',
+    customVariants: Record<string, DialcaUI.LoaderStates> = {},
+    states: {
+        hasErrors?: boolean
+        disabled?: boolean
+        success?: boolean
+    },
+    extendDefault: boolean = true
+) => {
+    const mappedStates = {
+        normal: true,
+        error: states.hasErrors,
+        disabled: states.disabled,
+        success: states.success
+    }
+    return useVariantStyles<DialcaUI.LoaderStates, DialcaUI.LoaderVariant>(
+        variant,
+        customVariants,
+        mappedStates,
+        extendDefault,
+        loaderDefaultVariants,
+        loaderVariantOverrides
     )
 }
 
