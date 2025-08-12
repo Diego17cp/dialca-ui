@@ -47,6 +47,6 @@
     "esModuleInterop": true,
     "declarationDir": "dist"
   },
-  "include": ["src", "types.d.ts"],
-  "exclude": ["dist"]
+  "include": ["src", "src/types.d.ts"],
+  "exclude": ["dist", "node_modules", "playground"]
 }
