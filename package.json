@@ -1,6 +1,6 @@
 {
   "name": "dialca-ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Components library of React and Tailwind made by me:)",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
