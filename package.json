@@ -17,15 +17,15 @@
     },
     "./styles": {
       "types": "./dist/styles.d.ts",
-      "default": "./dist/tailwind.css"
+      "default": "./dist/dialcaui.css"
     },
     "./css": {
       "types": "./dist/styles.d.ts",
-      "default": "./dist/tailwind.css"
+      "default": "./dist/dialcaui.css"
     }
   },
   "scripts": {
-    "build": "tsup && postcss ./src/styles/tailwind.css -o ./dist/tailwind.css && copy src\\styles.d.ts dist\\styles.d.ts",
+    "build": "tsup && postcss ./src/styles/dialcaui.css -o ./dist/dialcaui.css && copy src\\styles.d.ts dist\\styles.d.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite"
   },
