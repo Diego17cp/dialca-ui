@@ -81,8 +81,6 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 			showPassword = false,
 			passwordIcons,
 			onToggleVisibility,
-			onChange,
-
 			// ==================
 			// Icon Props
 			// ==================
