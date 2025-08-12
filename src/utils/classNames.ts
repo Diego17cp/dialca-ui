@@ -373,6 +373,103 @@ const selectVariantOverrides: Record<string, Partial<DialcaUI.SelectStates>> = {
 		},
 	},
 };
+// Radio
+// Radio
+const radioDefaultVariants: Record<string, DialcaUI.RadioStates> = {
+    default: {
+        normal: {
+            container: 'flex items-start space-x-3 transition-all duration-300 ease-in-out',
+            radio: `
+                mt-1 w-5 h-5 cursor-pointer border-2 border-solid rounded-full 
+                transition-all appearance-none radio-checked focus:outline-2 
+                focus:outline-offset-2 border-gray-300 hover:border-[#3A7DC0] 
+                focus:outline-[#3A7DC0]
+            `,
+            label: 'flex-1 cursor-pointer',
+            text: 'font-medium text-gray-700',
+            description: 'text-sm text-gray-500 mt-1'
+        },
+        checked: {
+            radio: 'bg-[#3A7DC0]! border-[#3A7DC0]!',
+            text: 'text-gray-900'
+        },
+        disabled: {
+            container: 'opacity-50',
+            radio: 'cursor-not-allowed border-gray-300 bg-gray-100',
+            label: 'cursor-not-allowed',
+            text: 'text-gray-500'
+        },
+        error: {
+            radio: 'border-red-500! hover:border-red-600! focus:outline-red-500! checked:bg-red-500! checked:border-red-500!',
+            text: 'text-red-700',
+            error: 'text-red-500 text-sm mt-2 flex items-center gap-1'
+        },
+        focused: {
+            radio: 'ring-2 ring-[#3A7DC0] ring-opacity-50'
+        }
+    }
+};
+
+const radioVariantOverrides: Record<string, Partial<DialcaUI.RadioStates>> = {
+    card: {
+        normal: {
+            container: `
+                flex items-start space-x-3 p-4 border rounded-lg cursor-pointer 
+                transition-all ease-in duration-300 hover:bg-gray-50 border-gray-200
+            `,
+            radio: `
+                mt-1 w-5 h-5 cursor-pointer border-2 border-solid rounded-full 
+                transition-all appearance-none radio-checked
+                border-gray-300 hover:border-[#3A7DC0] focus:outline-[#3A7DC0]
+                focus:outline-2 focus:outline-offset-2
+            `
+        },
+        checked: {
+            container: 'bg-[#3A7DC0]/10! border-[#3A7DC0]/50!',
+            radio: 'bg-[#3A7DC0]! border-[#3A7DC0]!'
+        },
+        error: {
+            container: 'border-red-200 hover:bg-red-50',
+            radio: 'border-red-500! checked:bg-red-500! checked:border-red-500!'
+        }
+    },
+
+    minimal: {
+        normal: {
+            container: 'flex items-center space-x-2',
+            radio: `
+                w-4 h-4 cursor-pointer border-2 border-solid rounded-full 
+                transition-all appearance-none radio-checked
+                border-gray-300 hover:border-[#3A7DC0] focus:outline-[#3A7DC0]
+                focus:outline-1 focus:outline-offset-1
+            `,
+            text: 'text-sm text-gray-700'
+        }
+    },
+
+    dark: {
+        normal: {
+            container: 'flex items-start space-x-3 transition-all duration-300 ease-in-out',
+            radio: `
+                mt-1 w-5 h-5 cursor-pointer border-2 border-solid rounded-full 
+                transition-all appearance-none radio-checked
+                bg-gray-800 border-gray-600 hover:border-gray-400 focus:outline-gray-400
+                focus:outline-2 focus:outline-offset-2
+            `,
+            text: 'font-medium text-gray-200',
+            description: 'text-sm text-gray-400 mt-1'
+        },
+        checked: {
+            radio: 'bg-gray-300! border-gray-300!'
+        },
+        error: {
+            radio: 'border-red-400! hover:border-red-300! focus:outline-red-400! checked:bg-red-400! checked:border-red-400!',
+            text: 'text-red-300'
+        }
+    }
+};
+
+
 
 // ============
 // Hooks
@@ -500,6 +597,33 @@ export const useSelectVariantStyles = (
 		selectDefaultVariants,
 		selectVariantOverrides
 	);
+};
+export const useRadioVariantStyles = (
+    variant: string = "default",
+    customVariants: Record<string, DialcaUI.RadioStates> = {},
+    states: { 
+        checked?: boolean;
+        disabled?: boolean;
+        hasErrors?: boolean;
+        focused?: boolean;
+    } = {},
+    extendDefault: boolean = true
+) => {
+    const mappedStates = {
+        normal: true,
+        checked: states.checked,
+        disabled: states.disabled,
+        error: states.hasErrors,
+        focused: states.focused
+    };
+    return useVariantStyles<DialcaUI.RadioStates, DialcaUI.RadioVariant>(
+        variant,
+        customVariants,
+        mappedStates,
+        extendDefault,
+        radioDefaultVariants,
+        radioVariantOverrides
+    );
 };
 
 // Generic
