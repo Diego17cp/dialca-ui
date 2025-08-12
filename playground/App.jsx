@@ -14,6 +14,7 @@ import { useState } from "react";
 
 export function App() {
 	const [txtArea, setTxtArea] = useState("");
+	const [name, setName] = useState("");
 	const [selectedOption, setSelectedOption] = useState("");
 	const [genero, setGenero] = useState("");
 	const [plan, setPlan] = useState("");
@@ -34,8 +35,8 @@ export function App() {
 				<InputField
 					label="Default Input"
 					required
-					value={txtArea}
-					onChange={(e) => setTxtArea(e.target.value)}
+					value={name}
+					onChange={(e) => setName(e.target.value)}
 					isPassword
 					onToggleVisibility={() => console.log("toggle")}
 				/>
