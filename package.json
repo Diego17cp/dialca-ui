@@ -7,9 +7,7 @@
   "types": "dist/index.d.ts",
   "style": "dist/tailwind.css",
   "files": [
-    "dist",
-    "types.d.ts",
-    "src/styles.d.ts"
+    "dist"
   ],
   "exports": {
     ".": {
@@ -17,11 +15,17 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./styles": "./dist/tailwind.css",
-    "./css": "./dist/tailwind.css"
+    "./styles": {
+      "types": "./dist/styles.d.ts",
+      "default": "./dist/tailwind.css"
+    },
+    "./css": {
+      "types": "./dist/styles.d.ts", 
+      "default": "./dist/tailwind.css"
+    }
   },
   "scripts": {
-    "build": "tsup && postcss ./src/styles/tailwind.css -o ./dist/tailwind.css",
+    "build": "tsup && postcss ./src/styles/tailwind.css -o ./dist/tailwind.css && copy src\\styles.d.ts dist\\styles.d.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite"
   },
