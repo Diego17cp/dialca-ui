@@ -8,7 +8,8 @@
   "style": "dist/tailwind.css",
   "files": [
     "dist",
-    "types.d.ts"
+    "types.d.ts",
+    "src/styles.d.ts"
   ],
   "exports": {
     ".": {
