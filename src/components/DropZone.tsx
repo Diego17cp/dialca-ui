@@ -78,7 +78,7 @@ export const DropZone: React.FC<Props> = ({
                     </>
                 )}
             </div>
-            {hasErrors && errorMessage && errorIcon && (
+            {hasErrors && errorMessage && (
                 <div className={cn(getStyles('error'), classes?.error)}>
                     {errorIcon}
                     {errorMessage}
