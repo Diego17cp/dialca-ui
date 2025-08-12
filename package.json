@@ -1,9 +1,9 @@
 {
   "name": "@dialca/ui",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "version": "0.0.1",
+  "description": "Components library of React and Tailwind made by me:)",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -32,9 +32,19 @@
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-icons": "5.5.0",
+    "tailwind-scrollbar": "4.0.2",
     "tailwindcss": "4.1.11",
     "tsup": "8.5.0",
     "typescript": "5.9.2",
     "vite": "^7.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diego17cp/dialca-ui.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Diego17cp/dialca-ui/issues"
+  },
+  "homepage": "https://github.com/Diego17cp/dialca-ui#readme"
 }
