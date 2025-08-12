@@ -1,2 +1,45 @@
 @import "tailwindcss";
 @plugin "tailwind-scrollbar";
+
+@keyframes spin-slow {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes spin-fast {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes spin-reverse {
+	from {
+		transform: rotate(360deg);
+	}
+	to {
+		transform: rotate(0deg);
+	}
+}
+
+.animate-spin-slow {
+	animation: spin-slow 2s linear infinite;
+}
+
+.animate-spin-fast {
+	animation: spin-fast 0.5s linear infinite;
+}
+
+.animate-spin-reverse {
+	animation: spin-reverse 1s linear infinite;
+}
+
+.animate-reverse {
+	animation-direction: reverse;
+}
