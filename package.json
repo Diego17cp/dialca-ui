@@ -1,14 +1,24 @@
 {
-  "name": "@dialca/ui",
-  "version": "0.0.1",
+  "name": "dialca-ui",
+  "version": "1.0.0",
   "description": "Components library of React and Tailwind made by me:)",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "style": "dist/tailwind.css",
   "files": [
     "dist",
     "types.d.ts"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",  
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./styles": "./dist/tailwind.css",
+    "./css": "./dist/tailwind.css"
+  },
   "scripts": {
     "build": "tsup && postcss ./src/styles/tailwind.css -o ./dist/tailwind.css",
     "test": "echo \"Error: no test specified\" && exit 1",
