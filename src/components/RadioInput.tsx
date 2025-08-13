@@ -2,6 +2,9 @@ import { forwardRef, type InputHTMLAttributes } from "react";
 import { cn, useRadioVariantStyles } from "../utils/classNames";
 import { FaExclamationCircle } from "react-icons/fa";
 
+/**
+ * Option for a radio input group.
+ */
 interface RadioOption {
     value: string;
     label: string;
@@ -9,39 +12,46 @@ interface RadioOption {
     disabled?: boolean;
 }
 
+/**
+ * Props for the {@link RadioInput} component.
+ *
+ * This component renders a group of radio buttons or a single radio input.
+ * - Supports custom variants and styles
+ * - Displays error messages and icons
+ * - Handles disabled and checked states
+ *
+ */
 export interface RadioInputProps
     extends Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "type"> {
-    // ==================
-    // Basic Props
-    // ==================
+    /** Name for the radio group. */
     name: string;
+    /** Current selected value. */
     value?: string;
+    /** Callback when selection changes. */
     onChange?: (value: string) => void;
-    
-    // ==================
-    // Options Props
-    // ==================
+
+    /** Array of radio options. If omitted, renders a single radio input. */
     options?: RadioOption[];
-    
-    // ==================
-    // Single Radio Props (legacy support)
-    // ==================
+
+    /** Label for single radio mode. */
     label?: string;
+    /** Description for single radio mode. */
     description?: string;
-    
-    // ==================
-    // State Props
-    // ==================
+
+    /** If true, displays error state. */
     hasErrors?: boolean;
+    /** Error message to display. */
     errorMessage?: string;
+    /** Disables all radio inputs. */
     disabled?: boolean;
-    
-    // ==================
-    // Style Props
-    // ==================
+
+    /** Variant key for custom styles. */
     variant?: string;
+    /** Custom variants for styling. */
     variants?: Record<string, DialcaUI.RadioStates>;
+    /** If true, merges custom variants with defaults. */
     extendDefault?: boolean;
+    /** Custom classes for styling. */
     classes?: {
         container?: string;
         radio?: string;
@@ -50,62 +60,62 @@ export interface RadioInputProps
         description?: string;
         error?: string;
     };
+    /** Additional className for the container. */
     className?: string;
-    
-    // ==================
-    // Custom Props
-    // ==================
+
+    /** Custom icon for error state. */
     errorIcon?: React.ReactNode;
 }
 
+/**
+ * **RadioInput** renders a group of radio buttons or a single radio input.
+ *
+ * - Supports variants and custom styles
+ * - Displays error messages and icons
+ * - Handles disabled and checked states
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <RadioInput
+ *   name="plan"
+ *   value={selectedPlan}
+ *   onChange={setSelectedPlan}
+ *   options={[
+ *     { value: "basic", label: "Basic" },
+ *     { value: "pro", label: "Pro" }
+ *   ]}
+ *   hasErrors={!selectedPlan}
+ *   errorMessage="Please select a plan"
+ * />
+ * ```
+ *
+ * @param props - See {@link RadioInputProps} for all supported props.
+ */
 export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
     (
         {
-            // ==================
-            // Basic Props
-            // ==================
             name,
             value = "",
             onChange,
-            
-            // ==================
-            // Options Props
-            // ==================
             options,
-            
-            // ==================
-            // Single Radio Props
-            // ==================
             label,
             description,
-            
-            // ==================
-            // State Props
-            // ==================
             hasErrors = false,
             errorMessage = "",
             disabled = false,
-            
-            // ==================
-            // Style Props
-            // ==================
             variant = "default",
             variants: customVariants = {},
             extendDefault = true,
             classes = {},
             className = "",
-            
-            // ==================
-            // Custom Props
-            // ==================
             errorIcon,
-            
             ...props
         },
         ref
     ) => {
         const isSingleMode = !options && label;
-        const radioOptions = isSingleMode 
+        const radioOptions = isSingleMode
             ? [{ value: "single", label: label!, description, disabled: false }]
             : options || [];
         const { getStyles } = useRadioVariantStyles(
@@ -122,7 +132,6 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
 
         const handleChange = (optionValue: string) => {
             if (disabled) return;
-            
             if (isSingleMode) {
                 const newValue = value === optionValue ? "" : optionValue;
                 onChange?.(newValue);
@@ -176,7 +185,7 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
                                     )}
                                     {...props}
                                 />
-                                
+
                                 <div className={cn(getRadioStyles("label"), classes.label)}>
                                     <span className={cn(getRadioStyles("text"), classes.text)}>
                                         {option.label}

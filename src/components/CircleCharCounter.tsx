@@ -1,31 +1,86 @@
 import React from "react";
 
+/**
+ * Configuration options for customizing the appearance of the CharCounter component.
+ */
 interface CharCounterConfig {
 	strokeColor?: {
+		/** Color for the progress stroke */
 		progress: string;
+		/** Color for the stroke when exceeding the limit */
 		error: string;
+		/** Color for the stroke when close to the limit */
 		warning: string;
+		/** Color for the background stroke */
 		background: string;
 	};
 	textColor?: {
+		/** Text color for progress state */
 		progress: string;
+		/** Text color for error state */
 		error: string;
+		/** Text color for warning state */
 		warning: string;
 	};
+	/** Font size for the counter text (Tailwind class) */
 	fontSize?: string;
 }
 
+/**
+ * Props for the {@link CharCounter} component.
+ */
 interface CharCounterProps {
+	/** Maximum number of characters allowed */
 	maxLength: number;
+	/** Current text value */
 	value: string;
+	/** Size of the circular counter in pixels (default: `32`) */
 	size?: number;
+	/** Custom configuration for colors and font size */
 	config?: CharCounterConfig;
+	/** Optional custom classes for container and text */
 	classes?: {
 		container?: string;
 		text?: string;
 	};
 }
 
+/**
+ * A circular character counter component with customizable colors, size, and styles.
+ *
+ * Displays the number of characters remaining when nearing the limit
+ * and changes colors based on the percentage of the limit reached.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <CharCounter
+ *   value={text}
+ *   maxLength={100}
+ *   size={40}
+ *   config={{
+ *     strokeColor: {
+ *       progress: "stroke-green-400",
+ *       error: "stroke-red-500",
+ *       warning: "stroke-yellow-400",
+ *       background: "stroke-gray-200",
+ *     },
+ *     textColor: {
+ *       progress: "text-green-500",
+ *       error: "text-red-500",
+ *       warning: "text-yellow-500",
+ *     },
+ *     fontSize: "text-sm",
+ *   }}
+ *   classes={{
+ *     container: "shadow-md",
+ *     text: "tracking-wide",
+ *   }}
+ * />
+ * ```
+ *
+ * @param props - See {@link CharCounterProps} for a full list of supported props.
+ */
 export const CharCounter: React.FC<CharCounterProps> = ({
 	value = "",
 	maxLength,
@@ -50,11 +105,14 @@ export const CharCounter: React.FC<CharCounterProps> = ({
 	const charsLeft = maxLength - currentLength;
 	const percent = Math.min((currentLength / maxLength) * 100, 100);
 
+	/** Returns the stroke color based on the percentage of the limit reached. */
 	const getProgressColor = () => {
 		if (percent >= 90) return config.strokeColor?.error;
 		if (percent >= 75) return config.strokeColor?.warning;
 		return config.strokeColor?.progress;
 	};
+
+	/** Returns the text color based on the percentage of the limit reached. */
 	const getTextColor = () => {
 		if (percent >= 90) return config.textColor?.error;
 		if (percent >= 75) return config.textColor?.warning;
@@ -68,13 +126,14 @@ export const CharCounter: React.FC<CharCounterProps> = ({
 
 	const baseClasses = {
 		container: `relative size-${size} flex items-center justify-center bg-white rounded-full`,
-		text: `absolute inset-0 flex items-center justify-center font-bold ${config.fontSize} pointer-events-none select-none ${getTextColor()}`,
+		text: `absolute inset-0 flex items-center justify-center font-bold ${
+			config.fontSize
+		} pointer-events-none select-none ${getTextColor()}`,
 	};
 
 	return (
 		<div
 			className={`${baseClasses.container} ${classes?.container}`}
-			// Apply style if the tw version doesn't allow size class
 			style={{ width: size, height: size }}
 		>
 			<svg width={size} height={size}>

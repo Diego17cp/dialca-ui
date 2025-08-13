@@ -1,46 +1,78 @@
 import { type InputHTMLAttributes, forwardRef } from "react";
 import { cn, useInputVariantStyles } from "../utils/classNames";
-// import { MainLoader } from "../loaders/MainLoader";
 import { FaEye, FaEyeSlash, FaCircleExclamation } from "react-icons/fa6";
 
+/**
+ * Props for the {@link InputField} component.
+ *
+ * This component is a fully customizable text input supporting:
+ * - Variants and custom styles
+ * - Password visibility toggling
+ * - Error and loading states
+ * - Custom icons on either side
+ */
 export interface InputProps
 	extends Omit<InputHTMLAttributes<HTMLInputElement>, "value"> {
-	// ==================
-	// Basic Props
-	// ==================
+	/** Label displayed above or inside the input. */
 	label: string;
+
+	/** Current value of the input. */
 	value?: string | number;
+
+	/** Marks the input as required, showing an asterisk in the label. */
 	required?: boolean;
 
-	// ==================
-	// State Props
-	// ==================
+	// ===== State Props =====
+
+	/** If true, the input will display an error state. */
 	hasErrors?: boolean;
+
+	/** Text to display below the input when `hasErrors` is true. */
 	errorMessage?: string;
+
+	/** If true, shows a loading state. */
 	isLoading?: boolean;
 
-	// ==================
-	// Password Props
-	// ==================
+	// ===== Password Props =====
+
+	/** If true, input type will be `password` with optional visibility toggle. */
 	isPassword?: boolean;
+
+	/** Current visibility state for password mode. */
 	showPassword?: boolean;
+
+	/** Callback executed when the visibility toggle button is clicked. */
 	onToggleVisibility?: () => void;
 
-	// ==================
-	// Custom Props
-	// ==================
+	// ===== Custom Content Props =====
+
+	/** Icon element to display inside the input (deprecated, use `startIcon` or `endIcon`). */
 	icon?: React.ReactNode;
+
+	/** Loader element to display when `isLoading` is true. */
 	loader?: React.ReactNode;
+
+	/** Icon displayed on the left side of the input. */
 	startIcon?: React.ReactNode;
+
+	/** Icon displayed on the right side of the input. */
 	endIcon?: React.ReactNode;
+
+	/** Icon displayed instead of the default error icon when in error state. */
 	errorIcon?: React.ReactNode;
 
-	// ==================
-	// Style Props
-	// ==================
+	// ===== Style Props =====
+
+	/** Variant key used to determine styling via `useInputVariantStyles`. */
 	variant?: string;
+
+	/** Custom variants to extend or override the default styles. */
 	variants?: Record<string, DialcaUI.InputStates>;
+
+	/** If true, merges custom variants with the default ones. */
 	extendDefault?: boolean;
+
+	/** Optional classes for overriding styles in specific parts of the component. */
 	classes?: {
 		container?: string;
 		input?: string;
@@ -50,51 +82,64 @@ export interface InputProps
 		error?: string;
 		loader?: string;
 	};
+
+	/** If true, uses the default password visibility icons when `isPassword` is true. */
 	useDefaultIcon?: boolean;
+
+	/** Custom icons for password visibility toggle. */
 	passwordIcons?: {
 		visible?: React.ReactNode;
 		hidden?: React.ReactNode;
 	};
 }
+
+/**
+ * **InputField** is a customizable, accessible input component supporting:
+ *
+ * - Text and password types with toggle visibility
+ * - Loading and error states
+ * - Optional icons (left, right, or inside the input)
+ * - Style variants and custom class overrides
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <InputField
+ *   label="Email"
+ *   value={email}
+ *   onChange={(e) => setEmail(e.target.value)}
+ *   hasErrors={!emailValid}
+ *   errorMessage="Invalid email address"
+ *   startIcon={<MailIcon />}
+ * />
+ * ```
+ *
+ * @param props - See {@link InputProps} for a full list of supported props.
+ */
 export const InputField = forwardRef<HTMLInputElement, InputProps>(
 	(
 		{
-			// ==================
-			// Basic Props
-			// ==================
 			label = "Something cool",
 			value = "",
 			required = false,
 			disabled = false,
 
-			// ==================
-			// State Props
-			// ==================
 			hasErrors = false,
-			errorMessage = "", // Mensaje de error por defecto
+			errorMessage = "",
 			isLoading = false,
 
-			// ==================
-			// Password Props
-			// ==================
 			isPassword = false,
 			showPassword = false,
 			passwordIcons,
 			onToggleVisibility,
 			onChange,
 
-			// ==================
-			// Icon Props
-			// ==================
 			icon,
 			startIcon,
 			endIcon,
 			loader,
 			errorIcon,
 
-			// ==================
-			// Style Props
-			// ==================
 			variant = "default",
 			variants: customVariants = {},
 			extendDefault = true,
@@ -111,11 +156,13 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 			{ hasErrors, disabled },
 			extendDefault
 		);
+
 		const inputType = isPassword
 			? showPassword
 				? "text"
 				: "password"
 			: props.type || "text";
+
 		const getRightElement = () => {
 			if (isLoading && loader)
 				return (
@@ -123,6 +170,7 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 						{loader}
 					</div>
 				);
+
 			if (isPassword && onToggleVisibility) {
 				const passwordIcon = showPassword
 					? passwordIcons?.visible || <FaEyeSlash size={22} />
@@ -137,6 +185,7 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 					</button>
 				);
 			}
+
 			if (endIcon || icon) {
 				const iconElement = endIcon || icon;
 				return (
@@ -145,8 +194,10 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 					</div>
 				);
 			}
+
 			return null;
 		};
+
 		return (
 			<div>
 				<div className={cn(getStyles("container"), classes.container)}>
@@ -161,7 +212,12 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 						className={cn(
 							getStyles("input"),
 							startIcon ? "pl-12" : undefined,
-							endIcon || icon || loader || (isPassword && onToggleVisibility) ? "pr-12" : undefined,
+							endIcon ||
+								icon ||
+								loader ||
+								(isPassword && onToggleVisibility)
+								? "pr-12"
+								: undefined,
 							className,
 							classes.input
 						)}
@@ -175,7 +231,9 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 						className={cn(
 							getStyles("label"),
 							startIcon ? "left-12" : undefined,
-							value ? "-top-0.5 -translate-y-1/2 text-[.85rem] " : "",
+							value
+								? "-top-0.5 -translate-y-1/2 text-[.85rem] "
+								: "",
 							classes.label
 						)}
 					>
@@ -202,5 +260,6 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 		);
 	}
 );
+
 InputField.displayName = "InputField";
 export default InputField;

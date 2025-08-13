@@ -1,37 +1,56 @@
 import { cn, useLoaderVariantStyles } from "../utils/classNames";
 
+/**
+ * Loader component for displaying various loading animations.
+ *
+ * This component supports multiple sizes, states, speeds, directions, and styles.
+ * It can be customized with variants and conditional styling based on error, disabled, or success states.
+ */
 interface LoaderProps {
 	// =====================
 	// Size props
 	// =====================
+	/** Size of the loader (numeric in Tailwind units or preset: 'sm', 'md', 'lg', 'xl'). */
 	size?: number | "sm" | "md" | "lg" | "xl";
 
 	// =====================
 	// State props
 	// =====================
+	/** If true, applies error styles. */
 	hasErrors?: boolean;
+	/** If true, applies disabled styles. */
 	disabled?: boolean;
+	/** If true, applies success styles. */
 	success?: boolean;
 
 	// =====================
 	// Content props
 	// =====================
+	/** Optional text to display next to or below the loader. */
 	text?: string;
+	/** React children, overrides the `text` prop if provided. */
 	children?: React.ReactNode;
+	/** Whether to display the `text` or `children`. */
 	showText?: boolean;
 
 	// =====================
 	// Loader props
 	// =====================
+	/** Animation speed of the loader. */
 	speed?: "slow" | "normal" | "fast";
+	/** Rotation direction of the loader. */
 	direction?: "clockwise" | "counterclockwise";
 
 	// =====================
 	// Style props
 	// =====================
+	/** Variant key for applying styles from `variants`. */
 	variant?: string;
+	/** Object containing custom variant styles. */
 	variants?: Record<string, DialcaUI.LoaderStates>;
+	/** Whether to extend the default styles with the provided variants. */
 	extendDefault?: boolean;
+	/** Optional extra classes for styling specific loader elements. */
 	classes?: {
 		container?: string;
 		outerRing?: string;
@@ -39,7 +58,27 @@ interface LoaderProps {
 		content?: string;
 	};
 }
-
+/**
+ * Loader component
+ *
+ * A flexible and customizable loading spinner component that supports
+ * multiple sizes, speeds, directions, and visual variants.
+ * 
+ * @component
+ * @example
+ * // Basic usage
+ * <Loader />
+ *
+ * @example
+ * // With custom text and fast speed
+ * <Loader text="Loading..." speed="fast" />
+ *
+ * @example
+ * // With custom size and direction
+ * <Loader size="lg" direction="counterclockwise" />
+ *
+ * @param props - See {@link LoaderProps} for a full list of supported props.
+ */
 export const Loader: React.FC<LoaderProps> = ({
 	size = "md",
 	text,
@@ -55,12 +94,17 @@ export const Loader: React.FC<LoaderProps> = ({
 	disabled = false,
 	success = false,
 }) => {
+	// Hook for retrieving variant-based styles
 	const { getStyles } = useLoaderVariantStyles(
 		variant,
 		customVariants,
 		{ hasErrors, disabled, success },
 		extendDefault
 	);
+
+	/**
+	 * Returns the size classes for the loader rings.
+	 */
 	const getSizeClasses = () => {
 		if (typeof size === "number") {
 			return {
@@ -76,6 +120,10 @@ export const Loader: React.FC<LoaderProps> = ({
 		};
 		return sizeMap[size] || sizeMap.md;
 	};
+
+	/**
+	 * Returns the Tailwind animation speed class.
+	 */
 	const getSpeedClass = () => {
 		const speedMap = {
 			slow: "animate-spin-slow",
@@ -84,16 +132,23 @@ export const Loader: React.FC<LoaderProps> = ({
 		};
 		return speedMap[speed] || speedMap.normal;
 	};
+
+	/**
+	 * Returns the animation direction class.
+	 */
 	const getDirectionClass = () => {
 		return direction === "counterclockwise" ? "animate-reverse" : "";
 	};
+
 	const sizeClasses = getSizeClasses();
+
+	// Special "dots" variant loader
 	if (variant === "dots") {
 		return (
 			<div className={cn(getStyles("container"), classes?.container)}>
 				<div
 					className={cn(getStyles("outerRing"), classes?.outerRing)}
-				></div>
+				/>
 				<div
 					className={cn(
 						getStyles("innerRing"),
@@ -101,24 +156,23 @@ export const Loader: React.FC<LoaderProps> = ({
 						classes?.innerRing
 					)}
 					style={{ animationDelay: "75ms" }}
-				></div>
+				/>
 				<div
 					className={cn(
 						getStyles("innerRing"),
 						"delay-150",
-
 						classes?.innerRing
 					)}
 					style={{ animationDelay: "150ms" }}
-				></div>
+				/>
 			</div>
 		);
 	}
+
+	// Default loader (spinning rings)
 	return (
-		<div
-			className={cn(getStyles("container"), classes.container)}
-		>
-			{/* Anillo exterior */}
+		<div className={cn(getStyles("container"), classes.container)}>
+			{/* Outer Ring */}
 			<div
 				className={cn(
 					getStyles("outerRing"),
@@ -128,7 +182,7 @@ export const Loader: React.FC<LoaderProps> = ({
 					classes.outerRing
 				)}
 			>
-				{/* Anillo interior */}
+				{/* Inner Ring */}
 				{variant !== "minimal" && (
 					<div
 						className={cn(
@@ -142,7 +196,7 @@ export const Loader: React.FC<LoaderProps> = ({
 				)}
 			</div>
 
-			{/* Contenido/Texto */}
+			{/* Loader Text/Content */}
 			{(showText || text || children) && (
 				<div className={cn(getStyles("content"), classes.content)}>
 					{children || text}
