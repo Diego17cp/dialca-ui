@@ -1,4 +1,5 @@
 import { cn, useDropZoneVariantStyles } from "../utils/classNames";
+import { FaCloudArrowUp } from "react-icons/fa6";
 
 /**
  * Props for the DropZone component.
@@ -74,7 +75,7 @@ export const DropZone: React.FC<Props> = ({
     onClick,
     description = "Formatos soportados: JPG, PNG, WEBP. Máximo 5MB por imagen",
     children,
-    icon = "fa-cloud-arrow-up",
+    icon = <FaCloudArrowUp />,
     title = (
         <>
             Arrastra y suelta tus archivos aquí o{" "}
