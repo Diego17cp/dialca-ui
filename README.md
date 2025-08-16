@@ -43,6 +43,14 @@ $ bun add dialca-ui
 ```
 <h2 id="usage">Basic Usage⚙️</h2>
 
+First, import the package styles in your css entry file:
+
+```css
+@import 'dialca-ui/styles';
+```
+
+Now, you can use the components in your application:
+
 ```tsx
 import { InputField } from 'dialca-ui';
 import { useState } from "react";
