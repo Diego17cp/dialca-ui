@@ -28,7 +28,9 @@
     "build": "tsup && postcss ./src/styles/dialcaui.css -o ./dist/dialcaui.css && copy src\\styles.d.ts dist\\styles.d.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
-    "patch": "npm version patch && npm publish --access public"
+    "patch": "npm version patch && npm publish --access public",
+    "minor": "npm version minor && npm publish --access public",
+    "major": "npm version major && npm publish --access public"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
