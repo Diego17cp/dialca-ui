@@ -10,6 +10,7 @@ import { DropZone } from "../src/components/DropZone";
 import { Loader } from "../src/components/Loader";
 import { Select } from "../src/components/Select";
 import { RadioInput } from "../src/components/RadioInput";
+import { Modal } from "../src/components/Modal";
 import { useState } from "react";
 
 export function App() {
@@ -21,6 +22,7 @@ export function App() {
 	const [acceptTerms, setAcceptTerms] = useState("");
 	const [newsletter, setNewsletter] = useState("");
 	const [singleValue, setSingleValue] = useState("");
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-800 via-indigo-900 to-slate-700 flex items-center justify-center flex-col p-8 gap-10">
@@ -321,6 +323,24 @@ export function App() {
 					description="Al marcar esta casilla aceptas nuestros términos"
 				/>
 			</div>
+			{/* Modal */}
+			<div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+				<button
+					onClick={() => setIsOpen(true)}
+					className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+				>
+					Abrir Modal
+				</button>
+			</div>
+			<Modal
+				isOpen={isOpen}
+				onClose={() => setIsOpen(false)}
+				title="Título del Modal"
+				size="xl"
+				variant="dark"
+			>
+				<p>Contenido del modal</p>
+			</Modal>
 		</div>
 	);
 }
