@@ -59,10 +59,19 @@ declare global {
             error?: string;
         }
 
+        interface ModalVariant {
+            overlay?: string;
+            container?: string
+            header?: string
+            title?: string
+            closeButton?: string
+            content?: string
+        }
+
         // ==================
         // Tipos base
         // ==================
-        type ComponentVariant = InputVariant | TxtAreaVariant | DropZoneVariant | LoaderVariant | SelectVariant | RadioVariant;
+        type ComponentVariant = InputVariant | TxtAreaVariant | DropZoneVariant | LoaderVariant | SelectVariant | RadioVariant | ModalVariant;
 
         interface BaseStates {
             normal?: ComponentVariant;
@@ -120,6 +129,23 @@ declare global {
             disabled?: RadioVariant
             error?: RadioVariant
             focused?: RadioVariant
+        }
+        interface ModalStates extends BaseStates {
+            normal?: ModalVariant;
+            open?: ModalVariant;
+            sm?: ModalVariant;
+            md?: ModalVariant;
+            lg?: ModalVariant;
+            xl?: ModalVariant;
+            full?: ModalVariant;
+            center?: ModalVariant;
+            top?: ModalVariant;
+            bottom?: ModalVariant;
+            fade?: ModalVariant;
+            slideUp?: ModalVariant;
+            slideDown?: ModalVariant;
+            zoom?: ModalVariant;
+            hasTitle?: ModalVariant;
         }
     }
 }
