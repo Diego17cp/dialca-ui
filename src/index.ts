@@ -9,6 +9,7 @@ export * from './components/Loader';
 export * from './components/Select';
 export * from './components/TxtArea';
 export * from './components/Modal';
+export * from './components/Button';
 export * from './utils/classNames';
 
 // ==================
