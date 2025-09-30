@@ -509,7 +509,7 @@ const modalDefaultVariants: Record<string, DialcaUI.ModalStates> = {
             `,
             closeButton: `
                 p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100
-                rounded-full transition-colors duration-200
+                rounded-full transition-colors duration-200 cursor-pointer
             `,
             content: `
                 p-6
@@ -586,7 +586,7 @@ const modalVariantOverrides: Record<string, Partial<DialcaUI.ModalStates>> = {
             `,
             closeButton: `
                 p-2 text-gray-400 hover:text-gray-200 hover:bg-gray-700
-                rounded-full transition-colors duration-200
+                rounded-full transition-colors duration-200 cursor-pointer
             `,
             content: `
                 p-6 text-gray-200
@@ -612,7 +612,7 @@ const modalVariantOverrides: Record<string, Partial<DialcaUI.ModalStates>> = {
             `,
             closeButton: `
                 p-1 text-gray-500 hover:text-gray-700
-                transition-colors duration-200
+                transition-colors duration-200 cursor-pointer
             `,
             content: `
                 p-4 pt-2
