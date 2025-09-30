@@ -23,6 +23,7 @@ export function App() {
 	const [newsletter, setNewsletter] = useState("");
 	const [singleValue, setSingleValue] = useState("");
 	const [isOpen, setIsOpen] = useState(false);
+	const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-800 via-indigo-900 to-slate-700 flex items-center justify-center flex-col p-8 gap-10">
@@ -324,22 +325,190 @@ export function App() {
 				/>
 			</div>
 			{/* Modal */}
-			<div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+			<div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md space-y-4">
 				<button
 					onClick={() => setIsOpen(true)}
-					className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+					className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors w-full"
 				>
-					Abrir Modal
+					Abrir Modal de Confirmación
+				</button>
+				<button
+					onClick={() => setIsCustomModalOpen(true)}
+					className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition-colors w-full"
+				>
+					Abrir Modal Custom
 				</button>
 			</div>
+
 			<Modal
 				isOpen={isOpen}
 				onClose={() => setIsOpen(false)}
-				title="Título del Modal"
-				size="xl"
-				variant="dark"
+				title="¿Eliminar usuario?"
+				size="md"
+				animation="slideUp"
 			>
-				<p>Contenido del modal</p>
+				<div className="space-y-4 mt-5">
+					<div className="flex items-start space-x-3">
+						<div className="flex-shrink-0">
+							<div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+								<FaCircleExclamation className="text-red-600" size={20} />
+							</div>
+						</div>
+						<div className="flex-1">
+							<p className="text-gray-900 font-medium">
+								Esta acción no se puede deshacer
+							</p>
+							<p className="text-gray-600 text-sm mt-1">
+								Se eliminará permanentemente el usuario "Diego17" y todos
+								sus datos asociados.
+							</p>
+						</div>
+					</div>
+
+					<div className="bg-gray-50 p-3 rounded-lg">
+						<h4 className="font-medium text-gray-900 mb-2">Se eliminarán:</h4>
+						<ul className="text-sm text-gray-600 space-y-1">
+							<li>• Perfil y configuración personal</li>
+							<li>• 12 proyectos activos</li>
+							<li>• Historial de actividad (245 entradas)</li>
+							<li>• Archivos subidos (2.3 GB)</li>
+						</ul>
+					</div>
+
+					<div className="flex flex-col sm:flex-row gap-3 pt-4">
+						<button
+							onClick={() => {
+								console.log("Usuario eliminado");
+								setIsOpen(false);
+							}}
+							className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors"
+						>
+							Sí, eliminar usuario
+						</button>
+						<button
+							onClick={() => setIsOpen(false)}
+							className="flex-1 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+						>
+							Cancelar
+						</button>
+					</div>
+				</div>
+			</Modal>
+
+			{/* Modal Custom */}
+			<Modal
+				isOpen={isCustomModalOpen}
+				onClose={() => setIsCustomModalOpen(false)}
+				title="🎉 ¡Bienvenido a Dialca UI!"
+				variant="celebration"
+				animation="zoom"
+				extendDefault={false}
+				variants={{
+					celebration: {
+						normal: {
+							overlay: `
+                                fixed inset-0 z-50 flex items-center justify-center p-4
+                                bg-gradient-to-br from-purple-900/50 to-pink-900/50 backdrop-blur-sm
+                                transition-opacity duration-500 ease-out
+                            `,
+							container: `
+                                relative w-full max-w-xl 
+                                bg-gradient-to-br from-purple-50 to-pink-50
+                                border-2 border-gradient-to-r from-purple-200 to-pink-200
+                                rounded-2xl shadow-2xl
+                                transition-all duration-500 ease-out
+                            `,
+							header: `
+                                flex items-center justify-between p-6 pb-4
+                                border-b-2 border-gradient-to-r from-purple-200 to-pink-200
+                                bg-gradient-to-r from-purple-100/50 to-pink-100/50
+                                rounded-t-2xl
+                            `,
+							title: `
+                                text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 
+                                bg-clip-text text-transparent
+                            `,
+							closeButton: `
+                                p-2 text-purple-400 hover:text-purple-600 hover:bg-purple-100
+                                rounded-full transition-all duration-200 transform hover:scale-110
+                            `,
+							content: `
+                                p-6 bg-gradient-to-br from-white to-purple-50/30
+                            `,
+						},
+						open: {
+							overlay: "opacity-100",
+							container: "scale-100 opacity-100 rotate-0",
+						},
+					},
+				}}
+			>
+				<div className="text-center space-y-6">
+					{/* Hero Section */}
+					<div className="space-y-4">
+						<div className="w-20 h-20 mx-auto bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+							<span className="text-3xl">🚀</span>
+						</div>
+						<div>
+							<h3 className="text-2xl font-bold text-gray-800 mb-2">
+								¡Todo listo para empezar!
+							</h3>
+							<p className="text-gray-600">
+								Has desbloqueado todos los componentes de nuestra librería UI
+							</p>
+						</div>
+					</div>
+
+					{/* Features */}
+					<div className="grid grid-cols-2 gap-4">
+						<div className="bg-white/50 p-4 rounded-xl border border-purple-200">
+							<div className="text-2xl mb-2">⚡</div>
+							<h4 className="font-semibold text-gray-800 text-sm">Rápido</h4>
+							<p className="text-xs text-gray-600">Optimizado para performance</p>
+						</div>
+						<div className="bg-white/50 p-4 rounded-xl border border-pink-200">
+							<div className="text-2xl mb-2">🎨</div>
+							<h4 className="font-semibold text-gray-800 text-sm">Personalizable</h4>
+							<p className="text-xs text-gray-600">Variantes infinitas</p>
+						</div>
+						<div className="bg-white/50 p-4 rounded-xl border border-purple-200">
+							<div className="text-2xl mb-2">📱</div>
+							<h4 className="font-semibold text-gray-800 text-sm">Responsive</h4>
+							<p className="text-xs text-gray-600">Funciona en todo dispositivo</p>
+						</div>
+						<div className="bg-white/50 p-4 rounded-xl border border-pink-200">
+							<div className="text-2xl mb-2">♿</div>
+							<h4 className="font-semibold text-gray-800 text-sm">Accesible</h4>
+							<p className="text-xs text-gray-600">WCAG 2.1 compliant</p>
+						</div>
+					</div>
+
+					{/* CTA */}
+					<div className="space-y-3">
+						<button
+							onClick={() => {
+								console.log("Empezando tutorial...");
+								setIsCustomModalOpen(false);
+							}}
+							className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-[1.02] shadow-lg"
+						>
+							🎯 Empezar Tutorial
+						</button>
+						<button
+							onClick={() => setIsCustomModalOpen(false)}
+							className="w-full text-gray-600 hover:text-gray-800 px-6 py-2 font-medium transition-colors"
+						>
+							Saltar por ahora
+						</button>
+					</div>
+
+					{/* Footer */}
+					<div className="text-xs text-gray-500 border-t border-purple-200 pt-4">
+						💡 Tip: Presiona{" "}
+						<kbd className="bg-gray-100 px-2 py-1 rounded">Esc</kbd> para cerrar
+						modales
+					</div>
+				</div>
 			</Modal>
 		</div>
 	);
