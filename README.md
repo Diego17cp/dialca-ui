@@ -214,6 +214,20 @@ import { TxtArea } from "dialca-ui"
   errorIcon={<FaCircleExclamation />}
 />
 ```
+- Modal: A simple and totally customizable modal component.
+```tsx
+<Modal 
+  isOpen={isModalOpen}
+  onClose={() => setIsModalOpen(false)}
+  title="My Modal"
+  variant="dark"
+  position="bottom"
+  animation="zoom"
+  size="xl"
+>
+  <p className="mt-2">This is the content of the modal.</p>
+</Modal>
+```
 <h2 id="styling"> Theming & Styling🎨</h2>
 DialcaUI supports variants or class overrides.
 - For override only classes pass "classes" prop with its corresponding key:values
