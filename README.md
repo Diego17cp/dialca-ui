@@ -228,6 +228,24 @@ import { TxtArea } from "dialca-ui"
   <p className="mt-2">This is the content of the modal.</p>
 </Modal>
 ```
+- Button: A styled button with variants and states.
+```tsx
+  <Button
+    variant="success"
+    size="md"
+    onClick={() => alert("Button Clicked!")}
+    loading={isLoading}
+    loadingIcon={<Loader size="sm" />}
+    loadingText="Loading..."
+    disabled={isDisabled}
+    icon={<FaCheck />}
+    iconPosition="right"
+    // If you don't want use children:
+    // text="Click Me"
+  >
+    Click Me
+  </Button>
+```
 <h2 id="styling"> Theming & Styling🎨</h2>
 DialcaUI supports variants or class overrides.
 - For override only classes pass "classes" prop with its corresponding key:values
