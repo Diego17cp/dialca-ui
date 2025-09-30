@@ -3,6 +3,9 @@ import {
 	FaCloudArrowUp,
 	FaFileArrowUp,
 	FaCircleExclamation,
+	FaPen,
+	FaUser,
+	FaCheck,
 } from "react-icons/fa6";
 import { InputField } from "../src/components/InputField";
 import { TxtArea } from "../src/components/TxtArea";
@@ -11,7 +14,9 @@ import { Loader } from "../src/components/Loader";
 import { Select } from "../src/components/Select";
 import { RadioInput } from "../src/components/RadioInput";
 import { Modal } from "../src/components/Modal";
+import { Button } from "../src/components/Button";
 import { useState } from "react";
+import { FaMagic } from "react-icons/fa";
 
 export function App() {
 	const [txtArea, setTxtArea] = useState("");
@@ -24,6 +29,7 @@ export function App() {
 	const [singleValue, setSingleValue] = useState("");
 	const [isOpen, setIsOpen] = useState(false);
 	const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-800 via-indigo-900 to-slate-700 flex items-center justify-center flex-col p-8 gap-10">
@@ -510,6 +516,109 @@ export function App() {
 					</div>
 				</div>
 			</Modal>
+			
+			{/* Buttons */}
+			<div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md space-y-4">
+				<h3 className="text-lg font-semibold text-gray-900 mb-4">Buttons</h3>
+				
+				{/* Botones básicos */}
+				<div className="space-y-3">
+					<Button loading onClick={() => console.log("Default clicked")}>
+						Default Button
+					</Button>
+					
+					<Button 
+						variant="secondary"
+						icon={<FaUser />}
+						onClick={() => console.log("Secondary clicked")}
+					>
+						Secondary with Icon
+					</Button>
+					
+					<Button 
+						variant="danger"
+						size="lg"
+						onClick={() => console.log("Danger clicked")}
+					>
+						Large Danger Button
+					</Button>
+					
+					<Button 
+						variant="success"
+						icon={<FaCheck />}
+						iconPosition="right"
+						onClick={() => console.log("Success clicked")}
+					>
+						Success Button
+					</Button>
+				</div>
+
+				{/* Botones con estados */}
+				<div className="space-y-3">
+					<Button 
+						variant="outline"
+						loading={loading}
+						loadingText="Processing..."
+						loadingIcon={<Loader size="sm" />}
+						onClick={() => {
+							setLoading(true);
+							setTimeout(() => setLoading(false), 2000);
+						}}
+					>
+						{loading ? "Processing..." : "Click to Load"}
+					</Button>
+					
+					<Button disabled variant="default">
+						Disabled Button
+					</Button>
+					
+					<Button 
+						variant="ghost"
+						size="sm"
+						icon={<FaPen />}
+						onClick={() => console.log("Edit clicked")}
+					>
+						Edit
+					</Button>
+					
+					<Button 
+						variant="minimal"
+						onClick={() => console.log("Link clicked")}
+					>
+						Link Button
+					</Button>
+				</div>
+
+				{/* Botón completamente personalizado */}
+				<Button
+					variant="neon"
+					extendDefault={false}
+					variants={{
+						neon: {
+							normal: {
+								container: `
+									cursor-pointer font-bold transition-all duration-300 ease-in-out
+									flex items-center justify-center gap-3 px-8 py-4 rounded-xl
+									bg-gradient-to-r from-purple-600 to-pink-600 text-white
+									shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40
+									hover:scale-105 active:scale-95 border-2 border-transparent
+									hover:border-white/20 disabled:opacity-50 disabled:cursor-not-allowed
+									disabled:hover:scale-100 disabled:hover:shadow-purple-500/25
+								`,
+								content: "text-white font-bold",
+								icon: "text-white drop-shadow-sm"
+							},
+							loading: {
+								container: "animate-pulse cursor-wait"
+							}
+						}
+					}}
+					icon={<FaMagic />}
+					onClick={() => console.log("Neon clicked")}
+				>
+					Neon Button
+				</Button>
+			</div>
 		</div>
 	);
 }
