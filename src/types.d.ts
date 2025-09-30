@@ -68,6 +68,13 @@ declare global {
             content?: string
         }
 
+        interface ButtonVariant {
+            container?: string;
+            content?: string;
+            icon?: string;
+            loader?: string;
+        }
+
         // ==================
         // Tipos base
         // ==================
@@ -146,6 +153,15 @@ declare global {
             slideDown?: ModalVariant;
             zoom?: ModalVariant;
             hasTitle?: ModalVariant;
+        }
+        interface ButtonStates extends BaseStates {
+            normal?: ButtonVariant;
+            focused?: ButtonVariant;
+            disabled?: ButtonVariant;
+            error?: ButtonVariant;
+            hover?: ButtonVariant;
+            active?: ButtonVariant;
+            loading?: ButtonVariant;
         }
     }
 }

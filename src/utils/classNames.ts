@@ -490,164 +490,254 @@ const radioVariantOverrides: Record<string, Partial<DialcaUI.RadioStates>> = {
 };
 // Modal
 const modalDefaultVariants: Record<string, DialcaUI.ModalStates> = {
-    default: {
-        normal: {
-            overlay: `
+	default: {
+		normal: {
+			overlay: `
                 fixed inset-0 z-50 flex items-center justify-center p-4
                 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ease-out
             `,
-            container: `
+			container: `
                 relative w-full max-w-md bg-white rounded-lg shadow-xl
                 transition-all duration-300 ease-out
             `,
-            header: `
+			header: `
                 flex items-center justify-between p-6 pb-4
                 border-b border-gray-200
             `,
-            title: `
+			title: `
                 text-lg font-semibold text-gray-900
             `,
-            closeButton: `
+			closeButton: `
                 p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100
                 rounded-full transition-colors duration-200 cursor-pointer
             `,
-            content: `
+			content: `
                 p-6
             `,
-        },
-        open: {
-            overlay: "opacity-100",
-            container: "scale-100 opacity-100 translate-y-0",
-        },
-        sm: {
-            container: "max-w-sm",
-        },
-        md: {
-            container: "max-w-md",
-        },
-        lg: {
-            container: "max-w-lg",
-        },
-        xl: {
-            container: "max-w-xl",
-        },
-        full: {
-            container: "max-w-full w-full h-full m-0 rounded-none",
-            overlay: "p-0",
-        },
-        center: {
-            overlay: "items-center justify-center",
-        },
-        top: {
-            overlay: "items-start justify-center pt-16",
-        },
-        bottom: {
-            overlay: "items-end justify-center pb-16",
-        },
-        fade: {
-            overlay: "transition-opacity duration-300",
-            container: "transition-all duration-300",
-        },
-        slideUp: {
-            container: "transition-all duration-300 translate-y-4 opacity-0",
-            overlay: "transition-opacity duration-300",
-        },
-        slideDown: {
-            container: "transition-all duration-300 -translate-y-4 opacity-0",
-            overlay: "transition-opacity duration-300",
-        },
-        zoom: {
-            container: "transition-all duration-300 scale-95 opacity-0",
-            overlay: "transition-opacity duration-300",
-        },
-        hasTitle: {
-            content: "pt-0",
-        },
-    },
+		},
+		open: {
+			overlay: "opacity-100",
+			container: "scale-100 opacity-100 translate-y-0",
+		},
+		sm: {
+			container: "max-w-sm",
+		},
+		md: {
+			container: "max-w-md",
+		},
+		lg: {
+			container: "max-w-lg",
+		},
+		xl: {
+			container: "max-w-xl",
+		},
+		full: {
+			container: "max-w-full w-full h-full m-0 rounded-none",
+			overlay: "p-0",
+		},
+		center: {
+			overlay: "items-center justify-center",
+		},
+		top: {
+			overlay: "items-start justify-center pt-16",
+		},
+		bottom: {
+			overlay: "items-end justify-center pb-16",
+		},
+		fade: {
+			overlay: "transition-opacity duration-300",
+			container: "transition-all duration-300",
+		},
+		slideUp: {
+			container: "transition-all duration-300 translate-y-4 opacity-0",
+			overlay: "transition-opacity duration-300",
+		},
+		slideDown: {
+			container: "transition-all duration-300 -translate-y-4 opacity-0",
+			overlay: "transition-opacity duration-300",
+		},
+		zoom: {
+			container: "transition-all duration-300 scale-95 opacity-0",
+			overlay: "transition-opacity duration-300",
+		},
+		hasTitle: {
+			content: "pt-0",
+		},
+	},
 };
 
 const modalVariantOverrides: Record<string, Partial<DialcaUI.ModalStates>> = {
-    dark: {
-        normal: {
-            overlay: `
+	dark: {
+		normal: {
+			overlay: `
                 fixed inset-0 z-50 flex items-center justify-center p-4
                 bg-black/70 backdrop-blur-sm
             `,
-            container: `
+			container: `
                 relative w-full max-w-md bg-gray-800 rounded-lg shadow-xl
                 transform transition-all duration-300 ease-out
             `,
-            header: `
+			header: `
                 flex items-center justify-between p-6 pb-4
                 border-b border-gray-700
             `,
-            title: `
+			title: `
                 text-lg font-semibold text-white
             `,
-            closeButton: `
+			closeButton: `
                 p-2 text-gray-400 hover:text-gray-200 hover:bg-gray-700
                 rounded-full transition-colors duration-200 cursor-pointer
             `,
-            content: `
+			content: `
                 p-6 text-gray-200
             `,
-        },
-    },
+		},
+	},
 
-    minimal: {
-        normal: {
-            overlay: `
+	minimal: {
+		normal: {
+			overlay: `
                 fixed inset-0 z-50 flex items-center justify-center p-4
                 bg-black/30
             `,
-            container: `
+			container: `
                 relative w-full max-w-md bg-white rounded-sm shadow-lg
                 transform transition-all duration-200 ease-out
             `,
-            header: `
+			header: `
                 flex items-center justify-between p-4 pb-2
             `,
-            title: `
+			title: `
                 text-base font-medium text-gray-800
             `,
-            closeButton: `
+			closeButton: `
                 p-1 text-gray-500 hover:text-gray-700
                 transition-colors duration-200 cursor-pointer
             `,
-            content: `
+			content: `
                 p-4 pt-2
             `,
-        },
-    },
+		},
+	},
 
-    glassmorphism: {
-        normal: {
-            overlay: `
+	glassmorphism: {
+		normal: {
+			overlay: `
                 fixed inset-0 z-50 flex items-center justify-center p-4
                 bg-black/20 backdrop-blur-md
             `,
-            container: `
+			container: `
                 relative w-full max-w-md 
                 bg-white/80 backdrop-blur-lg border border-white/20
                 rounded-xl shadow-2xl
                 transform transition-all duration-300 ease-out
             `,
-            header: `
+			header: `
                 flex items-center justify-between p-6 pb-4
                 border-b border-white/20
             `,
-            title: `
+			title: `
                 text-lg font-semibold text-gray-900
             `,
-            closeButton: `
+			closeButton: `
                 p-2 text-gray-600 hover:text-gray-800 hover:bg-white/20
                 rounded-full transition-colors duration-200
             `,
-            content: `
+			content: `
                 p-6
             `,
-        },
+		},
+	},
+};
+//Button
+const buttonDefaultVariants: Record<string, DialcaUI.ButtonStates> = {
+	default: {
+		normal: {
+			container: `
+				cursor-pointer font-medium transition-all duration-200 ease-in-out
+				flex items-center justify-center gap-3 shadow-lg text-white w-auto
+				px-6 py-4 rounded-lg bg-[#3A7DC0] border-b-[4px] border-[#085691]
+			`,
+			content: "font-semibold",
+			icon: "text-xl",
+			loader: "animate-spin",
+		},
+		disabled: {
+			container:
+				"opacity-50 cursor-not-allowed! hover:brightness-100 hover:translate-y-0! hover:border-b-[4px] active:border-b-[4px] active:translate-y-0",
+		},
+		loading: {
+			container: "cursor-wait pointer-events-none",
+		},
+		hover: {
+			container: "brightness-110 -translate-y-[1px] border-b-[6px]",
+		},
+		active: {
+			container: "border-b-[2px]! brightness-90 translate-y-[2px]!",
+		},
+	},
+};
+
+const buttonVariantOverrides: Record<string, Partial<DialcaUI.ButtonStates>> = {
+	secondary: {
+		normal: {
+			container: `
+				cursor-pointer font-medium transition-all duration-200 ease-in-out
+                flex items-center justify-center gap-3 shadow-lg text-gray-800 w-auto px-6 py-4 rounded-lg
+                bg-[#e3bd8e] border-[#d79b5f] border-b-[4px] 
+			`,
+		},
+	},
+	danger: {
+		normal: {
+			container: `
+				cursor-pointer font-medium transition-all duration-200 ease-in-out
+                flex items-center justify-center gap-3 shadow-lg text-white w-auto px-6 py-4 rounded-lg
+                bg-red-400 border-red-800 border-b-[4px] 
+            `,
+		},
+	},
+	success: {
+		normal: {
+			container: `
+				cursor-pointer font-medium transition-all duration-200 ease-in-out
+                flex items-center justify-center gap-3 shadow-lg text-white w-auto px-6 py-4 rounded-lg
+                bg-emerald-500 border-emerald-700 border-b-[4px] 
+			`
+		}
+	},
+	outline: {
+		normal: {
+			container: `
+				cursor-pointer font-medium transition-all duration-200 ease-in-out
+                hover:brightness-110 hover:-translate-y-[1px] hover:bg-[#3A7DC0] hover:text-white
+                flex items-center justify-center gap-3 shadow-lg text-[#3A7DC0] w-auto px-6 py-4 rounded-lg
+                bg-transparent border-[#3A7DC0] border-2 border-b-[4px] 
+                disabled:hover:bg-transparent disabled:hover:text-[#3A7DC0]
+			`
+		}
+	},
+	ghost: {
+        normal: {
+            container: `
+                cursor-pointer font-medium transition-all duration-200 ease-in-out
+                hover:bg-gray-100 active:bg-gray-200 
+                flex items-center justify-center gap-3 text-gray-700 w-auto px-6 py-4 rounded-lg
+                bg-transparent border-none
+            `
+        }
     },
+    minimal: {
+        normal: {
+            container: `
+                cursor-pointer font-medium transition-all duration-200 ease-in-out
+                hover:brightness-110 flex items-center justify-center gap-2 
+                text-[#3A7DC0] w-auto px-4 py-2 rounded
+                bg-transparent border-none underline hover:no-underline
+                disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100
+            `
+        }
+    }
 };
 
 // ============
@@ -872,32 +962,70 @@ export const useRadioVariantStyles = (
  * @returns {{ getStyles: (element: keyof DialcaUI.ModalVariant) => string }}
  */
 export const useModalVariantStyles = (
+	variant: string = "default",
+	customVariants: Record<string, DialcaUI.ModalStates> = {},
+	states: {
+		open?: boolean;
+		size?: string;
+		position?: string;
+		animation?: string;
+		hasTitle?: boolean;
+	} = {},
+	extendDefault: boolean = true
+) => {
+	const mappedStates = {
+		normal: true,
+		open: states.open,
+		[states.size || "md"]: true,
+		[states.position || "center"]: true,
+		[states.animation || "fade"]: true,
+		hasTitle: states.hasTitle,
+	};
+	return useVariantStyles<DialcaUI.ModalStates, DialcaUI.ModalVariant>(
+		variant,
+		customVariants,
+		mappedStates,
+		extendDefault,
+		modalDefaultVariants,
+		modalVariantOverrides
+	);
+};
+/**
+ * Hook to get styles for Button variants based on state and customizations.
+ *
+ * @param {string} [variant="default"] - Variant key.
+ * @param {Record<string, DialcaUI.ButtonStates>} [customVariants={}] - Custom variants.
+ * @param {{ disabled?: boolean; loading?: boolean; focused?: boolean; hover?: boolean; active?: boolean }} [states={}] - State flags.
+ * @param {boolean} [extendDefault=true] - If true, merges custom variants with defaults.
+ * @returns {{ getStyles: (element: keyof DialcaUI.ButtonVariant) => string }}
+ */
+export const useButtonVariantStyles = (
     variant: string = "default",
-    customVariants: Record<string, DialcaUI.ModalStates> = {},
+    customVariants: Record<string, DialcaUI.ButtonStates> = {},
     states: {
-        open?: boolean;
-        size?: string;
-        position?: string;
-        animation?: string;
-        hasTitle?: boolean;
+        disabled?: boolean;
+        loading?: boolean;
+        focused?: boolean;
+        hover?: boolean;
+        active?: boolean;
     } = {},
     extendDefault: boolean = true
 ) => {
     const mappedStates = {
         normal: true,
-        open: states.open,
-        [states.size || "md"]: true,
-        [states.position || "center"]: true,
-        [states.animation || "fade"]: true,
-        hasTitle: states.hasTitle,
+        disabled: states.disabled,
+        loading: states.loading,
+        focused: states.focused,
+        hover: states.hover,
+        active: states.active,
     };
-    return useVariantStyles<DialcaUI.ModalStates, DialcaUI.ModalVariant>(
+    return useVariantStyles<DialcaUI.ButtonStates, DialcaUI.ButtonVariant>(
         variant,
         customVariants,
         mappedStates,
         extendDefault,
-        modalDefaultVariants,
-        modalVariantOverrides
+        buttonDefaultVariants,
+        buttonVariantOverrides
     );
 };
 
