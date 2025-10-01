@@ -739,6 +739,131 @@ const buttonVariantOverrides: Record<string, Partial<DialcaUI.ButtonStates>> = {
         }
     }
 };
+// Checkbox
+const checkboxDefaultVariants: Record<string, DialcaUI.CheckboxStates> = {
+	default: {
+		normal: {
+			container: "inline-flex gap-5 p-2.5 bg-slate-50 rounded-lg shadow-sm",
+			wrapper: "relative inline-block cursor-pointer select-none",
+			checkbox: `
+				relative size-7 rounded-lg transition-transform duration-200
+				ease-in-out hover:scale-105 active:scale-95
+			`,
+			background: `
+				absolute inset-0 rounded-lg border-2 bg-white transition-all
+				duration-200 ease-in-out border-[#3A7DC0]/80 focus-within:shadow-lg
+				focus-within:shadow-blue-100
+			`,
+			icon: `
+				absolute inset-0 m-auto w-4/5 h-4/5 text-white transition-all
+				duration-200 ease-in-out scale-0
+			`,
+			label: "cursor-pointer text-gray-700 font-medium",
+			description: "text-sm text-gray-500 mt-1",
+			error: "text-red-500 text-sm mt-2 flex items-center gap-1",
+		},
+		checked: {
+			background: "bg-[#3A7DC0]! border-[#3A7DC0]!",
+			icon: "scale-100",
+		},
+		indeterminate: {
+			background: "bg-[#3A7DC0] border-[#3A7DC0]",
+			icon: "scale-100",
+		},
+		focused: {
+			background: "ring-2 ring-[#3A7DC0] ring-offset-2",
+		},
+		disabled: {
+			container: "opacity-50",
+			wrapper: "cursor-not-allowed!",
+			background: "bg-gray-100 border-gray-300",
+			label: "cursor-not-allowed! text-gray-500",
+		},
+		error: {
+			background: "border-red-500! bg-red-50! focus-within:shadow-red-100! ring-red-500!",
+			label: "text-red-700",
+			container: "bg-red-50/50 border border-red-200",
+			icon: "text-red-600"
+		},
+		errorChecked: {
+			background: "border-red-500! bg-red-400! focus-within:shadow-red-100! ring-red-500!",
+			icon: "scale-100 text-white!",
+			label: "text-red-700!",
+			container: "bg-red-50/50 border border-red-200!"
+		},
+		hover: {
+			checkbox: "scale-105",
+		}
+	}
+}
+const checkboxVariantOverrides: Record<string, Partial<DialcaUI.CheckboxStates>> = {
+	minimal: {
+        normal: {
+            container: "flex items-center gap-3",
+            checkbox: `
+                relative w-5 h-5 rounded transition-all duration-200 ease-in-out
+                hover:scale-110
+            `,
+            background: `
+                absolute inset-0 rounded border-2 bg-white transition-all duration-200 ease-in-out
+                border-gray-400
+            `,
+            label: "text-sm text-gray-600"
+        },
+        checked: {
+            background: "bg-gray-700! border-gray-700"
+        }
+    },
+	card: {
+        normal: {
+            container: `
+                flex items-start gap-3 p-4 border-2 border-gray-200 rounded-lg 
+                cursor-pointer transition-all duration-200 hover:bg-gray-50
+            `,
+            wrapper: "mt-1"
+        },
+        checked: {
+            container: "border-[#3A7DC0] bg-[#3A7DC0]/5"
+        },
+        error: {
+            container: "border-red-300 bg-red-50"
+        }
+    },
+	switch: {
+        normal: {
+            checkbox: `
+                relative w-12 h-6 rounded-full transition-all duration-200 ease-in-out
+                hover:scale-105
+            `,
+            background: `
+                absolute inset-0 rounded-full border-2 bg-gray-300 border-gray-300 
+                transition-all duration-200 ease-in-out
+            `,
+            icon: `
+                absolute top-1.5 left-0.5 w-4 h-4 bg-white rounded-full 
+                transition-all duration-200 ease-in-out transform
+            `
+        },
+        checked: {
+            background: "bg-[#3A7DC0]! border-[#3A7DC0]",
+            icon: "transform translate-x-6"
+        }
+    },
+	dark: {
+        normal: {
+            container: "flex gap-5 p-2.5 bg-gray-800 rounded-xl shadow-sm",
+            background: `
+                absolute inset-0 rounded-lg border-2 bg-gray-700 transition-all duration-200 ease-in-out
+                border-gray-500
+            `,
+            label: "text-gray-200",
+            description: "text-gray-400"
+        },
+        checked: {
+            background: "bg-blue-500 border-blue-500"
+        }
+    }
+}
 
 // ============
 // Hooks
@@ -1026,6 +1151,48 @@ export const useButtonVariantStyles = (
         extendDefault,
         buttonDefaultVariants,
         buttonVariantOverrides
+    );
+};
+/**
+ * Hook to get styles for Checkbox variants based on state and customizations.
+ *
+ * @param {string} [variant="default"] - Variant key.
+ * @param {Record<string, DialcaUI.CheckboxStates>} [customVariants={}] - Custom variants.
+ * @param {{ checked?: boolean; indeterminate?: boolean; disabled?: boolean; hasErrors?: boolean; focused?: boolean; hover?: boolean }} [states={}] - State flags.
+ * @param {boolean} [extendDefault=true] - If true, merges custom variants with defaults.
+ * @returns {{ getStyles: (element: keyof DialcaUI.CheckboxVariant) => string }}
+ */
+export const useCheckboxVariantStyles = (
+    variant: string = "default",
+    customVariants: Record<string, DialcaUI.CheckboxStates> = {},
+    states: {
+        checked?: boolean;
+        indeterminate?: boolean;
+        disabled?: boolean;
+        hasErrors?: boolean;
+        focused?: boolean;
+        hover?: boolean;
+    } = {},
+    extendDefault: boolean = true
+) => {
+    const mappedStates = {
+        normal: true,
+        checked: states.checked && !states.hasErrors,
+        indeterminate: states.indeterminate && !states.hasErrors,
+        disabled: states.disabled,
+        error: states.hasErrors && !states.checked && !states.indeterminate,
+        errorChecked: states.hasErrors && (states.checked || states.indeterminate),
+        focused: states.focused,
+        hover: states.hover,
+    };
+    
+    return useVariantStyles<DialcaUI.CheckboxStates, DialcaUI.CheckboxVariant>(
+        variant,
+        customVariants,
+        mappedStates,
+        extendDefault,
+        checkboxDefaultVariants,
+        checkboxVariantOverrides
     );
 };
 

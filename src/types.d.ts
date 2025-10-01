@@ -75,6 +75,17 @@ declare global {
             loader?: string;
         }
 
+        interface CheckboxVariant {
+            container?: string;
+            wrapper?: string;
+            checkbox?: string;
+            background?: string;
+            icon?: string;
+            label?: string;
+            error?: string;
+            description?: string;
+        }
+
         // ==================
         // Tipos base
         // ==================
@@ -162,6 +173,16 @@ declare global {
             hover?: ButtonVariant;
             active?: ButtonVariant;
             loading?: ButtonVariant;
+        }
+        interface CheckboxStates extends BaseStates {
+            normal?: CheckboxVariant;
+            checked?: CheckboxVariant;
+            indeterminate?: CheckboxVariant;
+            disabled?: CheckboxVariant;
+            error?: CheckboxVariant;
+            focused?: CheckboxVariant;
+            hover?: CheckboxVariant;
+            errorChecked?: CheckboxVariant;
         }
     }
 }
