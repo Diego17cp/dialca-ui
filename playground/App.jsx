@@ -15,8 +15,13 @@ import { Select } from "../src/components/Select";
 import { RadioInput } from "../src/components/RadioInput";
 import { Modal } from "../src/components/Modal";
 import { Button } from "../src/components/Button";
+import { Checkbox } from "../src/components/Checkbox";
+import { Switch } from "../src/components/Switch";
+import { SearchableSelect } from "../src/components/SearchableSelect";
 import { useState } from "react";
 import { FaMagic } from "react-icons/fa";
+import { CiSun } from "react-icons/ci";
+import { GoMoon } from "react-icons/go";
 
 export function App() {
 	const [txtArea, setTxtArea] = useState("");
@@ -30,6 +35,41 @@ export function App() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const [isChecked, setIsChecked] = useState(false);
+	const [isIndeterminate, setIsIndeterminate] = useState(true);
+	const [hasError, setHasError] = useState(false);
+	const [switchValue, setSwitchValue] = useState(false);
+	const [notifications, setNotifications] = useState(false);
+	const [darkMode, setDarkMode] = useState(false);
+	const [dangerMode, setDangerMode] = useState(false);
+	const [loadingSwitch, setLoadingSwitch] = useState(false);
+
+	// NUEVO: estado y opciones para SearchableSelect
+	const [searchValue, setSearchValue] = useState("");
+	const [country, setCountry] = useState("");
+	const [fruit, setFruit] = useState("");
+
+	const searchableOptions = [
+		{ value: "apple", label: "Apple", icon: <span>🍎</span> },
+		{ value: "banana", label: "Banana", icon: <span>🍌</span> },
+		{ value: "orange", label: "Orange", icon: <span>🍊</span> },
+		{ value: "grape", label: "Grape", icon: <span>🍇</span> },
+		{ value: "watermelon", label: "Watermelon", icon: <span>🍉</span> },
+		{ value: "strawberry", label: "Strawberry", icon: <span>🍓</span> },
+		{ value: "pineapple", label: "Pineapple", icon: <span>🍍</span> },
+	];
+
+	const countryOptions = [
+		{ value: "us", label: "United States" },
+		{ value: "uk", label: "United Kingdom" },
+		{ value: "ca", label: "Canada" },
+		{ value: "au", label: "Australia" },
+		{ value: "de", label: "Germany" },
+		{ value: "fr", label: "France" },
+		{ value: "es", label: "Spain" },
+		{ value: "it", label: "Italy" },
+		{ value: "jp", label: "Japan", disabled: true },
+	];
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-800 via-indigo-900 to-slate-700 flex items-center justify-center flex-col p-8 gap-10">
@@ -171,6 +211,7 @@ export function App() {
 					variant="dark"
 				/>
 			</div>
+			{/* Loader */}
 			<div className="">
 				<Loader />
 				{/* // Loader con tamaño */}
@@ -207,6 +248,7 @@ export function App() {
 					<span className="ml-2">Subiendo archivos...</span>
 				</Loader> */}
 			</div>
+			{/* Select */}
 			<div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
 				<Select
 					label="Select an option"
@@ -265,6 +307,7 @@ export function App() {
 					}}
 				/>
 			</div>
+			{/* RadioInput */}
 			<div className="mt-5 bg-white p-6 rounded-lg shadow-md w-full max-w-md">
 				<RadioInput
 					name="genero"
@@ -357,7 +400,10 @@ export function App() {
 					<div className="flex items-start space-x-3">
 						<div className="flex-shrink-0">
 							<div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-								<FaCircleExclamation className="text-red-600" size={20} />
+								<FaCircleExclamation
+									className="text-red-600"
+									size={20}
+								/>
 							</div>
 						</div>
 						<div className="flex-1">
@@ -365,14 +411,16 @@ export function App() {
 								Esta acción no se puede deshacer
 							</p>
 							<p className="text-gray-600 text-sm mt-1">
-								Se eliminará permanentemente el usuario "Diego17" y todos
-								sus datos asociados.
+								Se eliminará permanentemente el usuario
+								"Diego17" y todos sus datos asociados.
 							</p>
 						</div>
 					</div>
 
 					<div className="bg-gray-50 p-3 rounded-lg">
-						<h4 className="font-medium text-gray-900 mb-2">Se eliminarán:</h4>
+						<h4 className="font-medium text-gray-900 mb-2">
+							Se eliminarán:
+						</h4>
 						<ul className="text-sm text-gray-600 space-y-1">
 							<li>• Perfil y configuración personal</li>
 							<li>• 12 proyectos activos</li>
@@ -460,7 +508,8 @@ export function App() {
 								¡Todo listo para empezar!
 							</h3>
 							<p className="text-gray-600">
-								Has desbloqueado todos los componentes de nuestra librería UI
+								Has desbloqueado todos los componentes de
+								nuestra librería UI
 							</p>
 						</div>
 					</div>
@@ -469,23 +518,39 @@ export function App() {
 					<div className="grid grid-cols-2 gap-4">
 						<div className="bg-white/50 p-4 rounded-xl border border-purple-200">
 							<div className="text-2xl mb-2">⚡</div>
-							<h4 className="font-semibold text-gray-800 text-sm">Rápido</h4>
-							<p className="text-xs text-gray-600">Optimizado para performance</p>
+							<h4 className="font-semibold text-gray-800 text-sm">
+								Rápido
+							</h4>
+							<p className="text-xs text-gray-600">
+								Optimizado para performance
+							</p>
 						</div>
 						<div className="bg-white/50 p-4 rounded-xl border border-pink-200">
 							<div className="text-2xl mb-2">🎨</div>
-							<h4 className="font-semibold text-gray-800 text-sm">Personalizable</h4>
-							<p className="text-xs text-gray-600">Variantes infinitas</p>
+							<h4 className="font-semibold text-gray-800 text-sm">
+								Personalizable
+							</h4>
+							<p className="text-xs text-gray-600">
+								Variantes infinitas
+							</p>
 						</div>
 						<div className="bg-white/50 p-4 rounded-xl border border-purple-200">
 							<div className="text-2xl mb-2">📱</div>
-							<h4 className="font-semibold text-gray-800 text-sm">Responsive</h4>
-							<p className="text-xs text-gray-600">Funciona en todo dispositivo</p>
+							<h4 className="font-semibold text-gray-800 text-sm">
+								Responsive
+							</h4>
+							<p className="text-xs text-gray-600">
+								Funciona en todo dispositivo
+							</p>
 						</div>
 						<div className="bg-white/50 p-4 rounded-xl border border-pink-200">
 							<div className="text-2xl mb-2">♿</div>
-							<h4 className="font-semibold text-gray-800 text-sm">Accesible</h4>
-							<p className="text-xs text-gray-600">WCAG 2.1 compliant</p>
+							<h4 className="font-semibold text-gray-800 text-sm">
+								Accesible
+							</h4>
+							<p className="text-xs text-gray-600">
+								WCAG 2.1 compliant
+							</p>
 						</div>
 					</div>
 
@@ -511,39 +576,44 @@ export function App() {
 					{/* Footer */}
 					<div className="text-xs text-gray-500 border-t border-purple-200 pt-4">
 						💡 Tip: Presiona{" "}
-						<kbd className="bg-gray-100 px-2 py-1 rounded">Esc</kbd> para cerrar
-						modales
+						<kbd className="bg-gray-100 px-2 py-1 rounded">Esc</kbd>{" "}
+						para cerrar modales
 					</div>
 				</div>
 			</Modal>
-			
+
 			{/* Buttons */}
 			<div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md space-y-4">
-				<h3 className="text-lg font-semibold text-gray-900 mb-4">Buttons</h3>
-				
+				<h3 className="text-lg font-semibold text-gray-900 mb-4">
+					Buttons
+				</h3>
+
 				{/* Botones básicos */}
 				<div className="space-y-3">
-					<Button loading onClick={() => console.log("Default clicked")}>
+					<Button
+						loading
+						onClick={() => console.log("Default clicked")}
+					>
 						Default Button
 					</Button>
-					
-					<Button 
+
+					<Button
 						variant="secondary"
 						icon={<FaUser />}
 						onClick={() => console.log("Secondary clicked")}
 					>
 						Secondary with Icon
 					</Button>
-					
-					<Button 
+
+					<Button
 						variant="danger"
 						size="lg"
 						onClick={() => console.log("Danger clicked")}
 					>
 						Large Danger Button
 					</Button>
-					
-					<Button 
+
+					<Button
 						variant="success"
 						icon={<FaCheck />}
 						iconPosition="right"
@@ -555,7 +625,7 @@ export function App() {
 
 				{/* Botones con estados */}
 				<div className="space-y-3">
-					<Button 
+					<Button
 						variant="outline"
 						loading={loading}
 						loadingText="Processing..."
@@ -567,12 +637,12 @@ export function App() {
 					>
 						{loading ? "Processing..." : "Click to Load"}
 					</Button>
-					
+
 					<Button disabled variant="default">
 						Disabled Button
 					</Button>
-					
-					<Button 
+
+					<Button
 						variant="ghost"
 						size="sm"
 						icon={<FaPen />}
@@ -580,8 +650,8 @@ export function App() {
 					>
 						Edit
 					</Button>
-					
-					<Button 
+
+					<Button
 						variant="minimal"
 						onClick={() => console.log("Link clicked")}
 					>
@@ -606,18 +676,349 @@ export function App() {
 									disabled:hover:scale-100 disabled:hover:shadow-purple-500/25
 								`,
 								content: "text-white font-bold",
-								icon: "text-white drop-shadow-sm"
+								icon: "text-white drop-shadow-sm",
 							},
 							loading: {
-								container: "animate-pulse cursor-wait"
-							}
-						}
+								container: "animate-pulse cursor-wait",
+							},
+						},
 					}}
 					icon={<FaMagic />}
 					onClick={() => console.log("Neon clicked")}
 				>
 					Neon Button
 				</Button>
+			</div>
+
+			{/* Checkboxes */}
+			<div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md space-y-4">
+				<h3 className="text-lg font-semibold text-gray-900 mb-4">
+					Checkboxes
+				</h3>
+
+				{/* Checkbox básico */}
+				<Checkbox checked={isChecked} onCheckedChange={setIsChecked} />
+
+				{/* Checkbox indeterminado */}
+				<Checkbox
+					className="ml-3"
+					checked={isIndeterminate}
+					indeterminate={true}
+					onCheckedChange={setIsIndeterminate}
+					label="Select all items"
+					description="Some items are selected"
+					size="lg"
+				/>
+
+				{/* Checkbox con error */}
+				<Checkbox
+					checked={hasError}
+					onCheckedChange={setHasError}
+					hasErrors={true}
+					errorMessage="This field is required"
+					label="Required field"
+					size="sm"
+				/>
+
+				{/* Checkbox deshabilitado */}
+				<Checkbox
+					checked={true}
+					disabled={true}
+					label="Disabled checkbox"
+					description="This option is not available"
+				/>
+
+				{/* Variante minimal */}
+				<Checkbox
+					checked={isChecked}
+					onChange={setIsChecked}
+					variant="minimal"
+					label="Minimal style"
+				/>
+
+				{/* Variante card */}
+				<Checkbox
+					checked={isChecked}
+					onCheckedChange={setIsChecked}
+					variant="card"
+					label="Premium Plan"
+					description="$19.99/month - All features included"
+				/>
+
+				{/* Variante switch */}
+				<Checkbox
+					checked={switchValue}
+					onCheckedChange={setSwitchValue}
+					variant="switch"
+					label="Enable notifications"
+					description="Get updates about your account"
+				/>
+
+				{/* Checkbox completamente personalizado */}
+				<Checkbox
+					checked={isChecked}
+					onCheckedChange={setIsChecked}
+					variant="gaming"
+					extendDefault={false}
+					variants={{
+						gaming: {
+							normal: {
+								container: `
+                                    relative flex gap-4 p-4 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 
+                                    rounded-xl border border-blue-500/30 cursor-pointer group overflow-hidden
+                                    hover:border-blue-400/50 transition-all duration-300
+                                    before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent 
+                                    before:via-blue-500/10 before:to-transparent before:translate-x-[-100%] 
+                                    hover:before:translate-x-[100%] before:transition-transform before:duration-1000
+                                `,
+								wrapper: "relative z-10",
+								checkbox: `
+                                    relative w-8 h-8 rounded-lg transition-all duration-300 ease-out
+                                    group-hover:scale-110 group-hover:rotate-3 group-active:scale-95
+                                `,
+								background: `
+                                    absolute inset-0 rounded-lg border-2 transition-all duration-300
+                                    bg-gradient-to-br from-gray-800 to-gray-700 border-blue-400/50
+                                    shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40
+                                    group-hover:shadow-xl
+                                `,
+								icon: `
+                                    absolute inset-0 m-auto w-5 h-5 text-blue-300 transition-all duration-500 ease-out
+                                    scale-0 opacity-0
+                                `,
+								label: `
+                                    text-blue-100 font-bold text-lg group-hover:text-white transition-colors duration-300
+                                    drop-shadow-lg
+                                `,
+								description: `
+                                    text-blue-300/80 text-sm mt-1 group-hover:text-blue-200 transition-colors duration-300
+                                `,
+							},
+							checked: {
+								background: `
+                                    bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 
+                                    border-blue-300 shadow-2xl shadow-blue-500/60
+                                    animate-pulse
+                                `,
+								icon: `
+                                    scale-100 rotate-0 opacity-100 text-white drop-shadow-xl
+                                    animate-bounce
+                                `,
+								container: `
+                                    border-blue-400/80 shadow-lg shadow-blue-500/30
+                                `,
+							},
+							hover: {
+								checkbox: "scale-110 rotate-3",
+								background: "shadow-2xl shadow-blue-500/50",
+							},
+						},
+					}}
+					label="🎮 Gaming Mode"
+					description="Enable epic gaming features with RGB lighting"
+					size="lg"
+				/>
+			</div>
+			{/* Switches */}
+			<div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md space-y-4">
+				<h3 className="text-lg font-semibold text-gray-900 mb-4">
+					Switches
+				</h3>
+
+				{/* Switch básico */}
+				<Switch
+					enabled={notifications}
+					onToggle={setNotifications}
+					label="Enable Notifications"
+					description="Get updates about your account activity"
+				/>
+
+				{/* Switch con confirmación */}
+				<Switch
+					enabled={dangerMode}
+					onToggle={setDangerMode}
+					label="🚨 Danger Mode"
+					description="Enable destructive actions"
+					variant="default"
+					hasErrors={dangerMode}
+					errorMessage="Be careful with this setting!"
+					confirmationMessage="Are you sure you want to enable danger mode?"
+				/>
+
+				{/* Switch variante iOS */}
+				<Switch
+					enabled={darkMode}
+					onToggle={setDarkMode}
+					label="Dark Mode"
+					description="Switch to dark theme"
+					variant="ios"
+					size="lg"
+				/>
+
+				{/* Switch minimal */}
+				<Switch
+					enabled={notifications}
+					onToggle={setNotifications}
+					label="Minimal Switch"
+					variant="minimal"
+					size="sm"
+				/>
+
+				{/* Switch con iconos */}
+				<Switch
+					enabled={notifications}
+					onToggle={setNotifications}
+					label="📱 Push Notifications"
+					enabledIcon={<FaCheck />}
+					disabledIcon={<span className="text-gray-400">✗</span>}
+					variant="large"
+				/>
+
+				{/* Switch cargando */}
+				<Switch
+					enabled={loadingSwitch}
+					onToggle={setLoadingSwitch}
+					label="Processing..."
+					loading={true}
+					disabled={true}
+				/>
+
+				{/* Switch variante neon */}
+				<Switch
+					enabled={darkMode}
+					onToggle={setDarkMode}
+					label="⚡ Neon Mode"
+					description="Activate cyberpunk theme"
+					variant="neon"
+				/>
+
+				{/* Switch variante card */}
+				<Switch
+					enabled={notifications}
+					onToggle={setNotifications}
+					label="💎 Premium Features"
+					description="$9.99/month - Unlock all features"
+					variant="card"
+				/>
+
+				{/* Switch variante toggle con texto */}
+				<Switch
+					enabled={darkMode}
+					onToggle={setDarkMode}
+					label="Power Toggle"
+					variant="toggle"
+					size="lg"
+				/>
+
+				<Switch
+					enabled={darkMode}
+					onToggle={setDarkMode}
+					variant="darkMode"
+					extendDefault={false}
+					variants={{
+						darkMode: {
+							normal: {
+								container: "inline-flex",
+								wrapper: "relative cursor-pointer",
+								track: `
+									relative w-16 h-8 rounded-full transition-all duration-500 ease-in-out
+									bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400
+									shadow-inner shadow-blue-800/20
+									cursor-pointer
+								`,
+								thumb: `
+									absolute top-0.5 left-0.5 w-7 h-7 bg-white rounded-full 
+									shadow-lg transition-all duration-500 ease-out transform
+									flex items-center justify-center bg-gradient-to-br from-yellow-300 via-red-400 to-pink-400
+								`,
+								trackOverlay: `
+									absolute inset-0 rounded-full transition-all duration-500 z-0
+								`,
+								thumbInner: "hidden",
+							},
+							enabled: {
+								track: `
+									border-gray-600/50 shadow-gray-800/30 
+								`,
+								thumb: `
+									translate-x-8 border-gray-300
+									bg-gradient-to-tr from-slate-600! via-gray-800! to-gray-900!
+									shadow-gray-700/50
+								`,
+								trackOverlay: "opacity-100 bg-gradient-to-r from-gray-600 to-gray-900",
+							},
+							hover: {
+								track: "scale-105 shadow-lg",
+							},
+						},
+					}}
+					enabledIcon={
+						<GoMoon className="text-gray-200" />
+					}
+					disabledIcon={
+						<CiSun className="text-gray-200" />
+					}
+				/>
+			</div>
+			{/* Searchable Select */}
+			<div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md space-y-4">
+				<h3 className="text-lg font-semibold text-gray-900 mb-4">
+					Searchable Selects
+				</h3>
+
+				{/* SearchableSelect básico */}
+				<SearchableSelect
+					options={searchableOptions}
+					value={searchValue}
+					isClearable
+					onChange={setSearchValue}
+					placeholder="Search fruits..."
+					label="Select a Fruit"
+					classes={{
+						clearButton: "text-[#085691]! text-xl",
+					}}
+				/>
+
+				{/* SearchableSelect con error */}
+				<SearchableSelect
+					options={countryOptions}
+					value={country}
+					onChange={setCountry}
+					placeholder="Search country..."
+					label="Country"
+					hasErrors={true}
+					errorMessage="Please select a country"
+				/>
+
+				{/* SearchableSelect variante minimal */}
+				<SearchableSelect
+					options={searchableOptions}
+					value={fruit}
+					onChange={setFruit}
+					placeholder="Type to search..."
+					variant="minimal"
+					size="sm"
+				/>
+
+				{/* SearchableSelect variante dark */}
+				<SearchableSelect
+					options={countryOptions}
+					value={country}
+					onChange={setCountry}
+					placeholder="Search country..."
+					label="Country"
+					variant="dark"
+				/>
+
+				{/* SearchableSelect deshabilitado */}
+				<SearchableSelect
+					options={searchableOptions}
+					value="apple"
+					onChange={() => {}}
+					placeholder="Disabled..."
+					label="Disabled Select"
+					disabled
+				/>
 			</div>
 		</div>
 	);
