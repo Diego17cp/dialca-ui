@@ -246,6 +246,22 @@ import { TxtArea } from "dialca-ui"
     Click Me
   </Button>
 ```
+- Checkbox: A styled checkbox with variants and states.
+```tsx
+  <Checkbox
+    label="Accept Terms and Conditions"
+    description="You must accept before continuing"
+    name="terms"
+    checked={isChecked}
+    onChange={setIsChecked}
+    hasErrors={!isChecked}
+    errorMessage="You must accept the terms and conditions."
+    disabled={isDisabled}
+    size="md"
+    // indeterminate={isIndeterminate} // For indeterminate state
+    variant="card"
+  />
+```
 <h2 id="styling"> Theming & Styling🎨</h2>
 DialcaUI supports variants or class overrides.
 - For override only classes pass "classes" prop with its corresponding key:values
