@@ -864,7 +864,185 @@ const checkboxVariantOverrides: Record<string, Partial<DialcaUI.CheckboxStates>>
         }
     }
 }
+// Switch
+const switchDefaultVariants: Record<string, DialcaUI.SwitchStates> = {
+    default: {
+        normal: {
+            container: "flex items-center gap-4 p-3 bg-slate-50 rounded-xl shadow-sm",
+            wrapper: "relative cursor-pointer",
+            track: `
+                cursor-pointer relative w-14 h-7 rounded-full transition-all duration-300 ease-in-out
+                bg-gray-300 shadow-inner
+            `,
+            thumb: `
+                absolute top-0.5 w-6 h-6 bg-white rounded-full shadow-md z-10
+                transition-all duration-300 ease-out transform translate-x-0.5
+            `,
+            thumbInner: `
+                absolute inset-0.5 rounded-full transition-all duration-200
+                bg-gray-100 scale-0
+            `,
+            trackOverlay: `
+                absolute inset-0 rounded-full transition-opacity duration-300 z-0
+                bg-gradient-to-r from-[#3A7DC0] to-[#085691] opacity-0
+            `,
+            label: "cursor-pointer text-gray-700 font-medium",
+            description: "text-sm text-gray-500 mt-0.5",
+            error: "text-red-500 text-sm mt-2 flex items-center gap-1"
+        },
+        enabled: {
+            track: "bg-[#3A7DC0] shadow-lg shadow-blue-200",
+            thumb: "translate-x-7 shadow-lg",
+            thumbInner: "bg-blue-100! scale-75",
+            trackOverlay: "opacity-100"
+        },
+        disabled: {
+            container: "opacity-50",
+            wrapper: "cursor-not-allowed",
+            track: "bg-gray-200",
+            thumb: "bg-gray-100",
+            label: "cursor-not-allowed text-gray-500"
+        },
+        error: {
+            track: "bg-red-400",
+            label: "text-red-700",
+            container: "bg-red-50/50! border border-red-200",
+			trackOverlay: "opacity-0!",
+        },
+        hover: {
+            track: "scale-105"
+        },
+        loading: {
+            thumb: "animate-pulse",
+            track: "animate-pulse"
+        }
+    }
+};
 
+const switchVariantOverrides: Record<string, Partial<DialcaUI.SwitchStates>> = {
+    minimal: {
+        normal: {
+            container: "inline-flex items-center gap-3",
+            track: `
+                relative w-11 h-6 rounded-full transition-all duration-200 ease-in-out
+                bg-gray-300
+            `,
+            thumb: `
+                absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow
+                transition-all duration-200 ease-out transform
+            `,
+            trackOverlay: "hidden",
+            thumbInner: "hidden",
+            label: "text-sm text-gray-600"
+        },
+        enabled: {
+            track: "bg-gray-700",
+            thumb: "translate-x-5"
+        }
+    },
+
+    ios: {
+        normal: {
+            container: "inline-flex items-center gap-4",
+            track: `
+                relative w-12 h-7 rounded-full transition-all duration-300 ease-in-out
+                bg-gray-200 border-gray-300
+            `,
+            thumb: `
+                absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow-lg
+                transition-all duration-300 ease-out transform border border-gray-200
+            `,
+            trackOverlay: "hidden",
+            thumbInner: "hidden"
+        },
+        enabled: {
+            track: "bg-green-500 border-green-500",
+            thumb: "translate-x-5 border-green-500"
+        }
+    },
+
+    large: {
+        normal: {
+            track: `
+                relative w-16 h-8 rounded-full transition-all duration-300 ease-in-out
+                bg-gray-300 shadow-inner
+            `,
+            thumb: `
+                absolute top-0.5 w-7 h-7 bg-white rounded-full shadow-md z-10
+                transition-all duration-300 ease-out transform translate-x-0.5
+            `,
+            label: "text-lg font-medium"
+        },
+        enabled: {
+            thumb: "translate-x-8"
+        }
+    },
+
+    neon: {
+        normal: {
+            container: `
+                inline-flex items-center gap-4 p-4 bg-black rounded-xl 
+                border border-cyan-500/30
+            `,
+            track: `
+                relative w-14 h-7 rounded-full transition-all duration-300 ease-in-out
+                bg-gray-900 shadow-inner
+            `,
+            thumb: `
+                absolute top-0.5 w-6 h-6 bg-cyan-400 rounded-full shadow-lg z-10
+                transition-all duration-300 ease-out transform translate-x-0.5
+                glow-cyan
+            `,
+            trackOverlay: `
+                absolute inset-0 rounded-full transition-opacity duration-300 z-0
+                bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0
+            `,
+            label: "text-cyan-300 font-mono font-bold uppercase tracking-wide",
+            description: "text-cyan-500/70 text-xs font-mono uppercase"
+        },
+        enabled: {
+            track: "bg-cyan-900/50 border-cyan-400 shadow-cyan-500/30 shadow-lg",
+            thumb: "translate-x-7 bg-cyan-300 shadow-cyan-400/50",
+            trackOverlay: "opacity-100 animate-pulse",
+            label: "text-cyan-200"
+        }
+    },
+
+    card: {
+        normal: {
+            container: `
+                flex items-center gap-4 p-4 border-2 border-gray-200 rounded-lg
+                cursor-pointer transition-all duration-200 hover:bg-gray-50
+            `,
+            wrapper: "order-2"
+        },
+        enabled: {
+            container: "border-[#3A7DC0] bg-[#3A7DC0]/5"
+        },
+        error: {
+            container: "border-red-300 bg-red-50"
+        }
+    },
+
+    toggle: {
+        normal: {
+            track: `
+                relative w-16 h-8 rounded transition-all duration-300 ease-in-out
+                bg-gray-300 shadow-inner
+            `,
+            thumb: `
+                absolute top-0.5 left-1 w-6 h-6 bg-white rounded shadow-md z-10
+                transition-all duration-300 ease-out transform flex items-center justify-center
+                text-xs font-bold text-gray-600
+            `,
+            trackOverlay: "hidden",
+            thumbInner: "hidden"
+        },
+        enabled: {
+            thumb: "translate-x-8"
+        }
+    }
+};
 // ============
 // Hooks
 // ============
@@ -1197,6 +1375,47 @@ export const useCheckboxVariantStyles = (
 };
 
 /**
+ * Hook to get styles for Switch variants based on state and customizations.
+ *
+ * @param {string} [variant="default"] - Variant key.
+ * @param {Record<string, DialcaUI.SwitchStates>} [customVariants={}] - Custom variants.
+ * @param {{ enabled?: boolean; disabled?: boolean; hasErrors?: boolean; focused?: boolean; hover?: boolean; loading?: boolean }} [states={}] - State flags.
+ * @param {boolean} [extendDefault=true] - If true, merges custom variants with defaults.
+ * @returns {{ getStyles: (element: keyof DialcaUI.SwitchVariant) => string }}
+ */
+export const useSwitchVariantStyles = (
+	variant: string = "default",
+	customVariants: Record<string, DialcaUI.SwitchStates> = {},
+	states: {
+		enabled?: boolean;
+		disabled?: boolean;
+		hasErrors?: boolean;
+		focused?: boolean;
+		hover?: boolean;
+		loading?: boolean;
+	} = {},
+	extendDefault: boolean = true
+) => {
+	const mappedStates = {
+		normal: true,
+		enabled: states.enabled,
+		disabled: states.disabled,
+		error: states.hasErrors,
+		focused: states.focused,
+		hover: states.hover,
+		loading: states.loading,
+	};
+	
+	return useVariantStyles<DialcaUI.SwitchStates, DialcaUI.SwitchVariant>(
+		variant,
+		customVariants,
+		mappedStates,
+		extendDefault,
+		switchDefaultVariants,
+		switchVariantOverrides
+	);
+};
+/**
  * Generic hook to get styles for any variant-based component.
  *
  * @template TStates, TVariant
@@ -1270,3 +1489,4 @@ const useVariantStyles = <
 
 	return { getStyles };
 };
+

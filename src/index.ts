@@ -11,6 +11,7 @@ export * from './components/TxtArea';
 export * from './components/Modal';
 export * from './components/Button';
 export * from './components/Checkbox';
+export * from './components/Switch';
 export * from './utils/classNames';
 
 // ==================

@@ -86,10 +86,22 @@ declare global {
             description?: string;
         }
 
+        interface SwitchVariant {
+            container?: string;
+            wrapper?: string;
+            track?: string;
+            thumb?: string;
+            thumbInner?: string;
+            trackOverlay?: string;
+            label?: string;
+            description?: string;
+            error?: string;
+        }
+
         // ==================
         // Tipos base
         // ==================
-        type ComponentVariant = InputVariant | TxtAreaVariant | DropZoneVariant | LoaderVariant | SelectVariant | RadioVariant | ModalVariant;
+        type ComponentVariant = InputVariant | TxtAreaVariant | DropZoneVariant | LoaderVariant | SelectVariant | RadioVariant | ModalVariant | ButtonVariant | CheckboxVariant | SwitchVariant;
 
         interface BaseStates {
             normal?: ComponentVariant;
@@ -183,6 +195,15 @@ declare global {
             focused?: CheckboxVariant;
             hover?: CheckboxVariant;
             errorChecked?: CheckboxVariant;
+        }
+        interface SwitchStates extends BaseStates {
+            normal?: SwitchVariant;
+            enabled?: SwitchVariant;
+            disabled?: SwitchVariant;
+            error?: SwitchVariant;
+            focused?: SwitchVariant;
+            hover?: SwitchVariant;
+            loading?: SwitchVariant;
         }
     }
 }

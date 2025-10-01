@@ -262,6 +262,22 @@ import { TxtArea } from "dialca-ui"
     variant="card"
   />
 ```
+- ToggleSwitch: A customizable toggle switch
+```tsx
+  <ToggleSwitch
+    enabled={isEnabled}
+    onChange={setIsEnabled}
+    label="Enable Notifications"
+    description="Turn on to receive notifications"
+    enabledIcon={<FaBell />}
+    disabledIcon={<FaBellSlash />}
+    size="md"
+    variant="default"
+    hasErrors={!isEnabled}
+    errorMessage="You must enable notifications."
+    disabled={isDisabled}
+  />
+```
 <h2 id="styling"> Theming & Styling🎨</h2>
 DialcaUI supports variants or class overrides.
 - For override only classes pass "classes" prop with its corresponding key:values
