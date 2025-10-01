@@ -12,6 +12,11 @@ export * from './components/Modal';
 export * from './components/Button';
 export * from './components/Checkbox';
 export * from './components/Switch';
+export * from './components/SearchableSelect';
+
+// ==================
+// Utilidades
+// ==================
 export * from './utils/classNames';
 
 // ==================

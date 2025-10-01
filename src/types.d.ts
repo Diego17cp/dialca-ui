@@ -98,10 +98,23 @@ declare global {
             error?: string;
         }
 
+        interface SearchableSelectVariant {
+            container?: string;
+            inputWrapper?: string;
+            input?: string;
+            inputIcon?: string;
+            dropdown?: string;
+            option?: string;
+            optionIcon?: string;
+            noResults?: string;
+            label?: string;
+            error?: string;
+        }
+
         // ==================
         // Tipos base
         // ==================
-        type ComponentVariant = InputVariant | TxtAreaVariant | DropZoneVariant | LoaderVariant | SelectVariant | RadioVariant | ModalVariant | ButtonVariant | CheckboxVariant | SwitchVariant;
+        type ComponentVariant = InputVariant | TxtAreaVariant | DropZoneVariant | LoaderVariant | SelectVariant | RadioVariant | ModalVariant | ButtonVariant | CheckboxVariant | SwitchVariant | SearchableSelectVariant;
 
         interface BaseStates {
             normal?: ComponentVariant;
@@ -204,6 +217,18 @@ declare global {
             focused?: SwitchVariant;
             hover?: SwitchVariant;
             loading?: SwitchVariant;
+        }
+        interface SearchableSelectStates extends BaseStates {
+            normal?: SearchableSelectVariant;
+            open?: SearchableSelectVariant;
+            closed?: SearchableSelectVariant;
+            focused?: SearchableSelectVariant;
+            disabled?: SearchableSelectVariant;
+            error?: SearchableSelectVariant;
+            hover?: SearchableSelectVariant;
+            optionSelected?: SearchableSelectVariant;
+            optionHighlighted?: SearchableSelectVariant;
+            optionDisabled?: SearchableSelectVariant;
         }
     }
 }

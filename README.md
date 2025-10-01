@@ -278,6 +278,31 @@ import { TxtArea } from "dialca-ui"
     disabled={isDisabled}
   />
 ```
+- SearchableSelect: A select with search functionality and keyboard navigation.
+```tsx
+  <SearchableSelect
+    label="Select a Country"
+    options={[
+      { value: "us", label: "United States" },
+      { value: "ca", label: "Canada" },
+      { value: "mx", label: "Mexico" },
+      // more options...
+    ]}
+    value={selectedCountry}
+    onChange={setSelectedCountry}
+    placeholder="Choose a country"
+    noResultsText="No countries found"
+    isClearable
+    rotateIcon={false}
+    // dropdownIcon={<FaGlobe />} // Custom dropdown icon
+    hasErrors={!selectedCountry}
+    errorMessage="Please select a country."
+    disabled={isDisabled}
+    variant="outlined"
+    size="md"
+  />
+```
+
 <h2 id="styling"> Theming & Styling🎨</h2>
 DialcaUI supports variants or class overrides.
 - For override only classes pass "classes" prop with its corresponding key:values

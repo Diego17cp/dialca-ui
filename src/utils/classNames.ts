@@ -1043,6 +1043,136 @@ const switchVariantOverrides: Record<string, Partial<DialcaUI.SwitchStates>> = {
         }
     }
 };
+// Searchable Select
+const searchableSelectDefaultVariants: Record<string, DialcaUI.SearchableSelectStates> = {
+	default: {
+		normal: {
+			container: "relative inline-block w-full",
+			inputWrapper: "relative",
+			input: `
+				w-full p-3.5 border-2 border-solid rounded-lg outline-none 
+                transition-all duration-300 ease-in-out text-lg bg-transparent
+                cursor-pointer flex items-center min-h-[3.25rem]
+                border-gray-300
+			`,
+			inputIcon: `
+				absolute right-3 top-1/2 -translate-y-1/2 text-gray-400
+				transition-transform duration-300 pointer-events-none
+			`,
+			dropdown: `
+				absolute z-40 left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto
+			`,
+			option: `
+				flex items-center gap-2 px-4 py-2.5 cursor-pointer hover:bg-[#3A7DC0]/20 transition-colors
+			`,
+			optionIcon: "shrink-0 text-gray-500",
+			noResults: "px-4 py-2.5 text-sm text-gray-500 text-center",
+			label: "block text-sm font-medium text-gray-700 mb-1.5",
+			error: "text-red-500 text-sm mt-2 flex items-center gap-1",
+		},
+		closed: {
+			dropdown: "hidden",
+		},
+		focused: {
+			input: "ring-2 ring-[#3A7DC0] border-transparent",
+			inputIcon: "text-[#3A7DC0]!",
+		}, 
+		disabled: {
+			input: "bg-gray-100 cursor-not-allowed! opacity-60",
+			inputIcon: "opacity-50",
+			container: "opacity-60",
+		}, 
+		error: {
+			input: "border-red-500! focus:ring-red-500!",
+			label: "text-red-700",
+			inputIcon: "text-red-500!",
+		},
+		hover: {
+			input: "border-gray-400",
+		},
+		optionSelected: {
+			option: "bg-[#3A7DC0] text-white font-medium hover:bg-[#3A7DC0]/80!",
+			optionIcon: "text-white",
+		},
+		optionHighlighted: {
+			option: "bg-blue-50"
+		},
+		optionDisabled: {
+			option: "opacity-50 cursor-not-allowed! hover:bg-transparent",
+		}
+	}
+}
+const searchableSelectVariantOverrides: Record<string, Partial<DialcaUI.SearchableSelectStates>> = {
+	minimal: {
+        normal: {
+            input: `
+                w-full px-3 py-2 pr-8 rounded border border-gray-300
+                bg-white text-gray-900 text-sm
+                focus:outline-none focus:border-gray-400
+                transition-colors duration-150
+            `,
+            dropdown: `
+                absolute z-50 mt-1 w-full max-h-48 overflow-auto
+                rounded border border-gray-200 bg-white shadow
+                py-0.5
+            `,
+            option: "px-3 py-1.5 text-sm hover:bg-gray-50"
+        }
+    },
+	dark: {
+		normal: {
+			container: "relative inline-block w-full",
+			inputWrapper: "relative",
+			input: `
+				w-full p-3.5 border-2 border-solid rounded-lg outline-none 
+				transition-all duration-300 text-lg bg-gray-800 text-gray-200
+				cursor-pointer flex items-center min-h-[3.25rem]
+			`,
+			inputIcon: `
+				absolute right-3 top-1/2 -translate-y-1/2 text-gray-300
+				transition-transform duration-300 pointer-events-none
+			`,
+			dropdown: `
+				absolute z-40 left-0 right-0 mt-1 bg-gray-800 border border-gray-700 rounded-lg shadow-lg max-h-60 overflow-y-auto
+			`,
+			option: `
+				flex items-center gap-2 px-4 py-2.5 cursor-pointer hover:bg-gray-700 transition-colors text-white
+			`,
+			optionIcon: "shrink-0 text-gray-400",
+			noResults: "px-4 py-2.5 text-sm text-gray-400 text-center",
+			label: "block text-sm font-medium mb-1.5",
+			error: "text-red-400 text-sm mt-2 flex items-center gap-1",
+		},
+		
+		closed: {
+			dropdown: "hidden",
+		},
+		focused: {
+			input: "ring-2 ring-gray-400 border-transparent",
+			inputIcon: "text-[#3A7DC0]!",
+		},
+		disabled: {
+			input: "bg-gray-700 cursor-not-allowed! opacity-60",
+			inputIcon: "opacity-50",
+			container: "opacity-60",
+		},
+		error: {
+			input: "border-red-500! focus:ring-red-500!",
+			label: "text-red-400",
+			inputIcon: "text-red-500!",
+		},
+		hover: {
+			input: "border-gray-500",
+		},
+		optionSelected: {
+			option: "bg-[#3A7DC0] text-white font-medium hover:bg-[#3A7DC0]/80!",
+			optionIcon: "text-white",
+		},
+		optionHighlighted: {
+			option: "bg-[#3A7DC0]/20"
+		},
+	}
+}
 // ============
 // Hooks
 // ============
@@ -1415,6 +1545,52 @@ export const useSwitchVariantStyles = (
 		switchVariantOverrides
 	);
 };
+/**
+ * Hook to get styles for SearchableSelect variants based on state and customizations.
+ *
+ * @param {string} [variant="default"] - Variant key.
+ * @param {Record<string, DialcaUI.SearchableSelectStates>} [customVariants={}] - Custom variants.
+ * @param {{ isOpen?: boolean; isFocused?: boolean; disabled?: boolean; hasErrors?: boolean; hover?: boolean; optionSelected?: boolean; optionHighlighted?: boolean; optionDisabled?: boolean }} [states={}] - State flags.
+ * @param {boolean} [extendDefault=true] - If true, merges custom variants with defaults.
+ * @returns {{ getStyles: (element: keyof DialcaUI.SearchableSelectVariant) => string }}
+ */
+export const useSearchableSelectVariantStyles = (
+    variant: string = "default",
+    customVariants: Record<string, DialcaUI.SearchableSelectStates> = {},
+    states: {
+        isOpen?: boolean;
+        isFocused?: boolean;
+        disabled?: boolean;
+        hasErrors?: boolean;
+        hover?: boolean;
+        optionSelected?: boolean;
+        optionHighlighted?: boolean;
+        optionDisabled?: boolean;
+    } = {},
+    extendDefault: boolean = true
+) => {
+	const mappedStates = {
+        normal: true,
+        open: states.isOpen,
+        closed: !states.isOpen,
+        focused: states.isFocused,
+        disabled: states.disabled,
+        error: states.hasErrors,
+        hover: states.hover,
+        optionSelected: states.optionSelected,
+        optionHighlighted: states.optionHighlighted,
+        optionDisabled: states.optionDisabled,
+    };
+    
+    return useVariantStyles<DialcaUI.SearchableSelectStates, DialcaUI.SearchableSelectVariant>(
+        variant,
+        customVariants,
+        mappedStates,
+        extendDefault,
+        searchableSelectDefaultVariants,
+        searchableSelectVariantOverrides
+    );
+}
 /**
  * Generic hook to get styles for any variant-based component.
  *
