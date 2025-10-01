@@ -1,19 +1,20 @@
-
 @import "tailwindcss";
 @plugin "tailwind-scrollbar";
+
 :root {
-	--bg-radios: radial-gradient(
-		circle,
-		var(--white) 0%,
-		var(--white) 35%,
-		transparent 35%
-	);
-};
+	--bg-radios: radial-gradient(circle,
+			var(--white) 0%,
+			var(--white) 35%,
+			transparent 35%);
+}
+
+;
 
 @keyframes spin-slow {
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(360deg);
 	}
@@ -23,6 +24,7 @@
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(360deg);
 	}
@@ -32,8 +34,19 @@
 	from {
 		transform: rotate(360deg);
 	}
+
 	to {
 		transform: rotate(0deg);
+	}
+}
+
+@keyframes draw {
+	0% {
+		stroke-dashoffset: 40;
+	}
+
+	100% {
+		stroke-dashoffset: 0;
 	}
 }
 
@@ -52,11 +65,14 @@
 .animate-reverse {
 	animation-direction: reverse;
 }
+
 .radio-checked {
-    background-image: radial-gradient(
-        circle,
-        white 0%,
-        white 35%,
-        transparent 35%
-    );
+	background-image: radial-gradient(circle,
+			white 0%,
+			white 35%,
+			transparent 35%);
+}
+
+.animate-draw {
+	animation: draw .3s ease-in-out both;
 }
