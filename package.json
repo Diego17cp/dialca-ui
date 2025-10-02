@@ -20,14 +20,24 @@
       "types": "./dist/styles.d.ts",
       "default": "./dist/dialcaui.css"
     },
-    "./css": {
+    "./styles/hybrid": {
       "types": "./dist/styles.d.ts",
       "default": "./dist/dialcaui.css"
+    },
+    "./styles/lite": {
+      "types": "./dist/styles.d.ts",
+      "default": "./dist/dialcaui-custom.css"
     }
+  },
+  "bin": {
+    "setup-dialca-ui": "./bin/setup-tw.js"
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "tsup && postcss ./src/styles/dialcaui.css -o ./dist/dialcaui.css && copy src\\styles.d.ts dist\\styles.d.ts",
+    "build": "npm run build:js && npm run build:css:hybrid && npm run build:css:custom",
+    "build:js": "tsup",
+    "build:css:hybrid": "node scripts/build-hybrid-css.js",
+    "build:css:custom": "postcss ./src/styles/dialcaui.css -o ./dist/dialcaui-custom.css && copy src\\styles.d.ts dist\\styles.d.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "patch": "npm version patch",
@@ -75,10 +85,12 @@
   "author": "dialcaDev",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.14",
     "@tailwindcss/postcss": "4.1.11",
     "@types/react": "19.1.9",
     "@types/react-dom": "19.1.7",
     "@vitejs/plugin-react": "5.0.0",
+    "glob": "11.0.3",
     "postcss": "8.5.6",
     "postcss-cli": "^11.0.1",
     "react": "19.1.1",
@@ -86,7 +98,7 @@
     "react-icons": "5.5.0",
     "rimraf": "6.0.1",
     "tailwind-scrollbar": "4.0.2",
-    "tailwindcss": "4.1.11",
+    "tailwindcss": "3.4.15",
     "tsup": "8.5.0",
     "typescript": "5.9.2",
     "vite": "^7.1.1"

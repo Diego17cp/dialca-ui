@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@plugin "tailwind-scrollbar";
+/* @import "tailwindcss";
+@plugin "tailwind-scrollbar"; */
 
 :root {
 	--bg-radios: radial-gradient(circle,
