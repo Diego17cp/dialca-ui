@@ -7,7 +7,8 @@
   "types": "dist/index.d.ts",
   "style": "dist/tailwind.css",
   "files": [
-    "dist"
+    "dist",
+    "!dist/**/*.map"
   ],
   "exports": {
     ".": {
@@ -25,6 +26,7 @@
     }
   },
   "scripts": {
+    "clean": "rimraf dist",
     "build": "tsup && postcss ./src/styles/dialcaui.css -o ./dist/dialcaui.css && copy src\\styles.d.ts dist\\styles.d.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
@@ -58,6 +60,13 @@
     "textarea",
     "select",
     "radio",
+    "checkbox",
+    "button",
+    "modal",
+    "switch",
+    "toggle",
+    "dialog",
+    "searchable-select",
     "char-counter",
     "counter",
     "dialca-ui",
@@ -75,6 +84,7 @@
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-icons": "5.5.0",
+    "rimraf": "6.0.1",
     "tailwind-scrollbar": "4.0.2",
     "tailwindcss": "4.1.11",
     "tsup": "8.5.0",
