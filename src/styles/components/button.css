@@ -1,0 +1,263 @@
+/* =================================
+    Button Styles
+    ================================= */
+
+/* Button Base */
+.dialca-button {
+    --button-bg: #3a7dc0;
+    --button-bg-hover: #3a7dc0;
+    --button-text: white;
+    --button-border: #085691;
+    --button-border-width: 4px;
+    --button-padding-x: 1.5rem;
+    --button-padding-y: 1rem;
+    --button-font-size: 1rem;
+    --button-font-weight: 500;
+    --button-radius: .5rem;
+    --button-gap: .75rem;
+    --button-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --button-transition: all .2s ease-in-out;
+    --button-brightness-hover: 1.1;
+    --button-translate-hover: -1px;
+    --button-border-hover: 6px;
+    --button-translate-active: 2px;
+    --button-border-active: 2px;
+    --button-brightness-active: 0.9;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: auto;
+    border:none;
+    outline:none;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    padding: var(--button-padding-y) var(--button-padding-x);
+    border-radius: var(--button-radius);
+    box-shadow: var(--button-shadow);
+    border-bottom: var(--button-border-width) solid var(--button-border);
+    gap: var(--button-gap);
+    transition: var(--button-transition);
+}
+.dialca-button:hover:not(:disabled) {
+    filter: brightness(var(--button-brightness-hover));
+    transform: translateY(var(--button-translate-hover));
+    border-bottom-width: var(--button-border-hover);
+}
+.dialca-button:active:not(:disabled) {
+    filter: brightness(var(--button-brightness-active));
+    transform: translateY(var(--button-translate-active)) !important;
+    border-bottom-width: var(--button-border-active) !important;
+}
+.dialca-button:focus-visible {
+    outline: 2px solid var(--button-border);
+    outline-offset: 2px;
+}
+.dialca-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    filter: brightness(1) !important;
+    transform: translateY(0) !important;
+    border-bottom-width: var(--button-border-width) !important;
+}
+/* Element: Content */
+.dialca-button__content {
+    font-weight: 600;
+}
+/* Element: Icon */
+.dialca-button__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+/* Element: Loader */
+.dialca-button__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* =================================
+    MODIFIERS
+    ================================= */
+/* Modifier: Loading */
+.dialca-button--loading {
+    pointer-events: none;
+    cursor: wait;
+}
+/* Modifier: Disabled */
+.dialca-button--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+.dialca-button--disabled:hover {
+    filter: brightness(1) !important;
+    transform: translateY(0) !important;
+    border-bottom-width: var(--button-border-width) !important;
+}
+
+/* =================================
+    VARIANTS
+    =================================
+*/
+/* Variant: Secondary */
+.dialca-button--secondary {
+    --button-bg: #e3bd8e;
+    --button-border: #d79b5f;
+    --button-text: #374151
+}
+/* Variant: Danger */
+.dialca-button--danger {
+    --button-bg: #f87171;
+    --button-border: #991b1b;
+    --button-text: white;
+}
+/* Variant: Success */
+.dialca-button--success {
+    --button-bg: #00bc7d;
+    --button-border: #007a55;
+    --button-text: white;
+}
+/* Variant: Outline */
+.dialca-button--outline {
+    --button-bg: transparent;
+    --button-border: #3a7dc0;
+    --button-text: #3a7dc0;
+    --button-shadow: none;
+    border: 2px solid var(--button-border);
+    border-bottom: var(--button-border-width) solid var(--button-border);
+}
+.dialca-button--outline:hover:not(:disabled) {
+    --button-bg: #3a7dc0;
+    --button-text: white;
+}
+.dialca-button--outline:disabled:hover {
+    --button-bg: transparent;
+    --button-text: #3a7dc0;
+}
+/* Variant: ghost */
+.dialca-button--ghost {
+    --button-bg: transparent;
+    --button-text: #374151;
+    --button-border: transparent;
+    --button-shadow: none;
+    --button-border-width: 0px;
+    --button-translate-hover: 0px;
+    --button-translate-active: 0px;
+    --button-border-hover: 0px;
+    --button-border-active: 0px;
+    --button-brightness-hover: 1.05;
+    --button-brightness-active: 0.95;
+}
+.dialca-button--ghost:hover:not(:disabled) {
+    background-color: #f3f4f6;
+}
+.dialca-button--ghost:active:not(:disabled) {
+    background-color: #e5e7eb;
+}
+/* Variant: Minimal */
+.dialca-button--minimal {
+    --button-bg: transparent;
+    --button-text: #3a7dc0;
+    --button-border: transparent;
+    --button-shadow: none;
+    --button-border-width: 0px;
+    --button-translate-hover: 0px;
+    --button-translate-active: 0px;
+    --button-border-hover: 0px;
+    --button-border-active: 0px;
+    --button-brightness-hover: 1.1;
+    --button-brightness-active: 0.9;
+    text-decoration: underline;
+}
+.dialca-button--minimal:hover:not(:disabled) {
+    text-decoration: none;
+}
+.dialca-button--minimal:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+.dialca-button--minimal:disabled:hover {
+    filter: brightness(1) !important;
+}
+
+/*
+    =================================
+    SIZE MODIFIERS
+    =================================
+*/
+/* Modifier: Small */
+.dialca-button--sm {
+    --button-padding-x: .75rem;
+    --button-padding-y: .5rem;
+    --button-font-size: .875rem;
+    --button-gap: .5rem;
+}
+.dialca-button--sm .dialca-button__icon {
+    font-size: 1rem;
+}
+/* Modifier: Medium (default) */
+.dialca-button--md {
+    --button-padding-x: 1.5rem;
+    --button-padding-y: .75rem;
+    --button-font-size: 1rem;
+    --button-gap: .5rem;
+}
+/* Modifier: Large */
+.dialca-button--lg {
+    --button-padding-x: 2rem;
+    --button-padding-y: 1rem;
+    --button-font-size: 1.125rem;
+    --button-gap: .75rem;
+}
+.dialca-button--lg .dialca-button__icon {
+    font-size: 1.5rem;
+}
+/* Modifier: Extra Large */
+.dialca-button--xl {
+    --button-padding-x: 2.5rem;
+    --button-padding-y: 1.25rem;
+    --button-font-size: 1.25rem;
+    --button-gap: 1rem;
+}
+.dialca-button--xl .dialca-button__icon {
+    font-size: 1.75rem;
+}
+/* =================================
+    ANIMATIONS & ACCESSIBILITY
+    ================================= */
+@media (prefers-reduced-motion: reduce) {
+    .dialca-button {
+        --button-transition: none;
+        --button-translate-hover: 0px;
+        --button-translate-active: 0px;
+    }
+    
+    .dialca-button__loader {
+        animation: none;
+    }
+}
+@media (prefers-contrast: high) {
+    .dialca-button {
+        border: 2px solid;
+    }
+    
+    .dialca-button--ghost,
+    .dialca-button--minimal {
+        border: 1px solid currentColor;
+    }
+}
+.dialca-button:focus-visible {
+    outline: 2px solid var(--button-border);
+    outline-offset: 2px;
+}
