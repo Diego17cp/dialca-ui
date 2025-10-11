@@ -1,0 +1,222 @@
+/*  =================================
+    Input Field Styles
+    ================================= */
+
+/* Input Field Container */
+.dialca-input {
+    position: relative;
+    --input-bg: white;
+    --input-text: #111827;
+    --input-border: #D1D5DB;
+    --input-border-focus: #3a7dc0;
+    --input-border-error: #ef4444;
+    --input-placeholder: #9ca3af;
+    --input-ring-focus: rgba(58, 125, 192, 1);
+    --input-ring-error: rgba(239, 68, 68, 1);
+    --input-padding: .875rem;
+    --input-radius: .5rem;
+    --input-font-size: 1.125rem;
+    --input-transition: all .2s ease-in-out;
+}
+
+/* Element: Field */
+.dialca-input__field {
+    width: 100%;
+    padding: var(--input-padding);
+    border: 2px solid var(--input-border);
+    border-radius: var(--input-radius);
+    outline: none;
+    transition: var(--input-transition);
+    font-size: var(--input-font-size);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    background-color: transparent;
+}
+.dialca-input__field::placeholder {
+    color: var(--input-placeholder);
+}
+.dialca-input__field:focus {
+    border-color: var(--input-border-focus);
+    box-shadow: 0 0 0 2px var(--input-ring-focus);
+}
+.dialca-input__field:focus + .dialca-input__label, .dialca-input__field:not(:placeholder-shown) + .dialca-input__label {
+    top: -2px;
+    transform: translateY(-50%);
+    font-size: .85rem;
+    color: var(--input-border-focus);
+    background-color: var(--input-bg);
+}
+/* Element: Label */
+.dialca-input__label {
+    position: absolute;
+    top: 45%;
+    left: 1em;
+    transform: translateY(-50%);
+    padding: 0 .375rem;
+    pointer-events: none;
+    transition: var(--input-transition);
+    background-color: var(--input-bg);
+    color: var(--input-placeholder);
+    font-size: var(--input-font-size);
+}
+/* Element: Icon */
+.dialca-input__icon {
+    position: absolute;
+    top: 50%;
+    right: .8em;
+    transform: translateY(-50%);
+    color: var(--input-border-focus);
+}
+/* Element: Start Icon */
+.dialca-input__start-icon {
+    position: absolute;
+    top: 50%;
+    left: .8em;
+    transform: translateY(-50%);
+    color: #6b7280;
+    z-index: 10;
+}
+/* Element: Button (for password visibility toggle) */
+.dialca-input__button {
+    position:absolute;
+    top: 50%;
+    right: .8em;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--input-border-focus);
+    transition: var(--input-transition);
+}
+.dialca-input__button:hover {
+    color: #053866;
+}
+/* Element: Loader */
+.dialca-input__loader {
+    position: absolute;
+    top: 50%;
+    right: .8em;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+/* Element: error Message */
+.dialca-input__error {
+    color: var(--input-border-error);
+    font-size: .875rem;
+    margin-top: .5rem;
+    margin-left: .25rem;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+/* Element: Required Indicator */
+.dialca-input__required {
+    color: var(--input-border-error);
+    margin-left: .125rem;
+    font-weight: 800;
+}
+
+/* =================================
+    MODIFIERS
+    ================================= */ 
+/* Modifier: error */
+.dialca-input--error .dialca-input__field {
+    --input-border: var(--input-border-error);
+    --input-border-focus: #dc2626;
+    --input-ring-focus: var(--input-ring-error);
+}
+.dialca-input--error .dialca-input__field:focus + .dialca-input__label, .dialca-input--error .dialca-input__field:not(:placeholder-shown) + .dialca-input__label {
+    color: var(--input-border-error);
+}
+.dialca-input--error .dialca-input__button {
+    color: var(--input-border-error);
+}
+.dialca-input--error .dialca-input__button:hover {
+    color: #991b1b;
+}
+.dialca-input--error .dialca-input__icon {
+    color: var(--input-border-error);
+}
+/* Modifier: Disabled */
+.dialca-input--disabled .dialca-input__field {
+    --input-bg: #f3f4f6;
+    --input-text: #6b7280;
+    cursor: not-allowed;
+}
+.dialca-input--disabled .dialca-input__label {
+    color: #6b7280;
+}
+/* Modifier: Has value */
+.dialca-input--has-value .dialca-input__label {
+    color: var(--input-border-focus);
+    top: -2px;
+    transform: translateY(-50%) scale(.85);
+}
+/* Modifier: With start icon */
+.dialca-input--has-start-icon .dialca-input__field {
+    padding-left: 3rem;
+}
+.dialca-input--has-start-icon .dialca-input__label {
+    left: 3rem;
+}
+/* Modifier: With end content */
+.dialca-input--has-end-content .dialca-input__field {
+    padding-right: 3rem;
+}
+
+/* =================================
+    VARIANTS
+    =================================
+*/
+.dialca-input--dark {
+    --input-bg: #1e2939;
+    --input-text: white;
+    --input-border: #6b7280;
+    --input-border-focus: #9ca3af;
+    --input-placeholder: #9ca3af;
+    --input-ring-focus: rgba(156, 163, 175, 1);
+}
+.dialca-input--dark .dialca-input__field {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--input-border);
+    border-radius: 1px;
+}
+.dialca-input--dark .dialca-input__field:focus {
+    border-color: var(--input-border-focus);
+    box-shadow: 0 0 0 2px var(--input-ring-focus);
+}
+.dialca-input--dark .dialca-input__field:focus + .dialca-input__label {
+    background-color: var(--input-bg);
+    color: white;
+}
+.dialca-input--dark .dialca-input__label {
+    background-color: var(--input-bg);
+}
+.dialca-input--dark .dialca-input__start-icon {
+    color: var(--input-border-focus);
+}
+.dialca-input--dark.dialca-input--error {
+    --input-border-error: #f87171;
+}
+.dialca-input--error .dialca-input__field:focus + .dialca-input__label, .dialca-input--error .dialca-input__field:not(:placeholder-shown) + .dialca-input__label {
+    color: var(--input-border-error);
+}
+.dialca-input--dark .dialca-input__button:hover {
+    color: #bdc5d4;
+}
+.dialca-input--dark.dialca-input--error .dialca-input__button:hover {
+    color: #f79c9c;
+}
+
+/* =================================
+    ANIMATIONS
+    =================================
+*/
+@media (prefers-reduced-motion: reduce) {
+    .dialca-input__field,
+    .dialca-input__label,
+    .dialca-input__button {
+        transition: none;
+    }
+}
