@@ -1,0 +1,256 @@
+/* 
+============================
+RadioInput Component Styles
+============================
+*/
+
+/* Radio Input Container */
+.dialca-radio {
+    --radio-primary: #3a7dc0;
+    --radio-primary-dark: #085691;
+    --radio-border: #d1d5db;
+    --radio-border-hover: var(--radio-primary);
+    --radio-border-checked: var(--radio-primary);
+    --radio-bg: white;
+    --radio-bg-checked: var(--radio-primary);
+    --radio-bg-disabled: #f3f4f6;
+    --radio-text: #374151;
+    --radio-text-checked: #111827;
+    --radio-text-disabled: #6b7280;
+    --radio-description: #6b7280;
+    --radio-error: #fb2c36;
+    --radio-error-dark: #c10007;
+    --radio-size: 1.25rem;
+    --radio-gap: .75rem;
+    --radio-padding: 0;
+    --radio-radius: 50%;
+    --radio-transition: all .3s ease-in-out;
+    --radio-border-width: 2px;
+    --radio-focus-ring: rgba(58, 125, 192, .5);
+
+    display: flex;
+    align-items: flex-start;
+    gap: var(--radio-gap);
+    padding: var(--radio-padding);
+    transition: var(--radio-transition);
+    cursor: pointer;
+}
+
+/* Element: Input */
+.dialca-radio__input {
+    margin-top: .25rem;
+    width: var(--radio-size);
+    height: var(--radio-size);
+    border: var(--radio-border-width) solid var(--radio-border);
+    border-radius: var(--radio-radius);
+    background-color: var(--radio-bg);
+    cursor: pointer;
+    transition: var(--radio-transition);
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+}
+.dialca-radio__input:hover {
+    border-color: var(--radio-border)
+}
+.dialca-radio__input:focus {
+    outline: none;
+    border-color: var(--radio-border-checked);
+    box-shadow: 0 0 0 2px var(--radio-focus-ring);
+}
+.dialca-radio__input:checked {
+    border-color: var(--radio-border-checked);
+    background-color: var(--radio-bg-checked);
+}
+.dialca-radio__input:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background-color: white;
+}
+.dialca-radio__label {
+    flex: 1;
+    cursor: pointer;
+}
+.dialca-radio__text {
+    color: var(--radio-text);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+}
+.dialca-radio__description {
+    color: var(--radio-description);
+    font-size: .875rem;
+    line-height: 1.4;
+    margin-top: .25rem;
+}
+.dialca-radio__error {
+    color: var(--radio-error);
+    font-size: .875rem;
+    margin-top: .5rem;
+    margin-left: .25rem;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+/* 
+============================
+MODIFIERS
+============================
+*/
+/* State: Checked */
+.dialca-radio--checked .dialca-radio__text {
+    color: var(--radio-text-checked);
+    font-weight: 600;
+}
+.dialca-radio--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.dialca-radio--disabled .dialca-radio__input {
+    background-color: var(--radio-bg-disabled);
+    border-color: var(--radio-border);
+    cursor: not-allowed;
+}
+.dialca-radio--disabled .dialca-radio__label {
+    cursor: not-allowed;
+}
+.dialca-radio--disabled .dialca-radio__text {
+    color: var(--radio-text-disabled);
+}
+
+/* Modifier: Error */
+.dialca-radio--error {
+    --radio-border: var(--radio-error);
+    --radio-border-hover: var(--radio-error-dark);
+    --radio-border-checked: var(--radio-error);
+    --radio-bg-checked: var(--radio-error);
+    --radio-focus-ring: rgba(239, 68, 68, .5);
+}
+.dialca-radio--error .dialca-radio__text {
+    color: var(--radio-error-dark);
+}
+
+/* State: Focused */
+.dialca-radio--focused .dialca-radio__input {
+    box-shadow: 0 0 0 2px var(--radio-focus-ring);
+}
+
+/* 
+============================
+VARIANTS
+============================
+*/
+/* Variant: Card */
+.dialca-radio--card {
+    --radio-padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: .5rem;
+    background-color: white;
+    transition: var(--radio-transition);
+}
+.dialca-radio--card:hover {
+    background-color: #f9fafb;
+}
+.dialca-radio--card.dialca-radio--checked {
+    background-color: rgba(58, 125, 192, .1);
+    border-color: rgba(58, 125, 192, .5)
+}
+.dialca-radio--card.dialca-radio--error {
+    border-color: #fecaca;
+    background-color: #fef2f2;
+}
+/* Variant: Minimal */
+.dialca-radio--minimal {
+    --radio-gap: .5rem;
+    align-items: center;
+}
+.dialca-radio--minimal .dialca-radio__input {
+    --radio-size: 1rem;
+    margin-top: 0;
+}
+.dialca-radio--minimal .dialca-radio__text {
+    font-size: .875rem;
+    font-weight: 400;
+}
+/* Variant: Dark */
+.dialca-radio--dark {
+    --radio-bg: #374151;
+    --radio-border: #6b7280;
+    --radio-border-hover: #9ca3af;
+    --radio-border-checked: #9ca3af;
+    --radio-bg-checked: #9ca3af;
+    --radio-text: #f3f4f6;
+    --radio-text-checked: #ffffff;
+    --radio-description: #9ca3af;
+    --radio-bg-disabled: #4b5563;
+    --radio-text-disabled: #9ca3af;
+    --radio-focus-ring: rgba(156, 163, 175, .5);
+}
+.dialca-radio--dark.dialca-radio--error {
+    --radio-error: #f87171;
+    --radio-error-dark: #f87171;
+}
+/* Radio Group */
+.dialca-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+.dialca-radio-group--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+/* 
+============================
+ANIMATIONS
+============================
+*/
+@keyframes radio-check {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+.dialca-radio__input:checked::before {
+    animation: radio-check 0.2s ease-in-out forwards;
+}
+
+/* 
+==============================
+ACCESSIBILITY
+==============================
+*/
+@media (prefers-reduced-motion: reduce) {
+    .dialca-radio {
+        --radio-transition: none;
+    }
+    .dialca-radio__input:checked::before {
+        animation: none;
+    }
+}
+@media (prefers-contrast: high) {
+    .dialca-radio {
+        --radio-border: currentColor;
+        --radio-border-width: 3px;
+    }
+    .dialca-radio--card {
+        border-width: 3px;
+    }
+}
+.dialca-radio__input:focus-visible {
+    outline: 2px solid var(--radio-border-checked);
+    outline-offset: 2px;
+}
