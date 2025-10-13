@@ -1,0 +1,277 @@
+/* 
+==============================
+Loader Styles
+==============================
+*/
+
+/* Loader container */
+.dialca-loader {
+    --loader-primary: #3a7dc0;
+    --loader-secondary: #085691;
+    --loader-success: #00c951;
+    --loader-success-dark: #008236;
+    --loader-error: #fb2c36;
+    --loader-error-dark: #c10007;
+    --loader-disabled: #99a1af;
+    --loader-disabled-dark: #6a7282;
+    --loader-text: var(--loader-primary);
+    --loader-size-sm: 1rem;
+    --loader-size-md: 2rem;
+    --loader-size-lg: 3rem;
+    --loader-size-xl: 4rem;
+    --loader-border-width: 2px;
+    --loader-gap: .5rem;
+    --loader-text-size: .875rem;
+    --loader-transition: all .3s ease-in-out;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--loader-gap);
+}
+/* Element: Outer Ring */
+.dialca-loader__outer-ring {
+    border: var(--loader-border-width) solid transparent;
+    border-radius: 50%;
+    border-top-color: var(--loader-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: dialca-spin 1s linear infinite;
+}
+/* Element: Inner Ring */
+.dialca-loader__inner-ring {
+    border: var(--loader-border-width) solid transparent;
+    border-radius: 50%;
+    border-top-color: var(--loader-secondary);
+    animation: dialca-spin 1s linear infinite;
+}
+/* Element: Content */
+.dialca-loader__content {
+    color: var(--loader-text);
+    font-size: var(--loader-text-size);
+    font-weight: 500;
+    text-align: center;
+}
+
+/* 
+==============================
+ANIMATIONS
+==============================
+*/
+@keyframes dialca-spin {
+    from { transform: rotate(0deg);}
+    to { transform: rotate(360deg);}
+}
+@keyframes dialca-spin-slow {
+    from { transform: rotate(0deg);}
+    to { transform: rotate(360deg);}
+}
+@keyframes dialca-spin-fast {
+    from { transform: rotate(0deg);}
+    to { transform: rotate(360deg);}
+}
+@keyframes dialca-bounce {
+    0%, 80%, 100% { transform: scale(0); opacity: 0.5;}
+    40% { transform: scale(1); opacity: 1;}
+}
+@keyframes dialca-pulse {
+    0%, 100% { opacity: 1;}
+    50% { opacity: .5; }
+}
+
+/*
+==============================
+MODIFIERS
+==============================
+*/
+/* Size: small */
+.dialca-loader--sm .dialca-loader__outer-ring {
+    width: var(--loader-size-sm);
+    height: var(--loader-size-sm);
+}
+.dialca-loader--sm .dialca-loader__inner-ring {
+    width: calc(var(--loader-size-sm) - .5rem);
+    height: calc(var(--loader-size-sm) - .5rem);
+}
+.dialca-loader--sm {
+    --loader-text-size: .75rem;
+    --loader-gap: .25rem;
+    --loader-border-width: 1px;
+}
+
+/* Size: medium (default) */
+.dialca-loader--md .dialca-loader__outer-ring {
+    width: var(--loader-size-md);
+    height: var(--loader-size-md);
+}
+.dialca-loader--md .dialca-loader__inner-ring {
+    width: calc(var(--loader-size-md) - .5rem);
+    height: calc(var(--loader-size-md) - .5rem);
+}
+
+/* Size: large */
+.dialca-loader--lg .dialca-loader__outer-ring {
+    width: var(--loader-size-lg);
+    height: var(--loader-size-lg);
+}
+.dialca-loader--lg .dialca-loader__inner-ring {
+    width: calc(var(--loader-size-lg) - .5rem);
+    height: calc(var(--loader-size-lg) - .5rem);
+}
+.dialca-loader--lg {
+    --loader-text-size: 1rem;
+    --loader-gap: .75rem;
+    --loader-border-width: 3px;
+}
+/* Size: extra large */
+.dialca-loader--xl .dialca-loader__outer-ring {
+    width: var(--loader-size-xl);
+    height: var(--loader-size-xl);
+}
+.dialca-loader--xl .dialca-loader__inner-ring {
+    width: calc(var(--loader-size-xl) - .5rem);
+    height: calc(var(--loader-size-xl) - .5rem);
+}
+.dialca-loader--xl {
+    --loader-text-size: 1.125rem;
+    --loader-gap: 1rem;
+    --loader-border-width: 3.5px;
+}
+/* Speed: slow */
+.dialca-loader--slow .dialca-loader__outer-ring,
+.dialca-loader--slow .dialca-loader__inner-ring {
+    animation: dialca-spin-slow 2s linear infinite;
+}
+/* Speed: normal */
+.dialca-loader--normal .dialca-loader__outer-ring,
+.dialca-loader--normal .dialca-loader__inner-ring {
+    animation: dialca-spin 1s linear infinite;
+}
+/* Speed: fast */
+.dialca-loader--fast .dialca-loader__outer-ring,
+.dialca-loader--fast .dialca-loader__inner-ring {
+    animation: dialca-spin-fast .5s linear infinite;
+}
+/* Direction: counter-clockwise */
+.dialca-loader--counterclockwise .dialca-loader__outer-ring,
+.dialca-loader--counterclockwise .dialca-loader__inner-ring {
+    animation-direction: reverse;
+}
+/* Modifier: Error */
+.dialca-loader--error {
+    --loader-primary: var(--loader-error);
+    --loader-secondary: var(--loader-error-dark);
+    --loader-text: var(--loader-error);
+}
+/* Modifier: Success */
+.dialca-loader--success {
+    --loader-primary: var(--loader-success);
+    --loader-secondary: var(--loader-success-dark);
+    --loader-text: var(--loader-success);
+}
+/* Modifier: Disabled */
+.dialca-loader--disabled {
+    --loader-primary: var(--loader-disabled);
+    --loader-secondary: var(--loader-disabled-dark);
+    --loader-text: var(--loader-disabled);
+    opacity: .5;
+}
+/* Variant: Dots */
+.dialca-loader--dots {
+    flex-direction: row;
+    --loader-gap: .25rem;
+}
+.dialca-loader--dots .dialca-loader__outer-ring {
+    width: .75rem;
+    height: .75rem;
+    border: none;
+    background: var(--loader-primary);
+    border-radius: 50%;
+    animation: dialca-bounce 1.4s  ease-in-out infinite both;
+}
+.dialca-loader--dots .dialca-loader__inner-ring {
+    width: .75rem;
+    height: .75rem;
+    border: none;
+    background: var(--loader-secondary);
+    border-radius: 50%;
+    animation: dialca-bounce 1.4s  ease-in-out infinite both;
+    animation-delay: 16ms;
+}
+.dialca-loader--dots .dialca-loader__third-dot {
+    width: .75rem;
+    height: .75rem;
+    border: none;
+    background: var(--loader-primary);
+    border-radius: 50%;
+    animation: dialca-bounce 1.4s  ease-in-out infinite both;
+    animation-delay: 32ms;
+}
+/* Variant: Pulse */
+.dialca-loader--pulse .dialca-loader__outer-ring {
+    background-color: var(--loader-secondary);
+    border-radius: 50%;
+    border-top-color: var(--loader-secondary);
+    animation: dialca-pulse 2s ease-in-out infinite;
+}
+.dialca-loader--pulse .dialca-loader__inner-ring {
+    background-color: var(--loader-primary);
+    border-top-color: var(--loader-primary);
+    border-radius: 50%;
+    animation: dialca-pulse 2s ease-in-out infinite;
+    animation-delay: 2ms;
+    opacity: .6;
+}
+/* Variant: Minimal */
+.dialca-loader--minimal .dialca-loader__outer-ring {
+    border: 1px solid #e5e7eb;
+    border-top-color: var(--loader-primary);
+}
+.dialca-loader--minimal .dialca-loader__inner-ring {
+    display: none;
+}
+/* Variant: Dark */
+.dialca-loader--dark {
+    --loader-primary: #d79b5f;
+    --loader-secondary: #f3c892;
+    --loader-text: #e5e7eb;
+}
+
+/* 
+==============================
+ACCESIBILITY
+==============================
+*/
+@media (prefers-reduced-motion: reduce) {
+    .dialca-loader__outer-ring,
+    .dialca-loader__inner-ring,
+    .dialca-loader--dots .dialca-loader__outer-ring,
+    .dialca-loader--dots .dialca-loader__inner-ring,
+    .dialca-loader--dots .dialca-loader__third-dot,
+    .dialca-loader--pulse .dialca-loader__outer-ring,
+    .dialca-loader--pulse .dialca-loader__inner-ring {
+        animation: none;
+    }
+
+    .dialca-loader--dots .dialca-loader__outer-ring,
+    .dialca-loader--dots .dialca-loader__inner-ring,
+    .dialca-loader--dots .dialca-loader__third-dot {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .dialca-loader--pulse .dialca-loader__outer-ring,
+    .dialca-loader--pulse .dialca-loader__inner-ring {
+        opacity: 1;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .dialca-loader {
+        --loader-primary: currentColor;
+        --loader-secondary: currentColor;
+        --loader-border-width: 3px;
+    }
+}
