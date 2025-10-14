@@ -1,0 +1,69 @@
+/* 
+============================
+Circle Character Counter
+============================
+*/
+
+/* Circle Char Counter Container */
+.dialca-char-counter {
+    --char-size: 32px;
+    --char-bg: white;
+    --char-radius: 50%;
+    --char-font-size: .75rem;
+    --char-font-weight: 700;
+    --char-text-color: #64748b;
+    --char-stroke-bg: #e5e7eb;
+    --char-stroke-progress:#3b82f6;
+    --char-stroke-warning: #f59e0b;
+    --char-stroke-error: #ef4444;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: var(--char-size);
+    height: var(--char-size);
+    background-color: var(--char-bg);
+    border-radius: var(--char-radius);
+}
+/* Element: SVG */
+.dialca-char-counter__svg {
+    width: var(--char-size);
+    height: var(--char-size);
+    display: block;
+}
+.dialca-char-counter__circle-bg {
+    stroke: var(--char-stroke-bg);
+    fill: none;
+    transition: stroke .2s;
+}
+.dialca-char-counter__circle-progress {
+    stroke: var(--char-stroke-progress);
+    fill: transparent;
+    stroke-linecap: round;
+    transition: stroke .2s, stroke-dashoffset .2s;
+}
+.dialca-char-counter--warning .dialca-char-counter__circle-progress {
+    stroke: var(--char-stroke-warning);
+}
+.dialca-char-counter--danger .dialca-char-counter__circle-progress {
+    stroke: var(--char-stroke-error);
+}
+.dialca-char-counter__text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--char-font-size);
+    font-weight: var(--char-font-weight);
+    color: var(--char-text-color);
+    user-select: none;
+    pointer-events: none;
+}
+.dialca-char-counter--warning .dialca-char-counter__text {
+    color: var(--char-stroke-warning);
+}
+.dialca-char-counter--danger .dialca-char-counter__text {
+    color: var(--char-stroke-error);
+}
