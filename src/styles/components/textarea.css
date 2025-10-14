@@ -1,0 +1,339 @@
+/* 
+============================
+Textarea Component Styles
+============================
+*/
+
+/* Textarea Block */
+.dialca-textarea {
+    --textarea-bg: white;
+    --textarea-text: #111827;
+    --textarea-border: #d1d5db;
+    --textarea-border-focus: #3a7dc0;
+    --textarea-border-error: #ef4444;
+    --textarea-placeholder: #9ca3af;
+    --textarea-ring-focus: rgba(59, 130, 246, 1);
+    --textarea-ring-error: rgba(239, 68, 68, 1);
+    --textarea-padding: .875rem;
+    --textarea-radius: .5rem;
+    --textarea-font-size: 1.125rem;
+    --textarea-transition: all .2s ease-in-out;
+    --textarea-min-height: 3rem;
+    --textarea-max-height: 10rem;
+
+    position: relative;
+}
+/* Element: Field */
+.dialca-textarea__field {
+    width: 100%;
+    padding: var(--textarea-padding);
+    border: 2px solid var(--textarea-border);
+    outline: none;
+    transition: var(--textarea-transition);
+    font-size: var(--textarea-font-size);
+    background-color: var(--textarea-bg);
+    color: var(--textarea-text);
+    min-height: var(--textarea-min-height);
+    max-height: var(--textarea-max-height);
+    border-radius: var(--textarea-radius);
+    resize: none;
+    field-sizing: content;
+    line-height: 1.5;
+    font-family: inherit;
+    overflow-y: auto;
+}
+.dialca-textarea__field::-webkit-scrollbar {
+    width: 6px;
+}
+.dialca-textarea__field::-webkit-scrollbar-track {
+    background-color: #f1f5f9;
+    border-radius: 3px;
+}
+.dialca-textarea__field::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+}
+.dialca-textarea__field::placeholder {
+    color: var(--textarea-placeholder);
+    opacity: 0;
+    transition: var(--textarea-transition);
+}
+.dialca-textarea__field:focus {
+    border-color: var(--textarea-border-focus);
+    box-shadow: 0 0 0 3px var(--textarea-ring-focus);
+}
+.dialca-textarea__field:focus::placeholder {
+    opacity: 1;
+}
+.dialca-textarea__field:focus + .dialca-textarea__label,
+.dialca-textarea__field:not(:placeholder-shown) + .dialca-textarea__label {
+    top: -2px;
+    transform: translateY(-50%);
+    font-size: 0.85rem;
+    color: var(--textarea-border-focus);
+    background-color: var(--textarea-bg);
+}
+
+/* Element: Label */
+.dialca-textarea__label {
+    position: absolute;
+    top: 45%;
+    left: 1em;
+    transform: translateY(-50%);
+    padding: 0 .375rem;
+    pointer-events: none;
+    transition: var(--textarea-transition);
+    background-color: var(--textarea-bg);
+    color: var(--textarea-placeholder);
+    font-size: var(--textarea-font-size);
+    z-index: 10;
+}
+
+/* Element: Icon */
+.dialca-textarea__icon {
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
+    padding: .125rem;
+    color: var(--textarea-border-focus);
+    font-size: 1.3rem;
+}
+/* Element: Loader */
+.dialca-textarea__loader {
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
+    animation: spin 1s linear infinite;
+}
+/* Element: Character Counter */
+.dialca-textarea__char-counter {
+    position: absolute;
+    right: .75rem;
+    bottom: .75rem;
+    z-index: 10;
+}
+/* Element: Error message */
+.dialca-textarea__error {
+    color: var(--textarea-border-error);
+    font-size: .875rem;
+    margin-top: .5rem;
+    margin-left: .25rem;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+/* Element: Required indicator */
+.dialca-textarea__required {
+    color: var(--textarea-border-error);
+    margin-left: .125rem;
+    font-weight: 800;
+}
+/* 
+===========================
+MODIFIERS
+===========================
+*/
+
+/* Modifier: Error */
+.dialca-textarea--error .dialca-textarea__field {
+    border-color: var(--textarea-border-error);
+}
+.dialca-textarea--error .dialca-textarea__field:focus {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 2px var(--textarea-ring-error);
+}
+.dialca-textarea--error .dialca-textarea__field:focus-visible {
+    outline: none;
+}
+.dialca-textarea--error .dialca-textarea__field:focus + .dialca-textarea__label,
+.dialca-textarea--error .dialca-textarea__field:not(:placeholder-shown) + .dialca-textarea__label {
+    color: var(--textarea-border-error);
+}
+.dialca-textarea--error .dialca-textarea__icon {
+    color: var(--textarea-border-error);
+}
+/* Modifier: Disabled */
+.dialca-textarea--disabled .dialca-textarea__field {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    cursor: not-allowed;
+    opacity: .7;
+}
+.dialca-textarea--disabled .dialca-textarea__label {
+    color: #6b7280;
+}
+/* Modifier: Resizable */
+.dialca-textarea--resizable .dialca-textarea__field {
+    resize: vertical;
+    field-sizing: initial;
+}
+/* Modifier: Has Value */
+.dialca-textarea--has-value .dialca-textarea__label {
+    color: var(--textarea-border-focus);
+    top: -2px;
+    transform: translateY(-50%);
+    font-size: .85rem;
+}
+/* Modifier: Loading */
+.dialca-textarea--loading .dialca-textarea__field {
+    padding-right: 3rem;
+}
+/* Modifier: With Icon */
+.dialca-textarea--has-icon .dialca-textarea__field {
+    padding-right: 3rem;
+}
+/* Modifier: With floating counter */
+.dialca-textarea--has-floating-counter .dialca-textarea__field {
+    padding-right: 4rem;
+    padding-bottom: 3rem;
+}
+
+/* 
+===========================
+VARIANTS
+===========================
+*/
+
+/* Variant: Dark */
+.dialca-textarea--dark {
+    --textarea-bg: #1e2939;
+    --textarea-text: white;
+    --textarea-border: #6b7280;
+    --textarea-border-focus: #9ca3af;
+    --textarea-placeholder: #9ca3af;
+    --textarea-ring-focus: rgba(156, 163, 175, 1);
+}
+.dialca-textarea--dark .dialca-textarea__field {
+    background-color: var(--textarea-bg);
+    color: var(--textarea-text);
+    border-radius: 2px;
+}
+.dialca-textarea--dark .dialca-textarea__field::-webkit-scrollbar-track {
+    background: #4b5563;
+}
+
+.dialca-textarea--dark .dialca-textarea__field::-webkit-scrollbar-thumb {
+    background: #6b7280;
+}
+
+.dialca-textarea--dark .dialca-textarea__field::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+.dialca-textarea--dark .dialca-textarea__field:focus + .dialca-textarea__label {
+    background-color: var(--textarea-bg);
+    color: #f3f4f6;
+}
+.dialca-textarea--dark .dialca-textarea__field:focus + .dialca-textarea__label,
+.dialca-textarea--dark .dialca-textarea__field:not(:placeholder-shown) + .dialca-textarea__label {
+    color: #f3f4f6;
+}
+.dialca-textarea--dark .dialca-textarea__label {
+    background-color: var(--textarea-bg);
+    color: #9ca3af;
+}
+.dialca-textarea--dark .dialca-textarea__icon {
+    color: var(--textarea-border-focus);
+    background-color: transparent;
+    transition: var(--textarea-transition);
+}
+.dialca-textarea--dark.dialca-textarea--error .dialca-textarea__icon {
+    color: #f87171;
+}
+/* Variant: Resizable */
+.dialca-textarea--resizable .dialca-textarea__field {
+    border-color: #a855f7;
+    min-height: 6rem;
+    max-height: 24rem;
+    resize: vertical;
+    field-sizing: initial;
+}
+.dialca-textarea--resizable .dialca-textarea__field:focus {
+    border-color: #9333ea;
+    box-shadow: 0 0 0 2px rgba(168, 85, 237, 1);
+}
+.dialca-textarea--resizable .dialca-textarea__field:focus + .dialca-textarea__label,
+.dialca-textarea--resizable .dialca-textarea__field:not(:placeholder-shown) + .dialca-textarea__label {
+    color: #9333ea;
+}
+/* Variant: Minimal */
+.dialca-textarea--minimal .dialca-textarea__field {
+    border: none;
+    border-bottom: 2px solid var(--textarea-border);
+    border-radius: 0;
+    background-color: transparent;
+    padding: .5rem 0;
+}
+.dialca-textarea--minimal .dialca-textarea__field:focus {
+    border-bottom-color: var(--textarea-border-focus);
+    box-shadow: none;
+}
+.dialca-textarea--minimal .dialca-textarea__label {
+    left: 0;
+    padding: 0;
+    background-color: transparent;
+}
+.dialca-textarea--minimal .dialca-textarea__field:focus + .dialca-textarea__label,
+.dialca-textarea--minimal .dialca-textarea__field:not(:placeholder-shown) + .dialca-textarea__label {
+    top: -1rem;
+    background-color: transparent;
+}
+
+/* Modifier: Counter top */
+.dialca-textarea__counter--top {
+    text-align: right;
+    margin-bottom: .25rem;
+    font-size: .875rem;
+}
+/* Modifier: Counter bottom */
+.dialca-textarea__counter--bottom {
+    text-align: right;
+    margin-top: .25rem;
+    font-size: .75rem;
+}
+/* Modifier: Counter normal state */
+.dialca-textarea__counter--normal {
+    color: #6b7280;
+}
+/* Modifier: Counter warning state */
+.dialca-textarea__counter--warning {
+    color: #f59e0b;
+}
+/* Modifier: Counter error state */
+.dialca-textarea__counter--error {
+    color: #ef4444;
+}
+
+/* 
+===========================
+ANIMATIONS & ACCESSIBILITY
+===========================
+*/
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .dialca-textarea__field,
+    .dialca-textarea__label,
+    .dialca-textarea__icon {
+        transition: none;
+    }
+    
+    .dialca-textarea__loader {
+        animation: none;
+    }
+}
+@media (prefers-contrast: high) {
+    .dialca-textarea {
+        --textarea-border: currentColor;
+    }
+    
+    .dialca-textarea__field {
+        border-width: 3px;
+    }
+}
+
+.dialca-textarea__field:focus-visible {
+    outline: 2px solid var(--textarea-border-focus);
+    outline-offset: 2px;
+}
