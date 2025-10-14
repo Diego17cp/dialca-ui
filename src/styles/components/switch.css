@@ -1,0 +1,394 @@
+/* 
+============================
+Switch Component Styles
+============================
+*/
+/* Switch Container */
+.dialca-switch {
+    --switch-primary: #3a7dc0;
+    --switch-primary-dark: #085691;
+    --switch-track-bg: #d1d5db;
+    --switch-track-bg-enabled: var(--switch-primary);
+    --switch-thumb-bg: white;
+    --switch-thumb-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    --switch-thumb-shadow-hover: 0 4px 8px rgba(0, 0, 0, .15);
+    --switch-track-width: 3.5rem;
+    --switch-track-height: 1.75rem;
+    --switch-thumb-size: 1.5rem;
+    --switch-thumb-translate: 1.75rem;
+    --switch-gap: 1rem;
+    --switch-transition: all .3s ease-out;
+    --switch-text: #374151;
+    --switch-description: #6b7280;
+    --switch-error: #ef4444;
+    --switch-focus-ring: rgba(59, 125, 192, .5);
+
+    display: flex;
+    align-items: center;
+    gap: var(--switch-gap);
+    padding: .75rem;
+    background-color: #f9fafc;
+    border-radius: .75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    transition: var(--switch-transition);
+}
+/* Element: Wrapper */
+.dialca-switch__wrapper {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+/* Element: Track */
+.dialca-switch__track {
+    position: relative;
+    width: var(--switch-track-width);
+    height: var(--switch-track-height);
+    background-color: var(--switch-track-bg);
+    border-radius: 9999px;
+    cursor: pointer;
+    display: block;
+    transition: var(--switch-transition);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .1);
+}
+.dialca-switch__track:hover {
+    transform: scale(1.05);
+}
+/* Element: Track Overlay */
+.dialca-switch__track-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: linear-gradient(to right, var(--switch-primary), var(--switch-primary-dark));
+    opacity: 0;
+    transition: var(--switch-transition);
+    z-index: 1;
+}
+/* Element: Thumb */
+.dialca-switch__thumb {
+    position: absolute;
+    top: .125rem;
+    left: .125rem;
+    width: var(--switch-thumb-size);
+    height: var(--switch-thumb-size);
+    background-color: var(--switch-thumb-bg);
+    border-radius: 50%;
+    box-shadow: var(--switch-thumb-shadow);
+    transition: var(--switch-transition);
+    transform: translateX(0);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dialca-switch__thumb:hover {
+    box-shadow: var(--switch-thumb-shadow-hover);
+}
+/* Element: Thumb Inner */
+.dialca-switch__thumb-inner {
+    position: absolute;
+    inset: .125rem;
+    border-radius: 50%;
+    background-color: #f3f4f6;
+    transition: var(--switch-transition);
+    transform: scale(0);
+}
+/* Element: Label Container */
+.dialca-switch__label-container {
+    flex: 1;
+    min-width: 0;
+}
+/* Element: Label */
+.dialca-switch__label {
+    color: var(--switch-text);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+    cursor: pointer;
+    transition: var(--switch-transition);
+}
+/* Element: Description */
+.dialca-switch__description {
+    color: var(--switch-description);
+    font-size: .875rem;
+    line-height: 1.4;
+    margin-top: .125rem;
+}
+/* Element: Error Message */
+.dialca-switch__error {
+    color: var(--switch-error);
+    font-size: .875rem;
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+/* 
+============================
+MODIFIERS
+============================
+*/
+
+/* Modifier: Enabled */
+.dialca-switch--enabled .dialca-switch__track {
+    background-color: var(--switch-track-bg-enabled);
+}
+.dialca-switch--enabled .dialca-switch__track-overlay {
+    opacity: 1;
+}
+.dialca-switch--enabled .dialca-switch__thumb {
+    transform: translateX(var(--switch-thumb-translate));
+}
+.dialca-switch--enabled .dialca-switch__thumb-inner {
+    transform: scale(.75);
+    background-color: rgba(59, 130, 192, .1);
+}
+/* Modifier: Disabled */
+.dialca-switch--disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+.dialca-switch--disabled .dialca-switch__wrapper {
+    cursor: not-allowed;
+}
+.dialca-switch--disabled .dialca-switch__track {
+    cursor: not-allowed;
+    background-color: #f3f4f6;
+}
+.dialca-switch--disabled .dialca-switch__track:hover {
+    transform: none;
+}
+.dialca-switch--disabled .dialca-switch__thumb {
+    cursor: not-allowed;
+    background-color: #f9fafb;
+}
+.dialca-switch--disabled .dialca-switch__thumb:hover {
+    box-shadow: var(--switch-thumb-shadow);
+}
+.dialca-switch--disabled .dialca-switch__label {
+    cursor: not-allowed;
+    color: #9ca3af;
+}
+/* Modifier: Error */
+.dialca-switch--error {
+    --switch-track-bg-enabled: var(--switch-error);
+    --switch-focus-ring: rgba(239, 68, 68, .2);
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+}
+.dialca-switch--error .dialca-switch__track-overlay {
+    background: linear-gradient(to right, var(--switch-error), #dc2626);
+}
+.dialca-switch--error .dialca-switch__label {
+    color: #dc2626;
+}
+.dialca-switch--error .dialca-switch__wrapper:focus-within .dialca-switch__track {
+    outline: 2px solid #f87171;
+    outline-offset: 2px;
+}
+/* Modifier: Loading */
+.dialca-switch--loading .dialca-switch__thumb {
+    animation: switch-pulse 1.5s ease-in-out infinite;
+}
+.dialca-switch--loading .dialca-switch__track {
+    animation: switch-pulse 1.5s ease-in-out infinite;
+}
+/* Modifier: Hover */
+.dialca-switch--hover .dialca-switch__track {
+    transform: scale(1.05);
+}
+
+/* Modifier: Size Small */
+.dialca-switch--sm {
+    --switch-track-width: 2.75rem;
+    --switch-track-height: 1.25rem;
+    --switch-thumb-size: 1rem;
+    --switch-thumb-translate: 1.5rem;
+    --switch-gap: .75rem;
+    padding: .5rem;
+}
+.dialca-switch--sm .dialca-switch__label {
+    font-size: .875rem;
+}
+.dialca-switch--sm .dialca-switch__description {
+    font-size: .75rem;
+}
+/* Modifier: Size medium (default) */
+.dialca-switch--md {
+    --switch-track-width: 3.5rem;
+    --switch-track-height: 1.75rem;
+    --switch-thumb-size: 1.5rem;
+    --switch-thumb-translate: 1.75rem;
+}
+/* Modifier: Size large */
+.dialca-switch--lg {
+    --switch-track-width: 4rem;
+    --switch-track-height: 2rem;
+    --switch-thumb-size: 1.75rem;
+    --switch-thumb-translate: 2rem;
+    --switch-gap: 1.5rem;
+    padding: 1rem;
+}
+.dialca-switch--lg .dialca-switch__label {
+    font-size: 1.125rem;
+}
+.dialca-switch--lg .dialca-switch__description {
+    font-size: 1rem;
+}
+
+/* 
+============================
+VARIANTS
+============================
+*/
+/* Variant: Minimal */
+.dialca-switch--minimal {
+    display: inline-flex;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    --switch-gap: .75rem;
+}
+.dialca-switch--minimal .dialca-switch__track {
+    --switch-track-width: 2.75rem;
+    --switch-track-height: 1.5rem;
+    --switch-thumb-size: 1.25rem;
+    --switch-thumb-translate: 1.25rem;
+    box-shadow: none;
+}
+.dialca-switch--minimal .dialca-switch__label {
+    font-size: .875rem;
+    color: #4b5563;
+}
+/* Variant: IOS */
+.dialca-switch--ios .dialca-switch__track {
+    --switch-track-width: 3rem;
+    --switch-track-height: 1.75rem;
+    --switch-thumb-size: 1.5rem;
+    --switch-thumb-translate: 1.25rem;
+    background-color: #e5e7eb;
+    border: 1px solid #d1d5db;
+}
+.dialca-switch--ios.dialca-switch--enabled .dialca-switch__track {
+    background-color: #10b981;
+    border-color: #10b981;
+}
+.dialca-switch--ios .dialca-switch__track-overlay {
+    display: none;
+}
+.dialca-switch--ios .dialca-switch__thumb {
+    border: 1px solid #d1d5db;
+}
+.dialca-switch--ios.dialca-switch--enabled .dialca-switch__thumb {
+    border-color: #10b981;
+}
+.dialca-switch--ios .dialca-switch__wrapper:focus-within .dialca-switch__track {
+    outline: 2px solid #1bda9a;
+    outline-offset: 2px;
+}
+/* Variant: Large */
+.dialca-switch--large {
+    --switch-track-width: 4rem;
+    --switch-track-height: 2rem;
+    --switch-thumb-size: 1.75rem;
+    --switch-thumb-translate: 2rem;
+}
+.dialca-switch--large .dialca-switch__label {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+/* Variant: Card */
+.dialca-switch--card {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: .5rem;
+    background-color: white;
+    cursor: pointer;
+    transition: var(--switch-transition);
+}
+.dialca-switch--card:hover {
+    background-color: #f9fafb;
+}
+.dialca-switch--card.dialca-switch--enabled {
+    background-color: rgba(59, 125, 192, .1);
+    border-color: rgba(59, 125, 192, .5);
+}
+.dialca-switch--card.dialca-switch--error {
+    border-color: #fca5a5;
+    background-color: #fef2f2;
+}
+.dialca-switch--card .dialca-switch__wrapper {
+    order: 2;
+}
+/* Variant: Toggle */
+.dialca-switch--toggle .dialca-switch__track {
+    --switch-track-width: 4rem;
+    --switch-track-height: 2rem;
+    --switch-thumb-size: 1.75rem;
+    --switch-thumb-translate: 2rem;
+    border-radius: .25rem;
+}
+.dialca-switch--toggle .dialca-switch__thumb {
+    border-radius: .25rem;
+    font-size: .75rem;
+    font-weight: 700;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: .10rem;
+}
+.dialca-switch--toggle.dialca-switch--enabled .dialca-switch__thumb {
+    transform: translateX(1.96rem);
+}
+.dialca-switch--toggle .dialca-switch__thumb-inner {
+    display: none;
+}
+
+/* 
+============================
+ANIMATIONS
+============================
+*/
+@keyframes switch-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .dialca-switch {
+        --switch-transition: none;
+    }
+    
+    .dialca-switch--loading .dialca-switch__thumb,
+    .dialca-switch--loading .dialca-switch__track {
+        animation: none;
+    }
+    
+    .dialca-switch--neon .dialca-switch__track-overlay {
+        animation: none;
+    }
+    
+    .dialca-switch__track:hover {
+        transform: none;
+    }
+}
+@media (prefers-contrast: high) {
+    .dialca-switch {
+        --switch-track-bg: currentColor;
+        --switch-thumb-bg: Background;
+        border: 2px solid;
+    }
+    
+    .dialca-switch--card {
+        border-width: 3px;
+    }
+}
+
+.dialca-switch__wrapper:focus-within .dialca-switch__track {
+    outline: 2px solid var(--switch-primary);
+    outline-offset: 2px;
+}
