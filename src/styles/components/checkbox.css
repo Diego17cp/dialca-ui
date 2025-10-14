@@ -1,0 +1,425 @@
+/* 
+============================
+Checkbox Component Styles
+============================
+*/
+/* Checkbox Container */
+.dialca-checkbox {
+    --checkbox-primary: #3a7dc0;
+    --checkbox-primary-dark: #085691;
+    --checkbox-border: #d1d5db;
+    --checkbox-border-hover: var(--checkbox-primary);
+    --checkbox-border-checked: var(--checkbox-primary);
+    --checkbox-bg: white;
+    --checkbox-bg-checked: var(--checkbox-primary);
+    --checkbox-bg-disabled: #f3f4f6;
+    --checkbox-bg-error: #fef2f2;
+    --checkbox-text: #374151;
+    --checkbox-text-checked: #111827;
+    --checkbox-text-disabled: #6b7280;
+    --checkbox-text-error: #dc2626;
+    --checkbox-description: #6b7280;
+    --checkbox-error: #ef4444;
+    --checkbox-size-sm: 1.25rem;
+    --checkbox-size-md: 1.75rem;
+    --checkbox-size-lg: 2rem;
+    --checkbox-gap: 1.25rem;
+    --checkbox-padding: .625rem;
+    --checkbox-radius: .5rem;
+    --checkbox-transition: all .2s ease-in-out;
+    --checkbox-border-width: 2px;
+    --checkbox-focus-ring: rgba(58, 125, 192, .5);
+    --checkbox-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+
+    display: inline-flex;
+    align-items: flex-start;
+    background-color: #f8fafc;
+    cursor: pointer;
+    gap: var(--checkbox-gap);
+    padding: var(--checkbox-padding);
+    border-radius: var(--checkbox-radius);
+    box-shadow: var(--checkbox-shadow);
+    transition: var(--checkbox-transition);
+}
+
+/* Element: Wrapper */
+.dialca-checkbox__wrapper {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    user-select: none;
+    cursor: pointer;
+}
+/* Element: Input Container */
+.dialca-checkbox__input-container {
+    position: relative;
+    cursor: pointer;
+    width: var(--checkbox-size-md);
+    height: var(--checkbox-size-md);
+    border-radius: var(--checkbox-radius);
+    transition: var(--checkbox-transition);
+}
+.dialca-checkbox__input-container:hover {
+    transform: scale(1.05);
+}
+.dialca-checkbox__input-container:active {
+    transform: scale(0.95);
+}
+/* Element: Background */
+.dialca-checkbox__background {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--checkbox-radius);
+    border: var(--checkbox-border-width) solid var(--checkbox-border);
+    background-color: var(--checkbox-bg);
+    transition: var(--checkbox-transition);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+}
+.dialca-checkbox__background:hover {
+    border-color: var(--checkbox-border-hover);
+    box-shadow: 0 4px 12px rgba(58, 125, 192, .15);
+}
+/* Element: Icon */
+.dialca-checkbox__icon {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    color: white;
+    opacity: 0;
+    transform: scale(0);
+    transition: var(--checkbox-transition);
+}
+/* Element: Label Container */
+.dialca-checkbox__label-container {
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+}
+/* Element: Label */
+.dialca-checkbox__label {
+    color: var(--checkbox-text);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+    cursor: pointer;
+    transition: var(--checkbox-transition);
+}
+/* Element: Description */
+.dialca-checkbox__description {
+    color: var(--checkbox-description);
+    font-size: .875rem;
+    line-height: 1.4;
+    margin-top: .25rem;
+}
+/* Element: Error Message */
+.dialca-checkbox__error {
+    color: var(--checkbox-error);
+    font-size: .875rem;
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+/* 
+============================
+MODIFIERS
+============================
+*/
+/* Modifier: Checked */
+.dialca-checkbox--checked .dialca-checkbox__background {
+    border-color: var(--checkbox-border-checked);
+    background-color: var(--checkbox-bg-checked);
+}
+.dialca-checkbox--checked .dialca-checkbox__icon {
+    opacity: 1;
+    transform: scale(1);
+}
+.dialca-checkbox--checked .dialca-checkbox__label {
+    color: var(--checkbox-text-checked);
+    font-weight: 600;
+}
+/* Modifier: Indeterminate */
+.dialca-checkbox--indeterminate .dialca-checkbox__background {
+    border-color: var(--checkbox-border-checked);
+    background-color: var(--checkbox-bg-checked);
+}
+.dialca-checkbox--indeterminate .dialca-checkbox__icon {
+    opacity: 1;
+    transform: scale(1);
+}
+.dialca-checkbox--indeterminate .dialca-checkbox__label {
+    color: var(--checkbox-text-checked);
+    font-weight: 600;
+}
+/* Modifier: Disabled */
+.dialca-checkbox--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.dialca-checkbox--disabled .dialca-checkbox__wrapper {
+    cursor: not-allowed;
+}
+.dialca-checkbox--disabled .dialca-checkbox__input-container {
+    cursor: not-allowed;
+}
+.dialca-checkbox--disabled .dialca-checkbox__input-container:hover {
+    transform: none;
+}
+.dialca-checkbox--disabled .dialca-checkbox__background {
+    background-color: var(--checkbox-bg-disabled);
+    border-color: var(--checkbox-border);
+}
+.dialca-checkbox--disabled .dialca-checkbox__background:hover {
+    border-color: var(--checkbox-border);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+}
+.dialca-checkbox--disabled .dialca-checkbox__label-container {
+    cursor: not-allowed;
+}
+.dialca-checkbox--disabled .dialca-checkbox__label {
+    color: var(--checkbox-text-disabled);
+    cursor: not-allowed;
+}
+/* Modifier: Error */
+.dialca-checkbox--error {
+    --checkbox-border: var(--checkbox-error);
+    --checkbox-border-hover: var(--checkbox-error);
+    --checkbox-border-checked: var(--checkbox-error);
+    --checkbox-bg-checked: var(--checkbox-error);
+    --checkbox-focus-ring: rgba(239, 68, 68, .5);
+    background-color: var(--checkbox-bg-error);
+    border: 1px solid #fecaca
+}
+.dialca-checkbox--error .dialca-checkbox__label {
+    color: var(--checkbox-text-error);
+}
+/* Modifier: Error Checked */
+.dialca-checkbox--error-checked {
+    --checkbox-border: var(--checkbox-error);
+    --checkbox-border-hover: var(--checkbox-error);
+    --checkbox-border-checked: var(--checkbox-error);
+    --checkbox-bg-checked: var(--checkbox-error);
+    background-color: var(--checkbox-bg-error);
+    border: 1px solid #fecaca
+}
+.dialca-checkbox--error-checked .dialca-checkbox__background {
+    background-color: var(--checkbox-error);
+    border-color: var(--checkbox-error);
+}
+.dialca-checkbox--error-checked .dialca-checkbox__label {
+    color: var(--checkbox-text-error);
+}
+.dialca-checkbox--error-checked .dialca-checkbox__icon {
+    opacity: 1;
+    transform: scale(1);
+    color: white !important;
+}
+/* Modifier: Focused */
+.dialca-checkbox--focused .dialca-checkbox__background {
+    box-shadow: 0 0 0 2px var(--checkbox-focus-ring);
+}
+/* Modifier: Hover */
+.dialca-checkbox--hover .dialca-checkbox__input-container {
+    transform: scale(1.05);
+}
+/* Modifier: Size Small */
+.dialca-checkbox--sm {
+    --checkbox-gap: .75rem;
+    --checkbox-padding: .5rem;
+}
+.dialca-checkbox--sm .dialca-checkbox__input-container {
+    width: var(--checkbox-size-sm);
+    height: var(--checkbox-size-sm);
+}
+.dialca-checkbox--sm .dialca-checkbox__label {
+    font-size: .875rem;
+}
+.dialca-checkbox--sm .dialca-checkbox__description {
+    font-size: .75rem;
+}
+/* Modifier: Size Medium (default) */
+.dialca-checkbox--md .dialca-checkbox__input-container {
+    width: var(--checkbox-size-md);
+    height: var(--checkbox-size-md);
+}
+/* Modifier: Size Large */
+.dialca-checkbox--lg {
+    --checkbox-gap: 1.5rem;
+    --checkbox-padding: 1rem;
+}
+.dialca-checkbox--lg .dialca-checkbox__input-container {
+    width: var(--checkbox-size-lg);
+    height: var(--checkbox-size-lg);
+}
+.dialca-checkbox--lg .dialca-checkbox__label {
+    font-size: 1.125rem;
+}
+.dialca-checkbox--lg .dialca-checkbox__description {
+    font-size: 1rem;
+}
+
+/* 
+============================
+VARIANTS
+============================
+*/
+/* Variant: Minimal */
+.dialca-checkbox--minimal {
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    --checkbox-gap: .75rem;
+}
+.dialca-checkbox--minimal .dialca-checkbox__input-container {
+    width: var(--checkbox-size-sm);
+    height: var(--checkbox-size-sm);
+}
+.dialca-checkbox--minimal .dialca-checkbox__background {
+    border-color: #9ca3af;
+    box-shadow: none;
+}
+.dialca-checkbox--minimal.dialca-checkbox--checked .dialca-checkbox__background {
+    border-color: #374151;
+    background-color: #374151;
+}
+.dialca-checkbox--minimal .dialca-checkbox__label {
+    font-size: .875rem;
+    font-weight: 400;
+    color: #4b5563;
+}
+/* Variant: Card */
+.dialca-checkbox--card {
+    --checkbox-padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: .5rem;
+    background-color: white;
+    transition: var(--checkbox-transition);
+}
+.dialca-checkbox--card:hover {
+    background-color: #f9fafb;
+}
+.dialca-checkbox--card.dialca-checkbox--checked {
+    background-color: rgba(58, 125, 192, .1);
+    border-color: rgba(58, 125, 192, .5);
+}
+.dialca-checkbox--card.dialca-checkbox--error {
+    border-color: #fca5a5;
+    background-color: #fef2f2;
+}
+/* Variant: Switch */
+.dialca-checkbox--switch .dialca-checkbox__input-container {
+    width: 3rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    position: relative;
+}
+.dialca-checkbox--switch .dialca-checkbox__background {
+    border-radius: 9999px;
+    border-color: #d1d5db;
+    background-color: #d1d5db;
+}
+.dialca-checkbox--switch .dialca-checkbox__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    left: -1.25rem;
+    top: .1rem;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    transition: var(--checkbox-transition);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+}
+.dialca-checkbox--switch.dialca-checkbox--checked .dialca-checkbox__background {
+    background-color: var(--checkbox-bg-checked);
+    border-color: var(--checkbox-border-checked);
+}
+
+.dialca-checkbox--switch.dialca-checkbox--checked .dialca-checkbox__icon {
+    transform: translateX(1.3rem) scale(1);
+    transition: var(--checkbox-transition);
+}
+.dialca-checkbox--switch .dialca-checkbox__input-container:hover {
+    transform: none;
+}
+
+
+/* Variant: Dark */
+.dialca-checkbox--dark {
+    background-color: #374151;
+    --checkbox-bg: #4b5563;
+    --checkbox-border: #6b7280;
+    --checkbox-border-hover: #9ca3af;
+    --checkbox-border-checked: #9ca3af;
+    --checkbox-bg-checked: #9ca3af;
+    --checkbox-text: #f3f4f6;
+    --checkbox-text-checked: #ffffff;
+    --checkbox-description: #9ca3af;
+    --checkbox-bg-disabled: #4b5563;
+    --checkbox-text-disabled: #9ca3af;
+    --checkbox-focus-ring: rgba(156, 163, 175, .5);
+}
+.dialca-checkbox--dark .dialca-checkbox--error {
+    --checkbox-error: #f87171;
+    background-color: #7f1d1d;
+}
+
+/* 
+============================
+ANIMATIONS & ACCESIBILITY
+============================
+*/
+@keyframes checkbox-check {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.dialca-checkbox--checked .dialca-checkbox__icon,
+.dialca-checkbox--indeterminate .dialca-checkbox__icon {
+    animation: checkbox-check 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dialca-checkbox {
+        --checkbox-transition: none;
+    }
+    
+    .dialca-checkbox--checked .dialca-checkbox__icon,
+    .dialca-checkbox--indeterminate .dialca-checkbox__icon {
+        animation: none;
+    }
+    
+    .dialca-checkbox__input-container:hover,
+    .dialca-checkbox__input-container:active {
+        transform: none;
+    }
+}
+@media (prefers-contrast: high) {
+    .dialca-checkbox {
+        --checkbox-border: currentColor;
+        --checkbox-border-width: 3px;
+    }
+    
+    .dialca-checkbox--card {
+        border-width: 3px;
+    }
+}
+.dialca-checkbox__wrapper:focus-within .dialca-checkbox__background {
+    outline: 2px solid var(--checkbox-border-checked);
+    outline-offset: 2px;
+}
