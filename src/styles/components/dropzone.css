@@ -1,0 +1,362 @@
+/* 
+============================
+Dropzone Component Styles
+============================
+*/
+
+/* Dropzone Block */
+.dialca-dropzone {
+    --dropzone-bg: white;
+    --dropzone-border: #d1d5db;
+    --dropzone-border-hover: #3a7dc0;
+    --dropzone-border-active: #085691;
+    --dropzone-border-error: #ef4444;
+    --dropzone-bg-hover: #f9fafb;
+    --dropzone-bg-active: rgba(58, 125, 192, 0.05);
+    --dropzone-bg-error: #fef2f2;
+    --dropzone-text-primary: #374151;
+    --dropzone-text-secondary: #6b7280;
+    --dropzone-text-accent: #085691;
+    --dropzone-text-error: #dc2626;
+    --dropzone-icon-color: #085691;
+    --dropzone-icon-error: #ef4444;
+    --dropzone-radius: .5rem;
+    --dropzone-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --dropzone-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, .1);
+    --dropzone-transition: all .3s ease-in-out;
+    --dropzone-min-height: 10rem;
+    --dropzone-padding: 2rem;
+}
+/* Element: Container */
+.dialca-dropzone__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    padding: var(--dropzone-padding);
+    min-height: var(--dropzone-min-height);
+    background-color: var(--dropzone-bg);
+    border-radius: var(--dropzone-radius);
+    box-shadow: var(--dropzone-shadow);
+    border: 2px dashed var(--dropzone-border);
+    transition: var(--dropzone-transition);
+}
+.dialca-dropzone__container:hover {
+    border-color: var(--dropzone-border-hover);
+    background-color: var(--dropzone-bg-hover);
+    box-shadow: var(--dropzone-shadow-hover);
+}
+.dialca-dropzone__container:focus {
+    outline: none;
+    border-color: var(--dropzone-border-hover);
+    box-shadow: 0 0 0 3px rgba(58, 125, 192, .1);
+}
+/* Element: Icon */
+.dialca-dropzone__icon {
+    font-size: 2.5rem;
+    color: var(--dropzone-icon-color);
+    margin-bottom: .75rem;
+    transition: var(--dropzone-transition);
+}
+/* Element: Title */
+.dialca-dropzone__title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--dropzone-text-primary);
+    margin-bottom: .5rem;
+    line-height: 1.6;
+}
+/* Element: Description */
+.dialca-dropzone__description {
+    font-size: 1rem;
+    color: var(--dropzone-text-secondary);
+    line-height: 1.5;
+}
+/* Element: Error Message */
+.dialca-dropzone__error {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    margin-top: .5rem;
+    margin-left: .25rem;
+    font-size: .875rem;
+    color: var(--dropzone-text-error);
+}
+
+/* 
+============================
+MODIFIERS
+============================
+*/
+/* Modifier: Error state */
+.dialca-dropzone--error .dialca-dropzone__container {
+    border-color: var(--dropzone-border-error);
+    background-color: var(--dropzone-bg-error);
+}
+.dialca-dropzone--error .dialca-dropzone__container:hover {
+    border-color: #dc2626;
+    background-color: #fee2e2;
+}
+.dialca-dropzone--error .dialca-dropzone__icon {
+    color: var(--dropzone-icon-error);
+}
+.dialca-dropzone--error .dialca-dropzone__title {
+    color: var(--dropzone-text-error);
+}
+.dialca-dropzone--error .dialca-dropzone__description {
+    color: #f87171;
+}
+/* Modifier: Dragging state */
+.dialca-dropzone--dragging .dialca-dropzone__container {
+    border-color: var(--dropzone-border-active);
+    background-color: var(--dropzone-bg-active);
+    transform: scale(1.02);
+}
+.dialca-dropzone--dragging .dialca-dropzone__icon {
+    color: var(--dropzone-border-active);
+    transform: scale(1.1);
+}
+.dialca-dropzone--dragging .dialca-dropzone__title {
+    color: var(--dropzone-border-active);
+}
+/* Modifier: Disabled state */
+.dialca-dropzone--disabled .dialca-dropzone__container {
+    cursor: not-allowed;
+    opacity: .6;
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+}
+.dialca-dropzone--disabled .dialca-dropzone__container:hover {
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+    box-shadow: var(--dropzone-shadow);
+    transform: none;
+}
+.dialca-dropzone--disabled .dialca-dropzone__icon {
+    color: #9ca3af;
+}
+.dialca-dropzone--disabled .dialca-dropzone__title {
+    color: #9ca3af;
+}
+.dialca-dropzone--disabled .dialca-dropzone__description {
+    color: #d1d5db;
+}
+/* Modifier: Size small */
+.dialca-dropzone--sm .dialca-dropzone__container {
+    padding: 1.5rem;
+    min-height: 8rem;
+}
+.dialca-dropzone--sm .dialca-dropzone__icon {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+}
+.dialca-dropzone--sm .dialca-dropzone__title {
+    font-size: 1rem;
+}
+.dialca-dropzone--sm .dialca-dropzone__description {
+    font-size: .875rem;
+}
+/* Modifier: Size Medium (default) */
+.dialca-dropzone--md .dialca-dropzone__container {
+    padding: 2rem;
+    min-height: 10rem;
+}
+.dialca-dropzone--md .dialca-dropzone__icon {
+    font-size: 2.5rem;
+}
+.dialca-dropzone--md .dialca-dropzone__title {
+    font-size: 1.125rem;
+}
+.dialca-dropzone--md .dialca-dropzone__description {
+    font-size: 1rem;
+}
+/* Modifier: Size Large */
+.dialca-dropzone--lg .dialca-dropzone__container {
+    padding: 3rem;
+    min-height: 12rem;
+}
+.dialca-dropzone--lg .dialca-dropzone__icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.dialca-dropzone--lg .dialca-dropzone__title {
+    font-size: 1.25rem;
+    margin-bottom: .5rem;
+}
+.dialca-dropzone--lg .dialca-dropzone__description {
+    font-size: 1.125rem;
+}
+
+/* 
+============================
+VARIANTS
+============================
+*/
+/* Variant: Dark */
+.dialca-dropzone--dark {
+    --dropzone-bg: #1e2939;
+    --dropzone-border: #6b7280;
+    --dropzone-border-hover: #9ca3af;
+    --dropzone-border-active: #d1d5db;
+    --dropzone-border-error: #f87171;
+    --dropzone-bg-hover: #364153;
+    --dropzone-bg-active: rgba(156, 163, 175, .1);
+    --dropzone-bg-error: #7f1d1d;
+    --dropzone-text-primary: #f9fafb;
+    --dropzone-text-secondary: #d1d5db;
+    --dropzone-text-accent: #9ca3af;
+    --dropzone-text-error: #fca5a5;
+    --dropzone-icon-color: #3a7dc0;
+    --dropzone-icon-error: #f87171;
+}
+.dialca-dropzone--dark .dialca-dropzone__container {
+    background-color: var(--dropzone-bg);
+    border-color: var(--dropzone-border);
+}
+.dialca-dropzone--dark .dialca-dropzone__container:hover {
+    border-color: var(--dropzone-border-hover);
+    background-color: var(--dropzone-bg-hover);
+    box-shadow: var(--dropzone-shadow-hover);
+}
+.dialca-dropzone--dark.dialca-dropzone--error .dialca-dropzone__container:hover {
+    border-color: #f87171;
+    background-color: #7f1d1d;
+
+}
+.dialca-dropzone--dark .dialca-dropzone__title {
+    color: var(--dropzone-text-primary);
+}
+.dialca-dropzone--dark .dialca-dropzone__description {
+    color: var(--dropzone-text-secondary);
+}
+/* Variant: Minimal */
+.dialca-dropzone--minimal {
+    --dropzone-bg: transparent;
+    --dropzone-border: #e5e7eb;
+    --dropzone-bg-hover: #f3f4f6;
+    --dropzone-radius: .25rem;
+    --dropzone-shadow: none;
+    --dropzone-shadow-hover: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    --dropzone-padding: 1.5rem;
+    --dropzone-min-height: 8rem;
+}
+.dialca-dropzone--minimal .dialca-dropzone__container {
+    border-width: 1px;
+    background-color: var(--dropzone-bg);
+}
+.dialca-dropzone--minimal .dialca-dropzone__icon {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+}
+.dialca-dropzone--minimal .dialca-dropzone__title {
+    font-size: 1rem;
+    font-weight: 400;
+}
+.dialca-dropzone--minimal .dialca-dropzone__description {
+    font-size: .875rem;
+}
+/* Variant: Compact */
+.dialca-dropzone--compact .dialca-dropzone__container {
+    flex-direction: row;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    min-height: auto;
+}
+.dialca-dropzone--compact .dialca-dropzone__icon {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    margin-right: .75rem;
+    flex-shrink: 0;
+}
+.dialca-dropzone--compact .dialca-dropzone__title {
+    font-size: .875rem;
+    margin-bottom: .125rem;
+}
+.dialca-dropzone--compact .dialca-dropzone__description {
+    font-size: .75rem;
+}
+/* Variant: Bordered */
+.dialca-dropzone--bordered .dialca-dropzone__container {
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+.dialca-dropzone--bordered.dialca-dropzone--dragging .dialca-dropzone__container {
+    box-shadow: inset 0 2px 4px 0 rgba(58, 125, 192, 0.2);
+}
+
+/* 
+============================
+ANIMATIONS & ACCESSIBILITY
+============================
+*/
+@media (prefers-reduced-motion: reduce) {
+    .dialca-dropzone__container,
+    .dialca-dropzone__icon,
+    .dialca-dropzone__title {
+        transition: none;
+    }
+    
+    .dialca-dropzone--dragging .dialca-dropzone__container {
+        transform: none;
+    }
+    
+    .dialca-dropzone--dragging .dialca-dropzone__icon {
+        transform: none;
+    }
+}
+@media (prefers-contrast: high) {
+    .dialca-dropzone {
+        --dropzone-border: currentColor;
+    }
+    
+    .dialca-dropzone__container {
+        border-width: 3px;
+    }
+}
+.dialca-dropzone__container:focus-visible {
+    outline: 2px solid var(--dropzone-border-hover);
+    outline-offset: 2px;
+}
+@media (max-width: 640px) {
+    .dialca-dropzone__container {
+        padding: 1.5rem;
+        min-height: 8rem;
+    }
+    
+    .dialca-dropzone__icon {
+        font-size: 2rem;
+    }
+    
+    .dialca-dropzone__title {
+        font-size: 1rem;
+    }
+    
+    .dialca-dropzone__description {
+        font-size: 0.875rem;
+    }
+}
+.dialca-dropzone__file-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dialca-dropzone__file-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dialca-dropzone__file-list::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 2px;
+}
+
+.dialca-dropzone__file-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+}
+
+.dialca-dropzone__file-list::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
