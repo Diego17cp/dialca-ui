@@ -1,0 +1,373 @@
+/* 
+============================
+Searchable Select Component
+============================
+ */
+
+/* Searchable Select Container */
+.dialca-searchable-select {
+    --searchable-select-bg: white;
+    --searchable-select-text: #111827;
+    --searchable-select-border: #D1D5DB;
+    --searchable-select-border-focus: #3a7dc0;
+    --searchable-select-border-error: #ef4444;
+    --searchable-select-placeholder: #9ca3af;
+    --searchable-select-ring-focus: rgba(58, 125, 192, 1);
+    --searchable-select-ring-error: rgba(239, 68, 68, 1);
+    --searchable-select-padding: .875rem;
+    --searchable-select-radius: .5rem;
+    --searchable-select-font-size: 1.125rem;
+    --searchable-select-transition: all .3s ease-in-out;
+    --searchable-select-min-height: 3.25rem;
+    --searchable-select-icon-color: #6b7280;
+
+    --searchable-select-menu-bg: white;
+    --searchable-select-menu-border: #e5e7eb;
+    --searchable-select-menu-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --searchable-select-option-hover: rgba(58, 125, 192, .2);
+    --searchable-select-option-selected-bg: #3a7dc0;
+    --searchable-select-option-selected-text: white;
+    --searchable-select-option-highlighted-text: #f0f9ff;
+
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Element: Label */
+.dialca-searchable-select__label {
+    display: block;
+    font-size: .875rem;
+    font-weight: 500;
+    margin-bottom: .375rem;
+    color: var(--searchable-select-text);
+}
+/* Element: Input wrapper */
+.dialca-searchable-select__input-wrapper {
+    position: relative;
+}
+/* Element: Input Field */
+.dialca-searchable-select__input {
+    width: 100%;
+    outline: none;
+    padding: var(--searchable-select-padding);
+    padding-right: 2.5rem;
+    border: 2px solid var(--searchable-select-border);
+    border-radius: var(--searchable-select-radius);
+    background-color: var(--searchable-select-bg);
+    color: var(--searchable-select-text);
+    font-size: var(--searchable-select-font-size);
+    min-height: var(--searchable-select-min-height);
+    transition: var(--searchable-select-transition);
+}
+.dialca-searchable-select__input::placeholder {
+    color: var(--searchable-select-placeholder);
+}
+.dialca-searchable-select__input:focus {
+    border-color: var(--searchable-select-border-focus);
+    box-shadow: 0 0 0 2px var(--searchable-select-ring-focus);
+}
+/* Element: Input Icon */ 
+.dialca-searchable-select__input-icon {
+    position: absolute;
+    right: .75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--searchable-select-icon-color);
+    transition: var(--searchable-select-transition);
+}
+/* Element: Input Clear Button */
+.dialca-searchable-select__clear-button {
+    position: absolute;
+    right: .75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .125rem;
+    color: var(--searchable-select-icon-color);
+    transition: var(--searchable-select-transition);
+}
+.dialca-searchable-select__clear-button:hover {
+    color: var(--searchable-select-text);
+}
+.dialca-searchable-select__clear-button:focus {
+    outline: none;
+    color: var(--searchable-select-border-focus)
+}
+/* Element: Dropdown Menu */
+.dialca-searchable-select__dropdown {
+    position: absolute;
+    z-index: 40;
+    left: 0;
+    right: 0;
+    margin-top: .25rem;
+    max-height: 15rem;
+    overflow-y: auto;
+    background-color: var(--searchable-select-menu-bg);
+    border: 2px solid var(--searchable-select-menu-border);
+    border-radius: var(--searchable-select-radius);
+    box-shadow: var(--searchable-select-menu-shadow);
+}
+.dialca-searchable-select__dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+.dialca-searchable-select__dropdown::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+}
+.dialca-searchable-select__dropdown::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+}
+.dialca-searchable-select__dropdown::-webkit-scrollbar-track {
+    background-color: #f1f5f9;
+    border-radius: 3px;
+}
+/* Element: Dropdown Option */
+.dialca-searchable-select__option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: .5rem;
+    padding: .625rem 1rem;
+    transition: var(--searchable-select-transition);
+}
+.dialca-searchable-select__option:hover {
+    background-color: var(--searchable-select-option-hover);
+}
+.dialca-searchable-select__option:first-child {
+    border-top-left-radius: var(--searchable-select-radius);
+    border-top-right-radius: var(--searchable-select-radius);
+}
+.dialca-searchable-select__option:last-child {
+    border-bottom-left-radius: var(--searchable-select-radius);
+    border-bottom-right-radius: var(--searchable-select-radius);
+}
+/* Element: Option Icon */
+.dialca-searchable-select__option-icon {
+    flex-shrink: 0;
+    color: var(--searchable-select-icon-color);
+}
+/* Element: No results */
+.dialca-searchable-select__no-results {
+    padding: .625rem 1rem;
+    text-align: center;
+    font-size: .875rem;
+    color: var(--searchable-select-placeholder);
+}
+/* Element: Error Message */
+.dialca-searchable-select__error {
+    font-size: .875rem;
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    color: var(--searchable-select-border-error);
+}
+
+/* 
+============================
+MODIFIERS
+============================
+*/
+/* Modifier: Error State */
+.dialca-searchable-select--error .dialca-searchable-select__input {
+    border-color: var(--searchable-select-border-error);
+}
+.dialca-searchable-select--error .dialca-searchable-select__input:focus {
+    box-shadow: 0 0 0 2px var(--searchable-select-ring-error);
+    border-color: #dc2626;
+    outline: none;
+}
+.dialca-searchable-select--error .dialca-searchable-select__label {
+    color: #dc2626;
+}
+.dialca-searchable-select--error .dialca-searchable-select__input-icon {
+    color: var(--searchable-select-border-error);
+}
+/* Modifier: Disabled State */
+.dialca-searchable-select--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.dialca-searchable-select--disabled .dialca-searchable-select__input {
+    background-color: #f3f4f6;
+    color: #697280;
+    cursor: not-allowed;
+}
+.dialca-searchable-select--disabled .dialca-searchable-select__input-icon {
+    color: #697280;
+}
+.dialca-searchable-select--disabled .dialca-searchable-select__clear-button {
+    cursor: not-allowed;
+    opacity: .5;
+}
+/* Modifier: Focus State */
+.dialca-searchable-select--focused .dialca-searchable-select__input {
+    border-color: var(--searchable-select-border-focus);
+    box-shadow: 0 0 0 2px var(--searchable-select-ring-focus);
+}
+.dialca-searchable-select--focused .dialca-searchable-select__input-icon {
+    color: var(--searchable-select-border-focus);
+}
+/* Modifier: Open State */
+.dialca-searchable-select--open .dialca-searchable-select__input-icon {
+    transform: translateY(-50%) rotate(180deg);
+}
+/* Modifier: Hover State */
+.dialca-searchable-select--hover .dialca-searchable-select__input {
+    border-color: #9ca3af;
+}
+/* Modifier: Option Selected */
+.dialca-searchable-select__option--selected {
+    background-color: var(--searchable-select-option-selected-bg);
+    color: var(--searchable-select-option-selected-text);
+    font-weight: 500;
+}
+.dialca-searchable-select__option--selected:hover {
+    background-color: rgba(58, 125, 192, .8);
+}
+.dialca-searchable-select__option--selected .dialca-searchable-select__option-icon {
+    color: var(--searchable-select-option-selected-text);
+}
+/* Modifier: Option Highlighted */
+.dialca-searchable-select__option--highlighted {
+    background-color: var(--searchable-select-option-highlighted-bg);
+}
+/* Modifier: Option Disabled */
+.dialca-searchable-select__option--disabled {
+    opacity: .5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Modifier: Size Small */
+.dialca-searchable-select--sm .dialca-searchable-select__input {
+    padding: .375rem .75rem;
+    padding-right: 2rem;
+    font-size: .75rem;
+    min-height: 2rem;
+}
+.dialca-searchable-select--sm .dialca-searchable-select__option {
+    padding: .375rem .75rem;
+    font-size: .75rem;
+}
+.dialca-searchable-select--sm .dialca-searchable-select__label {
+    font-size: .75rem;
+}
+.dialca-searchable-select--sm .dialca-searchable-select__input-icon,
+.dialca-searchable-select--sm .dialca-searchable-select__clear-button {
+    font-size: 0.875rem;
+}
+/* Modifier: Size Medium (default) */
+.dialca-searchable-select--md .dialca-searchable-select__input {
+    padding: .625rem 1rem;
+    padding-right: 2.5rem;
+    font-size: .875rem;
+    min-height: 2.5rem;
+}
+.dialca-searchable-select--md .dialca-searchable-select__option {
+    padding: .625rem 1rem;
+    font-size: .875rem;
+}
+/* Modifier: Size Large */
+.dialca-searchable-select--lg .dialca-searchable-select__input {
+    padding: .75rem 1rem;
+    padding-right: 3rem;
+    font-size: 1rem;
+    min-height: 3rem;
+}
+.dialca-searchable-select--lg .dialca-searchable-select__option {
+    padding: .75rem 1rem;
+    font-size: 1rem;
+}
+.dialca-searchable-select--lg .dialca-searchable-select__label {
+    font-size: 1rem;
+}
+.dialca-searchable-select--lg .dialca-searchable-select__input-icon,
+.dialca-searchable-select--lg .dialca-searchable-select__clear-button {
+    font-size: 1.25rem;
+}
+
+/* 
+============================
+VARIANTS
+============================
+*/
+
+/* Variant: Minimal */
+.dialca-searchable-select--minimal .dialca-searchable-select__input {
+    border: none;
+    border-bottom: 2px solid var(--searchable-select-border);
+    border-radius: 0;
+    padding: .5rem 0;
+    padding-right: 2rem;
+    min-height: 2.5rem;
+    background-color: transparent;
+}
+.dialca-searchable-select--minimal .dialca-searchable-select__input:focus {
+    border-color: var(--searchable-select-border-focus);
+    box-shadow: none;
+    outline: none;
+}
+.dialca-searchable-select--minimal .dialca-searchable-select__dropdown {
+    border: none;
+    border-top: 1px solid var(--searchable-select-menu-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Variant: Dark */
+.dialca-searchable-select--dark {
+    --searchable-select-bg: #1e2939;
+    --searchable-select-text: white;
+    --searchable-select-border: #6b7280;
+    --searchable-select-border-focus: #9ca3af;
+    --searchable-select-placeholder: #9ca3af;
+    --searchable-select-ring-focus: rgba(156, 163, 175, 1);
+    --searchable-select-icon-color: #9ca3af;
+    --searchable-select-menu-bg: #1e2939;
+    --searchable-select-menu-border: #6b7280;
+    --searchable-select-option-hover: #4b5563;
+    --searchable-select-option-highlighted-bg: rgba(58, 125, 192, .2)
+}
+.dialca-searchable-select--dark .dialca-searchable-select__input {
+    background-color: var(--searchable-select-bg);
+    color: var(--searchable-select-text);
+}
+.dialca-searchable-select--dark .dialca-searchable-select__option {
+    color: var(--searchable-select-text);
+}
+.dialca-searchable-select--dark.dialca-searchable-select--error {
+    --searchable-select-border-error: #f87171;
+}
+
+/* 
+============================
+ANIMATIONS & ACCESSIBILITY
+============================
+*/
+@media (prefers-reduced-motion: reduce) {
+    .dialca-searchable-select__input,
+    .dialca-searchable-select__input-icon,
+    .dialca-searchable-select__clear-button {
+        transition: none;
+    }
+}
+@media (prefers-contrast: high) {
+    .dialca-searchable-select {
+        --searchable-select-border: currentColor;
+    }
+    
+    .dialca-searchable-select__input {
+        border-width: 3px;
+    }
+}
+.dialca-searchable-select__input:focus-visible {
+    outline: 2px solid var(--searchable-select-border-focus);
+    outline-offset: 2px;
+}
