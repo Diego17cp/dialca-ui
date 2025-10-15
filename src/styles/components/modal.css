@@ -1,0 +1,306 @@
+/* 
+============================
+Modal Component Styles
+============================
+*/
+
+/* Modal Block */
+.dialca-modal {
+    --modal-overlay-bg: rgba(0, 0, 0, .5);
+    --modal-backdrop-blur: blur(2px);
+    --modal-bg: white;
+    --modal-text: #111827;
+    --modal-border: #e5e7eb;
+    --modal-radius: .5rem;
+    --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25);
+    --modal-padding: 1.5rem;
+    --modal-header-border: #f3f4f6;
+    --modal-title-color: #111827;
+    --modal-close-color: #6b7280;
+    --modal-close-hover: #374151;
+    --modal-close-bg-hover: #f3f4f6;
+    --modal-transition: all .3s ease-out;
+    --modal-animation-duration: 300ms;
+    --modal-animation-timing: ease-out;
+}
+/* Element: Overlay */
+.dialca-modal__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    background-color: var(--modal-overlay-bg);
+    backdrop-filter: var(--modal-backdrop-blur);
+    transition: opacity var(--modal-animation-duration) var(--modal-animation-timing);
+}
+/* Element: Container */
+.dialca-modal__container {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+    opacity: 0;
+    transform: scale(.95) translateY(1rem);
+    background-color: var(--modal-bg);
+    border-radius: var(--modal-radius);
+    box-shadow: var(--modal-shadow);
+    transition: var(--modal-transition);
+}
+/* Element: Header */
+.dialca-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    padding: var(--modal-padding);
+    border-bottom: 1px solid var(--modal-header-border);
+}
+/* Element: Title */
+.dialca-modal__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    color: var(--modal-title-color);
+}
+/* Element: Close Button */
+.dialca-modal__close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: 50%;
+    color: var(--modal-close-color);
+    transition: var(--modal-transition);   
+}
+.dialca-modal__close-button:hover {
+    color: var(--modal-close-hover);
+    background-color: var(--modal-close-bg-hover);
+}
+.dialca-modal__close-button:focus {
+    outline: none;
+}
+/* Element: Content */
+.dialca-modal__content {
+    padding: var(--modal-padding);
+    color: var(--modal-text);
+}
+
+/* 
+============================
+MODIFIERS
+============================
+*/
+/* Modifier: Open State */
+.dialca-modal--open.dialca-modal__overlay {
+    opacity: 1;
+}
+.dialca-modal--open .dialca-modal__container {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+/* Modifier: Has Title */
+.dialca-modal--has-title .dialca-modal__content {
+    padding-top: 0;
+}
+/* Modifier: Size small */
+.dialca-modal--sm .dialca-modal__container {
+    max-width: 20rem;
+}
+/* Modifier: Size medium (default) */
+.dialca-modal--md .dialca-modal__container {
+    max-width: 28rem;
+}
+/* Modifier: Size large */
+.dialca-modal--lg .dialca-modal__container {
+    max-width: 32rem;
+}
+/* Modifier: Size extra large */
+.dialca-modal--xl .dialca-modal__container {
+    max-width: 42rem;
+}
+/* Modifier: Size full */
+.dialca-modal--full .dialca-modal__container {
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+}
+.dialca-modal--full .dialca-modal__overlay {
+    padding: 0;
+}
+/* Modifier: Centered (default) */
+.dialca-modal--center .dialca-modal__overlay {
+    align-items: center;
+    justify-content: center;
+}
+/* Modifier: Top Aligned */
+.dialca-modal--top .dialca-modal__overlay {
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 4rem;
+}
+/* Modifier: Bottom Aligned */
+.dialca-modal--bottom .dialca-modal__overlay {
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 4rem;
+}
+/* Modifier: Fade animated (default) */
+.dialca-modal--fade .dialca-modal__overlay {
+    transition: opacity var(--modal-animation-duration) var(--modal-animation-timing);
+}
+.dialca-modal--fade .dialca-modal__container {
+    transition: opacity var(--modal-animation-duration) var(--modal-animation-timing);
+}
+/* Modifier: Slide up animated */
+.dialca-modal--slide-up .dialca-modal__container {
+    transform: scale(1) translateY(2rem);
+    transition: all var(--modal-animation-duration) var(--modal-animation-timing);
+}
+.dialca-modal--slide-up.dialca-modal--open .dialca-modal__container {
+    transform: scale(1) translateY(0);
+}
+/* Modifier: Slide down animated */
+.dialca-modal--slide-down .dialca-modal__container {
+    transform: scale(1) translateY(-2rem);
+    transition: all var(--modal-animation-duration) var(--modal-animation-timing);
+}
+.dialca-modal--slide-down.dialca-modal--open .dialca-modal__container {
+    transform: scale(1) translateY(0);
+}
+/* Modifier: Zoom animated */
+.dialca-modal--zoom .dialca-modal__container {
+    transform: scale(.8);
+    transition: all var(--modal-animation-duration) var(--modal-animation-timing);
+}
+.dialca-modal--zoom.dialca-modal--open .dialca-modal__container {
+    transform: scale(1);
+}
+/* Modifier: No Animation */
+.dialca-modal--none .dialca-modal__overlay,
+.dialca-modal--none .dialca-modal__container {
+    transition: none;
+}
+
+/* 
+============================
+VARIANTS
+============================
+*/
+/* Variant: Dark */
+.dialca-modal--dark {
+    --modal-overlay-bg: rgba(0, 0, 0, .8);
+    --modal-bg: #1f2939;
+    --modal-text: #f9fafb;
+    --modal-border: #6b7280;
+    --modal-header-border: #6b7280;
+    --modal-title-color: #f9fafb;
+    --modal-close-color: #9ca3af;
+    --modal-close-hover: #f3f4f6;
+    --modal-close-bg-hover: #494e57;
+}
+.dialca-modal--dark .dialca-modal__container {
+    background-color: var(--modal-bg);
+    color: var(--modal-text);
+}
+/* Variant: Minimal */
+.dialca-modal--minimal {
+    --modal-overlay-bg: rgba(0, 0, 0, .3);
+    --modal-backdrop-blur: none;
+    --modal-radius: .25rem;
+    --modal-shadow: 0 10px 25px -5px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);
+    --modal-padding: 1rem;
+}
+.dialca-modal--minimal .dialca-modal__header {
+    padding: 1rem;
+    padding-bottom: .5rem;
+}
+.dialca-modal--minimal .dialca-modal__title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.dialca-modal--minimal .dialca-modal__close-button {
+    padding: .25rem;
+}
+.dialca-modal--minimal .dialca-modal__content {
+    padding: 1rem;
+    padding-top: .5rem;
+}
+/* Variant: Glassmorphism */
+.dialca-modal--glassmorphism {
+    --modal-overlay-bg: rgba(0, 0, 0, .2);
+    --modal-backdrop-blur: blur(12px);
+    --modal-bg: rgba(255, 255, 255, .8);
+    --modal-border: rgba(255, 255, 255, .2);
+    --modal-header-border: rgba(255, 255, 255, .2);
+}
+.dialca-modal--glassmorphism .dialca-modal__container {
+    background-color: var(--modal-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--modal-border);
+}
+
+/* 
+============================
+ANIMATIONS & ACCESSIBILITY
+============================
+*/
+@media (prefers-reduced-motion: reduce) {
+    .dialca-modal__overlay,
+    .dialca-modal__container,
+    .dialca-modal__close-button {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .dialca-modal--open .dialca-modal__container {
+        transform: none !important;
+    }
+}
+@media (prefers-contrast: high) {
+    .dialca-modal {
+        --modal-border: currentColor;
+        --modal-header-border: currentColor;
+    }
+    
+    .dialca-modal__container {
+        border: 2px solid var(--modal-border);
+    }
+    
+    .dialca-modal__close-button {
+        border: 1px solid currentColor;
+    }
+}
+.dialca-modal__close-button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+@media (max-width: 640px) {
+    .dialca-modal__overlay {
+        padding: 0.5rem;
+    }
+    
+    .dialca-modal--top .dialca-modal__overlay {
+        padding-top: 2rem;
+    }
+    
+    .dialca-modal--bottom .dialca-modal__overlay {
+        padding-bottom: 2rem;
+    }
+    
+    .dialca-modal__container {
+        max-width: 100%;
+    }
+    
+    .dialca-modal__header,
+    .dialca-modal__content {
+        padding: 1rem;
+    }
+}
