@@ -266,6 +266,7 @@ VARIANTS
 .dialca-textarea--minimal .dialca-textarea__field:focus {
     border-bottom-color: var(--textarea-border-focus);
     box-shadow: none;
+    outline: none;
 }
 .dialca-textarea--minimal .dialca-textarea__label {
     left: 0;
