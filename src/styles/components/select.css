@@ -1,0 +1,414 @@
+/* 
+============================
+Select Component Styles
+============================
+*/
+
+/* Select Container */
+.dialca-select {
+    --select-bg: white;
+    --select-text: #111827;
+    --select-border: #d1d5db;
+    --select-border-focus: #3a7dc0;
+    --select-border--error: #ef4444;
+    --select-placeholder: #9ca3af;
+    --select-ring-focus: rgba(58, 125, 192, 1);
+    --select-ring-error: rgba(239, 68, 68, 1);
+    --select-padding: .875rem;
+    --select-radius: .5rem;
+    --select-font-size: 1.125rem;
+    --select-transition: all .3s ease-in-out;
+    --select-min-height: 3.25rem;
+    --select-arrow-color: #3a7dc0;
+    --select-icon-color: #3a7dc0;
+
+    --select-menu-bg: white;
+    --select-menu-border: #e5e7eb;
+    --select-menu-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --select-option-hover: rgba(58, 125, 192, .2);
+    --select-option-selected-bg: rgba(8, 86, 145, .3);
+    --select-option-selected-text: #085691;
+
+    position: relative;
+}
+/* Element: Input field */
+.dialca-select__field {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+    outline: none;
+    padding: var(--select-padding);
+    border: 2px solid var(--select-border);
+    border-radius: var(--select-radius);
+    background-color: var(--select-bg);
+    color: var(--select-text);
+    font-size: var(--select-font-size);
+    min-height: var(--select-min-height);
+    transition: var(--select-transition);
+}
+.dialca-select__field:focus {
+    border-color: var(--select-border-focus);
+    box-shadow: 0 0 0 2px var(--select-ring-focus);
+}
+
+/* Element: Label */
+.dialca-select__label {
+    position: absolute;
+    top: 45%;
+    left: 1em;
+    padding: 0 .375rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 10;
+    background-color: var(--select-bg);
+    color: var(--select-placeholder);
+    font-size: var(--select-font-size);
+    transition: var(--select-transition);
+}
+
+/* Element: Selected value */
+.dialca-select__value {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--select-text);
+}
+.dialca-select__placeholder {
+    color: var(--select-placeholder);
+}
+
+/* Element: Icon */
+.dialca-select__icon {
+    position: absolute;
+    left: .75rem;
+    top: 45%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    z-index: 10;
+    color: var(--select-icon-color);
+}
+
+/* Element: Arrow */
+.dialca-select__arrow {
+    position: absolute;
+    right: .75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--select-arrow-color);
+    transition: var(--select-transition)
+}
+
+/* Element: Loading spinner */
+.dialca-select__loader {
+    position: absolute;
+    right: .75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: spin 1s linear infinite;
+}
+
+/* Element: Menu */
+.dialca-select__menu {
+    position: absolute;
+    z-index: 40;
+    left: 0;
+    right: 0;
+    margin-top: .25rem;
+    max-height: 15rem;
+    overflow-y: auto;
+    border: 1px solid var(--select-menu-border);
+    border-radius: var(--select-radius);
+    background-color: var(--select-menu-bg);
+    box-shadow: var(--select-menu-shadow);
+}
+.dialca-select__menu::-webkit-scrollbar {
+    width: 6px;
+}
+.dialca-select__menu::-webkit-scrollbar-thumb {
+    background-color: var(--select-menu-border);
+    border-radius: 3px;
+}
+.dialca-select__menu::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+}
+.dialca-select__menu::-webkit-scrollbar-track {
+    background-color: var(--select-menu-bg);
+    border-radius: 3px;
+}
+
+/* Element: Option */
+.dialca-select__option {
+    padding: .625rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    transition: var(--select-transition);
+}
+.dialca-select__option:hover {
+    background-color: var(--select-option-hover);
+}
+.dialca-select__option:first-child {
+    border-top-left-radius: var(--select-radius);
+    border-top-right-radius: var(--select-radius);
+}
+.dialca-select__option:last-child {
+    border-bottom-left-radius: var(--select-radius);
+    border-bottom-right-radius: var(--select-radius);
+}
+
+/* Element: No Options Message */
+.dialca-select__no-options {
+    padding: 1rem;
+    text-align: center;
+    font-size: .875rem;
+    color: var(--select-placeholder);
+}
+
+/* Element: Error Message */
+.dialca-select__error {
+    font-size: .875rem;
+    margin-top: .5rem;
+    margin-left: .25rem;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    color: var(--select-border--error);
+}
+
+/* Element: Required Indicator */
+.dialca-select__required {
+    margin-left: .125rem;
+    font-weight: 800;
+    color: var(--select-border--error);
+}
+
+/* 
+============================
+MODIFIERS
+============================
+*/
+
+/* Modifier: Error */
+.dialca-select--error .dialca-select__field {
+    border-color: var(--select-border--error);
+}
+.dialca-select--error .dialca-select__field:focus {
+    box-shadow: 0 0 0 2px var(--select-ring-error);
+    border-color: #dc2626;
+}
+.dialca-select--error .dialca-select__label {
+    color: var(--select-border--error);
+}
+.dialca-select--error .dialca-select__arrow {
+    color: var(--select-border--error);
+}
+.dialca-select--error .dialca-select__icon {
+    color: var(--select-border--error);
+}
+
+/* Modifier: Disabled */
+.dialca-select--disabled .dialca-select__field {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    cursor: not-allowed;
+    opacity: .7;
+}
+.dialca-select--disabled .dialca-select__label {
+    color: #6b7280;
+}
+.dialca-select--disabled .dialca-select__arrow {
+    color: #6b7280;
+}
+.dialca-select--disabled .dialca-select__icon {
+    color: #6b7280;
+}
+
+/* Modifier: Focused */
+.dialca-select--focused .dialca-select__field {
+    border-color: var(--select-border-focus);
+    box-shadow: 0 0 0 2px var(--select-ring-focus);
+}
+.dialca-select--focused .dialca-select__label {
+    top: -2px;
+    transform: translateY(-50%);
+    font-size: .85rem;
+    color: var(--select-border-focus);
+}
+
+/* Modifier: Open */
+.dialca-select--open .dialca-select__field {
+    border-color: var(--select-border-focus);
+    box-shadow: 0 0 0 2px var(--select-ring-focus);
+}
+.dialca-select--open .dialca-select__label {
+    top: -2px;
+    transform: translateY(-50%);
+    font-size: .85rem;
+    color: var(--select-border-focus);
+}
+.dialca-select--open .dialca-select__arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Modifier: Has value */
+.dialca-select--has-value .dialca-select__label {
+    top: -2px;
+    transform: translateY(-50%);
+    font-size: .85rem;
+}
+
+/* Modifier: Has icon */
+.dialca-select--has-icon .dialca-select__field {
+    padding-left: 2.5rem;
+}
+.dialca-select--has-icon .dialca-select__label {
+    left: 2.5rem;
+}
+
+/* Modifier: Loading */
+.dialca-select--loading .dialca-select__field {
+    padding-right: 3rem;
+}
+
+/* Modifier: Selected option */
+.dialca-select__option--selected {
+    background-color: var(--select-option-selected-bg);
+    color: var(--select-option-selected-text);
+    font-weight: 500;
+}
+.dialca-select__option--selected:hover {
+    background-color: var(--select-option-selected-bg);
+}
+
+/* Modifier: Disabled Option */
+.dialca-select__option--disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+.dialca-select__option--disabled:hover {
+    background-color: transparent;
+}
+
+/* 
+============================
+VARIANTS
+============================
+*/
+
+/* Variant: Dark */
+.dialca-select--dark {
+    --select-bg: #1e2939;
+    --select-text: white;
+    --select-border: #6b7280;
+    --select-border-focus: #9ca3af;
+    --select-placeholder: #9ca3af;
+    --select-ring-focus: rgba(156, 163, 175, 1);
+    --select-arrow-color: #9ca3af;
+    --select-icon-color: #9ca3af;
+    --select-menu-bg: #1e2939;
+    --select-menu-border: #6b7280;
+    --select-option-hover: #4b5563;
+    --select-option-selected-bg: #6b7280;
+    --select-option-selected-text: white;
+}
+.dialca-select--dark .dialca-select__field {
+    background-color: var(--select-bg);
+    color: var(--select-text);
+    border-radius: 2px;
+}
+.dialca-select--dark .dialca-select__label {
+    background-color: var(--select-bg);
+    color: var(--select-placeholder);
+}
+.dialca-select--dark .dialca-select__option {
+    color: white;
+}
+.dialca-select--dark .dialca-select__field:focus + .dialca-select__label,
+.dialca-select--dark.dialca-select--open .dialca-select__label,
+.dialca-select--dark.dialca-select--has-value .dialca-select__label {
+    background-color: var(--select-bg);
+    color: #f3f4f6;
+}
+.dialca-select--dark.dialca-select--error {
+    --select-border--error: #f87171;
+}
+.dialca-select--dark.dialca-select--error .dialca-select__label {
+    color: var(--select-border--error);
+}
+
+/* Variant: Minimal */
+.dialca-select--minimal .dialca-select__field {
+    border: none;
+    border-bottom: 2px solid var(--select-border);
+    border-radius: 0;
+    background-color: .5rem 0;
+    background-color: transparent;
+    min-height: 2.5rem;
+}
+.dialca-select--minimal .dialca-select__field:focus {
+    border-bottom-color: var(--select-border-focus);
+    box-shadow: none;
+    outline: none;
+}
+.dialca-select--minimal .dialca-select__label {
+    left: 0;
+    padding: 0;
+    background-color: transparent;
+}
+.dialca-select--minimal .dialca-select__arrow {
+    right: 0;
+}
+.dialca-select--minimal .dialca-select__menu {
+    border:none;
+    border-top: 1px solid var(--select-menu-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.dialca-select--minimal.dialca-select--focused .dialca-select__label,
+.dialca-select--minimal.dialca-select--open .dialca-select__label,
+.dialca-select--minimal.dialca-select--has-value .dialca-select__label {
+    top: -0.5rem;
+    font-size: 0.875rem;
+    background-color: transparent;
+}
+.dialca-select--minimal.dialca-select--has-icon .dialca-select__label {
+    left: 2.5rem
+}
+
+/* 
+============================
+ANIMATIONS & ACCESSIBILITY
+============================
+*/
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .dialca-select__field,
+    .dialca-select__label,
+    .dialca-select__arrow {
+        transition: none;
+    }
+    
+    .dialca-select__loader {
+        animation: none;
+    }
+}
+@media (prefers-contrast: high) {
+    .dialca-select {
+        --select-border: currentColor;
+    }
+    
+    .dialca-select__field {
+        border-width: 3px;
+    }
+}
+.dialca-select__field:focus-visible {
+    outline: 2px solid var(--select-border-focus);
+    outline-offset: 2px;
+}
