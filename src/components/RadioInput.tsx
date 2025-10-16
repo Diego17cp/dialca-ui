@@ -1,5 +1,6 @@
 import { forwardRef, type InputHTMLAttributes } from "react";
-import { cn, useRadioVariantStyles } from "../utils/classNames";
+import { useRadioVariantStyles } from "../hooks";
+import { cn } from "../utils";
 import { FaExclamationCircle } from "react-icons/fa";
 
 /**

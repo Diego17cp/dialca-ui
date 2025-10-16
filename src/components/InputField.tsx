@@ -1,5 +1,6 @@
 import { type InputHTMLAttributes, forwardRef } from "react";
-import { cn, useInputVariantStyles } from "../utils/classNames";
+import { cn } from "../utils";
+import { useInputVariantStyles } from "../hooks";
 import { FaEye, FaEyeSlash, FaCircleExclamation } from "react-icons/fa6";
 
 /**

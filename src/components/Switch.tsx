@@ -1,5 +1,6 @@
 import { useState, useId, useRef, type InputHTMLAttributes } from "react";
-import { cn, useSwitchVariantStyles } from "../utils/classNames";
+import { useSwitchVariantStyles } from "../hooks";
+import { cn } from "../utils";
 import { CiWarning } from "react-icons/ci";
 
 /**

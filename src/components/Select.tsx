@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
+import { useSelectVariantStyles } from "../hooks";
+import { cn } from "../utils";
 import { FaChevronDown, FaExclamationCircle } from "react-icons/fa";
-import { cn, useSelectVariantStyles } from "../utils/classNames";
 
 /**
  * Option for the {@link Select} component.

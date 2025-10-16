@@ -1,4 +1,5 @@
-import { cn, useLoaderVariantStyles } from "../utils/classNames";
+import { useLoaderVariantStyles } from "../hooks";
+import { cn } from "../utils";
 
 /**
  * Loader component for displaying various loading animations.

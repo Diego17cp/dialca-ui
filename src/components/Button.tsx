@@ -1,5 +1,6 @@
 import { useState, type ReactNode, type ButtonHTMLAttributes } from "react";
-import { cn, useButtonVariantStyles } from "../utils/classNames";
+import { useButtonVariantStyles } from "../hooks";
+import { cn } from "../utils";
 
 /**
  * Props for the {@link Button} component.

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { cn, useSearchableSelectVariantStyles } from "../utils/classNames";
+import { useSearchableSelectVariantStyles } from "../hooks";
+import { cn } from "../utils";
 import { IoChevronDown } from "react-icons/io5";
 import { CiWarning } from "react-icons/ci";
 import { FaRegCircleXmark } from "react-icons/fa6";

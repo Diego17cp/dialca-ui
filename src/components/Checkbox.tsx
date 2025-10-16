@@ -1,5 +1,6 @@
 import { useState, useId, useRef, useEffect, type InputHTMLAttributes, type MouseEventHandler } from "react";
-import { cn, useCheckboxVariantStyles } from "../utils/classNames";
+import { useCheckboxVariantStyles } from "../hooks";
+import { cn } from "../utils";
 import { CiWarning } from "react-icons/ci";
 
 /**

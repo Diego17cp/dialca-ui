@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, type TextareaHTMLAttributes } from "react";
+import { useTxtAreaVariantStyles } from "../hooks";
+import { cn } from "../utils";
 import { FaExclamationCircle } from "react-icons/fa";
 import { CharCounter } from "./CircleCharCounter";
-import { cn, useTxtAreaVariantStyles } from "../utils/classNames";
 
 /**
  * Props for the {@link TxtArea} component.

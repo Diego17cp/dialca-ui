@@ -1,4 +1,5 @@
-import { cn, useDropZoneVariantStyles } from "../utils/classNames";
+import { cn } from "../utils";
+import { useDropZoneVariantStyles } from "../hooks";
 import { FaCloudArrowUp } from "react-icons/fa6";
 
 /**

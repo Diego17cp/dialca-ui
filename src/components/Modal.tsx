@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { cn, useModalVariantStyles } from "../utils/classNames";
+import { useModalVariantStyles } from "../hooks";
+import { cn } from "../utils";
 import { FaTimes } from "react-icons/fa";
 
 /**
