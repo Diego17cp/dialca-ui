@@ -104,7 +104,7 @@ export const Checkbox = ({
     const checkboxId = useId();
     const id = providedId || checkboxId;
 
-    const { getStyles } = useCheckboxVariantStyles(
+    const { getStyles, shouldUseCSS } = useCheckboxVariantStyles(
         variant,
         customVariants,
         {
@@ -125,27 +125,28 @@ export const Checkbox = ({
         }
     }, [indeterminate]);
 
-    // Size mappings
-    const sizeStyles = {
-        sm: {
-            checkbox: "w-5 h-5",
-            icon: "w-3 h-3",
-            label: "text-sm",
-            description: "text-xs"
-        },
-        md: {
-            checkbox: "w-7 h-7", 
-            icon: "w-4 h-4",
-            label: "text-base",
-            description: "text-sm"
-        },
-        lg: {
-            checkbox: "w-8 h-8",
-            icon: "w-5 h-5",
-            label: "text-lg",
-            description: "text-base"
-        }
-    };
+    // CSS classes
+    const blockClass = "dialca-checkbox";
+    const cssContainerClass = shouldUseCSS ? blockClass : '';
+    const cssContainerModifiers = shouldUseCSS ? {
+        [`${blockClass}--${variant}`]: variant !== 'default',
+        [`${blockClass}--${size}`]: size !== 'md',
+        [`${blockClass}--checked`]: (checked || indeterminate) && !hasErrors,
+        [`${blockClass}--indeterminate`]: indeterminate && !hasErrors,
+        [`${blockClass}--disabled`]: disabled,
+        [`${blockClass}--error`]: hasErrors && !checked && !indeterminate,
+        [`${blockClass}--error-checked`]: hasErrors && (checked || indeterminate),
+        [`${blockClass}--focused`]: isFocused,
+        [`${blockClass}--hover`]: isHovered,
+    } : {};
+
+    const containerClasses = cn(
+        cssContainerClass,
+        cssContainerModifiers,
+        getStyles("container"),
+        classes.container,
+        className
+    );
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!disabled) {
@@ -153,11 +154,12 @@ export const Checkbox = ({
             rest.onChange?.(e);
         }
     };
-    const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+
+    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!disabled) {
             if (e.target === e.currentTarget || !(e.target as HTMLElement).closest("label")) {
                 const newChecked = !checked;
-                onCheckedChange?.(newChecked)
+                onCheckedChange?.(newChecked);
                 if (checkboxRef.current) {
                     checkboxRef.current.checked = newChecked;
                     const evt = new Event('change', { bubbles: true });
@@ -165,7 +167,7 @@ export const Checkbox = ({
                 }
             }
         }
-    }
+    };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         setIsFocused(true);
@@ -189,18 +191,19 @@ export const Checkbox = ({
 
     return (
         <div 
-            className={cn(getStyles("container"),  
-                classes.container,
-                className
-            )}
+            className={containerClasses}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
             {/* Checkbox Input */}
-            <div onClick={handleClick} className={cn(
-                getStyles("wrapper"),
-                classes.wrapper
-            )}>
+            <div 
+                onClick={handleClick} 
+                className={cn(
+                    shouldUseCSS ? `${blockClass}__wrapper` : '',
+                    getStyles("wrapper"),
+                    classes.wrapper
+                )}
+            >
                 <input
                     ref={checkboxRef}
                     type="checkbox"
@@ -210,30 +213,31 @@ export const Checkbox = ({
                     onChange={handleChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    className="sr-only"
+                    className="dialca-sr-only"
                     {...rest}
                 />
                 
                 {/* Checkbox Visual */}
                 <div className={cn(
-                    getStyles("checkbox"),
-                    sizeStyles[size].checkbox,
+                    shouldUseCSS ? `${blockClass}__input-container` : '',
+                    !shouldUseCSS && getStyles("checkbox"),
                     classes.checkbox
                 )}>
                     {/* Background */}
                     <div className={cn(
+                        shouldUseCSS ? `${blockClass}__background` : '',
                         getStyles("background"),
                         classes.background
                     )} />
                     
                     {/* Icon Container */}
                     <div className={cn(
+                        shouldUseCSS ? `${blockClass}__icon` : '',
                         getStyles("icon"),
-                        sizeStyles[size].icon,
                         classes.icon
                     )}>
                         {variant === "switch" ? (
-                            // Switch toggle
+                            // Switch toggle (empty div, styling via CSS)
                             <div />
                         ) : (
                             // Checkbox icon
@@ -252,7 +256,7 @@ export const Checkbox = ({
                                         strokeLinejoin="round"
                                         style={{
                                             strokeDasharray: 12,
-                                            strokeDashoffset: checked ? 0 : 12,
+                                            strokeDashoffset: checked || indeterminate ? 0 : 12,
                                             transition: 'stroke-dashoffset 0.3s ease 0.1s'
                                         }}
                                     />
@@ -279,13 +283,16 @@ export const Checkbox = ({
 
             {/* Label and Description */}
             {(label || description) && (
-                <div className="flex-1 min-w-0">
+                <div className={cn(
+                    shouldUseCSS ? `${blockClass}__label-container` : '',
+                    !shouldUseCSS && "flex-1 min-w-0"
+                )}>
                     {label && (
                         <label
                             htmlFor={id}
                             className={cn(
+                                shouldUseCSS ? `${blockClass}__label` : '',
                                 getStyles("label"),
-                                sizeStyles[size].label,
                                 classes.label
                             )}
                         >
@@ -294,8 +301,8 @@ export const Checkbox = ({
                     )}
                     {description && (
                         <p className={cn(
+                            shouldUseCSS ? `${blockClass}__description` : '',
                             getStyles("description"),
-                            sizeStyles[size].description,
                             classes.description
                         )}>
                             {description}
@@ -303,8 +310,8 @@ export const Checkbox = ({
                     )}
                     {hasErrors && errorMessage && (
                         <div className={cn(
+                            shouldUseCSS ? `${blockClass}__error` : '',
                             getStyles("error"),
-                            sizeStyles[size].description,
                             classes.error
                         )}>
                             <span>{errorIcon}</span>

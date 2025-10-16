@@ -63,7 +63,7 @@ interface LoaderProps {
  *
  * A flexible and customizable loading spinner component that supports
  * multiple sizes, speeds, directions, and visual variants.
- * 
+ *
  * @component
  * @example
  * // Basic usage
@@ -95,31 +95,51 @@ export const Loader: React.FC<LoaderProps> = ({
 	success = false,
 }) => {
 	// Hook for retrieving variant-based styles
-	const { getStyles } = useLoaderVariantStyles(
+	const { getStyles, shouldUseCSS } = useLoaderVariantStyles(
 		variant,
 		customVariants,
 		{ hasErrors, disabled, success },
 		extendDefault
+	);
+	const blockClass = "dialca-loader";
+	const cssContainerClass = shouldUseCSS ? blockClass : "";
+	const cssContainerModifiers = shouldUseCSS
+		? {
+				[`${blockClass}--${variant}`]: variant !== "default",
+				[`${blockClass}--${size}`]: typeof size === "string",
+				[`${blockClass}--error`]: hasErrors,
+				[`${blockClass}--disabled`]: disabled,
+				[`${blockClass}--success`]: success,
+		}
+		: {};
+	const universalClasses = {
+		[`${blockClass}--${speed}`]: speed !== "normal",
+		[`${blockClass}--${direction}`]: direction !== "clockwise",
+	};
+	const containerClass = cn(
+		cssContainerClass,
+		cssContainerModifiers,
+		universalClasses,
+		getStyles("container"),
+		classes?.container
 	);
 
 	/**
 	 * Returns the size classes for the loader rings.
 	 */
 	const getSizeClasses = () => {
-		if (typeof size === "number") {
+		if (typeof size === "number" && !shouldUseCSS) {
 			return {
-				outer: `w-${size} h-${size}`,
-				inner: `w-${Math.max(4, size - 2)} h-${Math.max(4, size - 2)}`,
+				outerRing: `w-${size} h-${size}`,
+				innerRing: `w-${Math.max(4, size - 2)} h-${Math.max(
+					4,
+					size - 2
+				)}`,
 			};
 		}
-		const sizeMap = {
-			sm: { outer: "w-4 h-4", inner: "w-2 h-2" },
-			md: { outer: "w-8 h-8", inner: "w-6 h-6" },
-			lg: { outer: "w-12 h-12", inner: "w-10 h-10" },
-			xl: { outer: "w-16 h-16", inner: "w-14 h-14" },
-		};
-		return sizeMap[size] || sizeMap.md;
+		return { outerRing: "", innerRing: "" };
 	};
+	const customSizeStyles = getSizeClasses();
 
 	/**
 	 * Returns the Tailwind animation speed class.
@@ -145,25 +165,30 @@ export const Loader: React.FC<LoaderProps> = ({
 	// Special "dots" variant loader
 	if (variant === "dots") {
 		return (
-			<div className={cn(getStyles("container"), classes?.container)}>
+			<div className={containerClass}>
 				<div
-					className={cn(getStyles("outerRing"), classes?.outerRing)}
+					className={cn(
+						shouldUseCSS ? `${blockClass}__outer-ring` : "",
+						getStyles("outerRing"),
+						customSizeStyles.outerRing,
+						classes.outerRing
+					)}
 				/>
 				<div
 					className={cn(
+						shouldUseCSS ? `${blockClass}__inner-ring` : "",
 						getStyles("innerRing"),
-						"delay-75",
-						classes?.innerRing
+						customSizeStyles.innerRing,
+						classes.innerRing
 					)}
-					style={{ animationDelay: "75ms" }}
 				/>
 				<div
 					className={cn(
-						getStyles("innerRing"),
-						"delay-150",
-						classes?.innerRing
+						shouldUseCSS ? `${blockClass}__third-dot` : "",
+						// Fallback classes for fully custom
+						!shouldUseCSS &&
+							"w-3 h-3 bg-current rounded-full animate-bounce"
 					)}
-					style={{ animationDelay: "150ms" }}
 				/>
 			</div>
 		);
@@ -171,14 +196,13 @@ export const Loader: React.FC<LoaderProps> = ({
 
 	// Default loader (spinning rings)
 	return (
-		<div className={cn(getStyles("container"), classes.container)}>
+		<div className={containerClass}>
 			{/* Outer Ring */}
 			<div
 				className={cn(
+					shouldUseCSS ? `${blockClass}__outer-ring` : "",
 					getStyles("outerRing"),
-					sizeClasses.outer,
-					getSpeedClass(),
-					getDirectionClass(),
+					customSizeStyles.outerRing,
 					classes.outerRing
 				)}
 			>
@@ -186,10 +210,9 @@ export const Loader: React.FC<LoaderProps> = ({
 				{variant !== "minimal" && (
 					<div
 						className={cn(
+							shouldUseCSS ? `${blockClass}__inner-ring` : "",
 							getStyles("innerRing"),
-							sizeClasses.inner,
-							getSpeedClass(),
-							getDirectionClass(),
+							customSizeStyles.innerRing,
 							classes.innerRing
 						)}
 					/>
@@ -198,7 +221,13 @@ export const Loader: React.FC<LoaderProps> = ({
 
 			{/* Loader Text/Content */}
 			{(showText || text || children) && (
-				<div className={cn(getStyles("content"), classes.content)}>
+				<div
+					className={cn(
+						shouldUseCSS ? `${blockClass}__content` : "",
+						getStyles("content"),
+						classes.content
+					)}
+				>
 					{children || text}
 				</div>
 			)}

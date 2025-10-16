@@ -29,7 +29,7 @@ export interface ModalProps {
     /** Position preset for the modal. */
     position?: "center" | "top" | "bottom";
     /** Animation preset. */
-    animation?: "fade" | "slideUp" | "slideDown" | "zoom" | "none";
+    animation?: "fade" | "slide-up" | "slide-down" | "zoom" | "none";
     
     /** Variant key for custom styles. */
     variant?: string;
@@ -110,7 +110,7 @@ export const Modal = ({
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
 
-    const { getStyles } = useModalVariantStyles(
+    const { getStyles, shouldUseCSS } = useModalVariantStyles(
         variant,
         customVariants,
         {
@@ -236,15 +236,40 @@ export const Modal = ({
 
     if (!isVisible) return null;
 
+    // CSS classes
+    const blockClass = "dialca-modal";
+    const cssOverlayClass = shouldUseCSS ? `${blockClass}__overlay` : '';
+    const cssOverlayModifiers = shouldUseCSS ? {
+        [`${blockClass}--${variant}`]: variant !== 'default',
+        [`${blockClass}--${size}`]: size !== 'md',
+        [`${blockClass}--${position}`]: position !== 'center',
+        [`${blockClass}--${animation}`]: animation !== 'fade',
+        [`${blockClass}--open`]: !isAnimating && isOpen,
+        [`${blockClass}--has-title`]: !!title,
+    } : {};
+
+    const overlayClasses = cn(
+        blockClass,
+        cssOverlayClass,
+        cssOverlayModifiers,
+        shouldUseCSS ? '' : `${!isAnimating && isOpen ? 'opacity-100' : 'opacity-0'}`,
+        getStyles("overlay"),
+        classes.overlay,
+        className
+    );
+
+    const containerClasses = cn(
+        shouldUseCSS ? `${blockClass}__container` : `${!isAnimating && isOpen ? 'opacity-100 scale-100' : 'scale-95 translate-y-4'} ${!isAnimating && isOpen ? 'opacity-100 scale-100' : 'scale-95 translate-y-4'}
+            ${animation === 'slide-up' && (isAnimating && isOpen) ? 'translate-y-4! opacity-0!' : ''}
+            ${animation === 'slide-down' && (isAnimating && isOpen) ? '-translate-y-4! opacity-0!' : ''}
+            ${animation === 'zoom' && (isAnimating && isOpen) ? 'scale-95! opacity-0!' : ''}`,
+        getStyles("container"),
+        classes.container
+    );
+
     return (
         <div
-            className={cn(
-                getStyles("overlay"),
-                isAnimating && isOpen && "opacity-0",
-                isAnimating && !isOpen && "opacity-0",
-                classes.overlay,
-                className
-            )}
+            className={overlayClasses}
             role="dialog"
             aria-modal="true"
             aria-labelledby={title ? "modal-title" : undefined}
@@ -252,24 +277,24 @@ export const Modal = ({
         >
             <div
                 ref={modalRef}
-                className={cn(
-                    getStyles("container"),
-                    isAnimating && isOpen && animation === "slideUp" && "translate-y-4 opacity-0",
-                    isAnimating && isOpen && animation === "slideDown" && "-translate-y-4 opacity-0",
-                    isAnimating && isOpen && animation === "zoom" && "scale-95 opacity-0",
-                    isAnimating && isOpen && animation === "fade" && "opacity-0",
-                    isAnimating && !isOpen && "opacity-0",
-                    classes.container
-                )}
+                className={containerClasses}
                 {...containerProps}
             >
                 {/* Header */}
                 {(title || showCloseButton) && (
-                    <div className={cn(getStyles("header"), classes.header)}>
+                    <div className={cn(
+                        shouldUseCSS ? `${blockClass}__header` : '',
+                        getStyles("header"), 
+                        classes.header
+                    )}>
                         {title && (
                             <h2
                                 id="modal-title"
-                                className={cn(getStyles("title"), classes.title)}
+                                className={cn(
+                                    shouldUseCSS ? `${blockClass}__title` : '',
+                                    getStyles("title"), 
+                                    classes.title
+                                )}
                             >
                                 {title}
                             </h2>
@@ -278,7 +303,11 @@ export const Modal = ({
                             <button
                                 type="button"
                                 onClick={onClose}
-                                className={cn(getStyles("closeButton"), classes.closeButton)}
+                                className={cn(
+                                    shouldUseCSS ? `${blockClass}__close-button` : '',
+                                    getStyles("closeButton"), 
+                                    classes.closeButton
+                                )}
                                 aria-label="Cerrar modal"
                             >
                                 {closeIcon || <FaTimes />}
@@ -288,7 +317,12 @@ export const Modal = ({
                 )}
 
                 {/* Content */}
-                <div className={cn(getStyles("content"), classes.content)}>
+                <div className={cn(
+                    shouldUseCSS ? `${blockClass}__content` : '',
+                    title && (shouldUseCSS ? '' : ''),
+                    getStyles("content"), 
+                    classes.content
+                )}>
                     {children}
                 </div>
             </div>

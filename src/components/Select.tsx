@@ -14,12 +14,6 @@ interface SelectOption {
 
 /**
  * Props for the {@link Select} component.
- *
- * This component renders a custom select dropdown.
- * - Supports custom variants and styles
- * - Displays error messages and icons
- * - Handles disabled, loading, and required states
- *
  */
 export interface SelectProps {
     /** Label for the select input. */
@@ -132,7 +126,7 @@ export const Select = ({
     const [isFocused, setIsFocused] = useState(false);
     const selectRef = useRef<HTMLDivElement>(null);
 
-    const { getStyles } = useSelectVariantStyles(
+    const { getStyles, shouldUseCSS } = useSelectVariantStyles(
         variant,
         customVariants,
         {
@@ -185,21 +179,35 @@ export const Select = ({
         onBlur();
     };
 
-    const getInputPadding = () => {
-        let padding = '';
-        if (icon) padding += ' pl-10';
-        if (loadingIcon || isLoading) padding += ' pr-12';
-        else padding += ' pr-10'; // Espacio para flecha
-        return padding;
-    };
+    // CSS classes
+    const blockClass = "dialca-select";
+    const cssContainerClass = shouldUseCSS ? blockClass : '';
+    const cssContainerModifiers = shouldUseCSS ? {
+        [`${blockClass}--${variant}`]: variant !== 'default',
+        [`${blockClass}--error`]: hasErrors,
+        [`${blockClass}--disabled`]: disabled,
+        [`${blockClass}--focused`]: isFocused,
+        [`${blockClass}--open`]: isOpen,
+        [`${blockClass}--has-value`]: !!value,
+        [`${blockClass}--has-icon`]: !!icon,
+        [`${blockClass}--loading`]: isLoading && !!loadingIcon,
+    } : {};
+
+    const containerClasses = cn(
+        cssContainerClass,
+        cssContainerModifiers,
+        getStyles("container"),
+        classes.container,
+        className
+    );
 
     return (
         <div>
-            <div className={cn(getStyles('container'), classes.container)} ref={selectRef}>
+            <div className={containerClasses} ref={selectRef}>
                 <div
                     className={cn(
-                        getStyles('input'),
-                        getInputPadding(),
+                        shouldUseCSS ? `${blockClass}__field` : ``,
+                        getStyles("input"),
                         classes.input
                     )}
                     onClick={handleOpen}
@@ -210,9 +218,16 @@ export const Select = ({
                     aria-haspopup="listbox"
                     aria-disabled={disabled}
                 >
-                    <div className={`flex-1 ${!selectedOption ? "text-gray-400" : ""}`}>
+                    <div className={cn(
+                        shouldUseCSS ? `${blockClass}__value` : 'flex-1 flex items-center gap-2',
+                        !selectedOption && (shouldUseCSS ? `${blockClass}__placeholder` : 'text-gray-400')
+                    )}>
                         {selectedOption ? (
-                            <span className="flex items-center gap-2">
+                            <span style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: ".5rem"
+                            }}>
                                 {selectedOption.icon}
                                 {selectedOption.label}
                             </span>
@@ -222,33 +237,58 @@ export const Select = ({
                     </div>
                     <input type="hidden" name={name} value={value} />
                 </div>
+                
                 <label
                     className={cn(
-                        getStyles('label'),
-                        icon ? "left-[2.5em]" : "left-[1em]",
+                        shouldUseCSS ? `${blockClass}__label` : ``,
+                        getStyles("label"),
                         classes.label
                     )}
                 >
                     {label}
-                    {required && <span className="text-red-500 font-black ml-0.5">*</span>}
+                    {required && (
+                        <span className={cn(
+                            shouldUseCSS ? `${blockClass}__required` : 'text-red-500 font-black ml-0.5'
+                        )}>
+                            *
+                        </span>
+                    )}
                 </label>
+
                 {icon && (
-                    <div className={cn(getStyles('icon'), classes.icon)}>
+                    <div className={cn(
+                        shouldUseCSS ? `${blockClass}__icon` : '',
+                        getStyles("icon"),
+                        classes.icon
+                    )}>
                         {icon}
                     </div>
                 )}
+
                 {isLoading && loadingIcon ? (
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin">
+                    <div className={cn(
+                        shouldUseCSS ? `${blockClass}__loader` : ''
+                    )}>
                         {loadingIcon}
                     </div>
                 ) : (
-                    <div className={cn(getStyles('arrow'), classes.arrow)}>
+                    <div className={cn(
+                        shouldUseCSS ? `${blockClass}__arrow` : '',
+                        isOpen && !shouldUseCSS ? 'rotate-180' : '',
+                        getStyles("arrow"),
+                        classes.arrow
+                    )}>
                         <FaChevronDown />
                     </div>
                 )}
+
                 {isOpen && !disabled && (
                     <div
-                        className={cn(getStyles('menu'), classes.menu)}
+                        className={cn(
+                            shouldUseCSS ? `${blockClass}__menu` : ``,
+                            getStyles("menu"),
+                            classes.menu
+                        )}
                         style={{ maxHeight }}
                         role="listbox"
                     >
@@ -257,33 +297,45 @@ export const Select = ({
                                 <div
                                     key={option.value}
                                     className={cn(
-                                        getStyles('option'),
-                                        value === option.value
-                                            ? (classes.selectedOption, getStyles('selectedOption'))
-                                            : "",
-                                        option.disabled && "opacity-50 cursor-not-allowed",
-                                        classes.option
+                                        shouldUseCSS ? `${blockClass}__option` : '',
+                                        value === option.value && (shouldUseCSS ? `${blockClass}__option--selected` : ''),
+                                        option.disabled && (shouldUseCSS ? `${blockClass}__option--disabled` : 'opacity-50 cursor-not-allowed'),
+                                        getStyles("option"),
+                                        value === option.value && getStyles("selectedOption"),
+                                        classes.option,
+                                        value === option.value && classes.selectedOption
                                     )}
                                     onClick={() => !option.disabled && handleSelect(option.value)}
                                     role="option"
                                     aria-selected={value === option.value}
                                 >
-                                    <span className="flex items-center gap-2">
+                                    <span style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: ".5rem"
+                                    }}>
                                         {option.icon}
                                         {option.label}
                                     </span>
                                 </div>
                             ))
                         ) : (
-                            <div className="px-4 py-3 text-gray-500 text-center">
+                            <div className={cn(
+                                shouldUseCSS ? `${blockClass}__no-options` : 'px-4 py-3 text-gray-500 text-center'
+                            )}>
                                 No hay opciones disponibles
                             </div>
                         )}
                     </div>
                 )}
             </div>
+
             {hasErrors && errorMessage && (
-                <div className={cn(getStyles('error'), classes.error)}>
+                <div className={cn(
+                    shouldUseCSS ? `${blockClass} ${blockClass}__error` : '',
+                    getStyles("error"),
+                    classes.error
+                )}>
                     {errorIcon || <FaExclamationCircle size={17} />}
                     {errorMessage}
                 </div>

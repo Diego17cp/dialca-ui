@@ -95,7 +95,7 @@ export const Button = ({
     const showLoadingText = loading && loadingText;
     const finalContent = showLoadingText ? loadingText : content;
 
-    const { getStyles } = useButtonVariantStyles(
+    const { shouldUseCSS, getStyles } = useButtonVariantStyles(
         variant,
         customVariants,
         {
@@ -108,13 +108,23 @@ export const Button = ({
         extendDefault
     );
 
-    // Size mappings
-    const sizeStyles = {
-        sm: "px-3 py-2 text-sm gap-2",
-        md: "px-6 py-3 text-base gap-2",
-        lg: "px-8 py-4 text-lg gap-3",
-        xl: "px-10 py-5 text-xl gap-4"
-    };
+    // CSS classes
+    const blockClass = "dialca-button";
+    const cssContainerClass = shouldUseCSS ? blockClass : '';
+    const cssContainerModifiers = shouldUseCSS ? {
+        [`${blockClass}--${variant}`]: variant !== 'default',
+        [`${blockClass}--${size}`]: size !== 'md',
+        [`${blockClass}--loading`]: loading,
+        [`${blockClass}--disabled`]: isDisabled,
+    } : {};
+
+    const containerClasses = cn(
+        cssContainerClass,
+        cssContainerModifiers,
+        getStyles("container"),
+        classes.container,
+        className
+    );
 
     const handleFocus = (e: React.FocusEvent<HTMLButtonElement>) => {
         setIsFocused(true);
@@ -148,9 +158,12 @@ export const Button = ({
     };
 
     const renderIcon = () => {
+        const loaderClass = shouldUseCSS ? `${blockClass}__loader` : '';
+        const iconClass = shouldUseCSS ? `${blockClass}__icon` : '';
+
         if (loading && loadingIcon) {
             return (
-                <span className={cn(getStyles("loader"), classes.loader)}>
+                <span className={cn(loaderClass, getStyles("loader"), classes.loader)}>
                     {loadingIcon}
                 </span>
             );
@@ -159,7 +172,9 @@ export const Button = ({
         if (loading && !loadingIcon) {
             return (
                 <div className={cn(
-                    "w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin",
+                    loaderClass,
+                    // Fallback spinner si no hay CSS
+                    !shouldUseCSS && "w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin",
                     getStyles("loader"),
                     classes.loader
                 )}>
@@ -169,7 +184,7 @@ export const Button = ({
 
         if (icon) {
             return (
-                <span className={cn(getStyles("icon"), classes.icon)}>
+                <span className={cn(iconClass, getStyles("icon"), classes.icon)}>
                     {icon}
                 </span>
             );
@@ -180,12 +195,7 @@ export const Button = ({
 
     return (
         <button
-            className={cn(
-                getStyles("container"),
-                sizeStyles[size],
-                classes.container,
-                className
-            )}
+            className={containerClasses}
             disabled={isDisabled}
             onFocus={handleFocus}
             onBlur={handleBlur}
@@ -198,7 +208,11 @@ export const Button = ({
             {iconPosition === "left" && renderIcon()}
             
             {finalContent && (
-                <span className={cn(getStyles("content"), classes.content)}>
+                <span className={cn(
+                    shouldUseCSS ? `${blockClass}__content` : '',
+                    getStyles("content"), 
+                    classes.content
+                )}>
                     {finalContent}
                 </span>
             )}

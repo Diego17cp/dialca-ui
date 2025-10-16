@@ -14,12 +14,6 @@ interface RadioOption {
 
 /**
  * Props for the {@link RadioInput} component.
- *
- * This component renders a group of radio buttons or a single radio input.
- * - Supports custom variants and styles
- * - Displays error messages and icons
- * - Handles disabled and checked states
- *
  */
 export interface RadioInputProps
     extends Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "type"> {
@@ -118,7 +112,8 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
         const radioOptions = isSingleMode
             ? [{ value: "single", label: label!, description, disabled: false }]
             : options || [];
-        const { getStyles } = useRadioVariantStyles(
+
+        const { getStyles, shouldUseCSS } = useRadioVariantStyles(
             variant,
             customVariants,
             {
@@ -139,14 +134,24 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
                 onChange?.(optionValue);
             }
         };
+        const blockClass = "dialca-radio";
+        const groupClass = shouldUseCSS ? "dialca-radio-group" : "";
 
         return (
             <>
-                <div className="space-y-3">
+                <div className={cn(groupClass, classes.container)}>
                     {radioOptions.map((option, index) => {
                         const isChecked = value === option.value;
                         const isDisabled = disabled || option.disabled;
                         const radioId = `${name}-${option.value}-${index}`;
+
+                        const cssRadioClass = shouldUseCSS ? blockClass : '';
+                        const cssRadioModifiers = shouldUseCSS ? {
+                            [`${blockClass}--${variant}`]: variant !== 'default',
+                            [`${blockClass}--checked`]: isChecked,
+                            [`${blockClass}--disabled`]: isDisabled!,
+                            [`${blockClass}--error`]: hasErrors,
+                        } : {};
 
                         const { getStyles: getRadioStyles } = useRadioVariantStyles(
                             variant,
@@ -165,8 +170,9 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
                                 key={option.value}
                                 htmlFor={radioId}
                                 className={cn(
+                                    cssRadioClass,
+                                    cssRadioModifiers,
                                     getRadioStyles("container"),
-                                    classes.container,
                                     className
                                 )}
                             >
@@ -180,18 +186,34 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
                                     disabled={isDisabled}
                                     onChange={() => handleChange(option.value)}
                                     className={cn(
+                                        shouldUseCSS ? `${blockClass}__input` : '',
                                         getRadioStyles("radio"),
-                                        classes.radio
+                                        classes.radio,
+                                        // Fallback para fully custom
+                                        !shouldUseCSS && "w-5 h-5 border-2 border-gray-300 rounded-full"
                                     )}
                                     {...props}
                                 />
 
-                                <div className={cn(getRadioStyles("label"), classes.label)}>
-                                    <span className={cn(getRadioStyles("text"), classes.text)}>
+                                <div className={cn(
+                                    shouldUseCSS ? `${blockClass}__label` : '',
+                                    getRadioStyles("label"), 
+                                    classes.label
+                                )}>
+                                    <span className={cn(
+                                        shouldUseCSS ? `${blockClass}__text` : '',
+                                        getRadioStyles("text"), 
+                                        classes.text
+                                    )}>
                                         {option.label}
                                     </span>
+                                    
                                     {option.description && (
-                                        <div className={cn(getRadioStyles("description"), classes.description)}>
+                                        <div className={cn(
+                                            shouldUseCSS ? `${blockClass}__description` : '',
+                                            getRadioStyles("description"), 
+                                            classes.description
+                                        )}>
                                             {option.description}
                                         </div>
                                     )}
@@ -200,8 +222,13 @@ export const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>(
                         );
                     })}
                 </div>
+                
                 {hasErrors && errorMessage && (
-                    <div className={cn(getStyles("error"), classes.error)}>
+                    <div className={cn(
+                        shouldUseCSS ? `${blockClass} ${blockClass}__error` : '',
+                        getStyles("error"), 
+                        classes.error
+                    )}>
                         {errorIcon || <FaExclamationCircle size={17} />}
                         {errorMessage}
                     </div>

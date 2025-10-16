@@ -126,7 +126,7 @@ export const TxtArea = ({
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const [showFloatingCounter, setShowFloatingCounter] = useState(false);
 
-    const { getStyles } = useTxtAreaVariantStyles(
+    const { getStyles, shouldUseCSS } = useTxtAreaVariantStyles(
         variant,
         customVariants,
         { hasErrors, disabled, resizing: allowResize },
@@ -161,37 +161,53 @@ export const TxtArea = ({
         return () => textarea.removeEventListener('input', checkLines);
     }, [hasCharCount, charCountType, value]);
 
-    const getRightPadding = () => {
-        if (isLoading && loader) return "pr-12";
-        if (icon) return "pr-12";
-        if (hasCharCount && charCountType === 'floating-circle' && showFloatingCounter) return "pr-16";
-        return "";
-    };
-
     const currentLength = value?.length || 0;
     const percentage = (currentLength / maxLength) * 100;
 
     const getCounterColor = () => {
-        if (percentage >= 90) return 'text-red-500';
-        if (percentage >= 75) return 'text-yellow-500';
-        return 'text-gray-500';
+        if (percentage >= 90) return 'dialca-textarea__counter--danger';
+        if (percentage >= 75) return 'dialca-textarea__counter--warning';
+        return 'dialca-textarea__counter--normal';
     };
+
+    // BEM classes
+    const blockClass = "dialca-textarea";
+    const bemContainerClass = shouldUseCSS ? blockClass : '';
+    const bemContainerModifiers = shouldUseCSS ? {
+        [`${blockClass}--${variant}`]: variant !== 'default',
+        [`${blockClass}--error`]: hasErrors,
+        [`${blockClass}--disabled`]: disabled,
+        [`${blockClass}--has-value`]: Boolean(value),
+        [`${blockClass}--loading`]: Boolean(isLoading && loader),
+        [`${blockClass}--has-icon`]: Boolean(icon) && !isLoading,
+        [`${blockClass}--has-floating-counter`]: hasCharCount && charCountType === 'floating-circle' && showFloatingCounter,
+    } : {};
+
+    const containerClasses = cn(
+        bemContainerClass,
+        bemContainerModifiers,
+        getStyles("container"),
+        classes.container,
+    );
 
     return (
         <div>
             {/* Top Counter */}
             {hasCharCount && charCountType === 'top' && (
-                <div className={`text-sm text-right mb-1 ${getCounterColor()}`}>
+                <div className={cn(
+                    shouldUseCSS ? `${blockClass}__counter--top` : '',
+                    shouldUseCSS ? getCounterColor() : (percentage >= 90 ? 'text-red-500' : percentage >= 75 ? 'text-yellow-500' : 'text-gray-500')
+                )}>
                     {currentLength}/{maxLength}
                 </div>
             )}
 
-            <div className={cn(getStyles("container"), classes.container)}>
+            <div className={containerClasses}>
                 <textarea
                     ref={textareaRef}
                     className={cn(
+                        shouldUseCSS ? `${blockClass}__field` : ``,
                         getStyles("textarea"),
-                        getRightPadding(),
                         className,
                         classes.textarea
                     )}
@@ -199,25 +215,35 @@ export const TxtArea = ({
                     value={value}
                     disabled={disabled}
                     onChange={onChange}
-                    style={{ overflowY: "auto" }}
+                    style={{ overflowY: "auto", resize: allowResize || variant === "resizable" ? 'vertical' : 'none' }}
                     maxLength={maxLength}
                     {...props}
                 />
+                
                 <label
                     className={cn(
+                        shouldUseCSS ? `${blockClass}__label` : ``,
                         getStyles("label"),
-                        value ? "-top-0.5 -translate-y-1/2 text-[.85rem]" : "",
                         classes.label
                     )}
                 >
                     {label}
                     {required && (
-                        <span className="text-red-500 font-black ml-0.5">*</span>
+                        <span className={cn(
+                            shouldUseCSS ? `${blockClass}__required` : ''
+                        )}>
+                            *
+                        </span>
                     )}
                 </label>
+
                 {/* Circular Floating Counter */}
                 {hasCharCount && charCountType === 'floating-circle' && showFloatingCounter && (
-                    <div className={cn(getStyles("charCounter"), classes.charCounter)}>
+                    <div className={cn(
+                        shouldUseCSS ? `${blockClass}__char-counter` : '',
+                        getStyles("charCounter"), 
+                        classes.charCounter
+                    )}>
                         <CharCounter
                             maxLength={maxLength}
                             value={value}
@@ -225,15 +251,25 @@ export const TxtArea = ({
                         />
                     </div>
                 )}
+
                 {/* Loader */}
                 {isLoading && loader && (
-                    <div className={cn(getStyles("loader"), classes.loader)}>
+                    <div className={cn(
+                        shouldUseCSS ? `${blockClass}__loader` : '',
+                        getStyles("loader"), 
+                        classes.loader
+                    )}>
                         {loader}
                     </div>
                 )}
+
                 {/* Icon */}
                 {icon && !isLoading && (
-                    <div className={cn(getStyles("icon"), classes.icon)}>
+                    <div className={cn(
+                        shouldUseCSS ? `${blockClass}__icon` : '',
+                        getStyles("icon"), 
+                        classes.icon
+                    )}>
                         {icon}
                     </div>
                 )}
@@ -241,14 +277,21 @@ export const TxtArea = ({
 
             {/* Bottom Counter */}
             {hasCharCount && charCountType === 'bottom' && (
-                <div className={`text-xs text-right mt-1 ${getCounterColor()}`}>
+                <div className={cn(
+                    shouldUseCSS ? `${blockClass}__counter--bottom` : 'text-xs text-right mt-1',
+                    shouldUseCSS ? getCounterColor() : (percentage >= 90 ? 'text-red-500' : percentage >= 75 ? 'text-yellow-500' : 'text-gray-500')
+                )}>
                     {currentLength}/{maxLength}
                 </div>
             )}
 
             {/* Error message */}
             {hasErrors && errorMessage && (
-                <div className={cn(getStyles("error"), classes.error)}>
+                <div className={cn(
+                    shouldUseCSS ? `${blockClass} ${blockClass}__error` : '',
+                    getStyles("error"), 
+                    classes.error
+                )}>
                     {errorIcon ? (
                         <>{errorIcon}</>
                     ) : (

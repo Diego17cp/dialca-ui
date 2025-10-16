@@ -150,7 +150,7 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 		},
 		ref
 	) => {
-		const { getStyles } = useInputVariantStyles(
+		const { getStyles, shouldUseCSS } = useInputVariantStyles(
 			variant,
 			customVariants,
 			{ hasErrors, disabled },
@@ -162,11 +162,44 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 				? "text"
 				: "password"
 			: props.type || "text";
+		
+		const blockClass = "dialca-input"
+		const hasValue = Boolean(value && value.toString().trim())
+		const hasStartIcon = Boolean(startIcon)
+		const hasEndContent = Boolean(endIcon || icon || loader || (isPassword && onToggleVisibility))
+		
+		// Get variant styles from customization hook
+		const variantContainer = getStyles("container");
+		const variantInput = getStyles("input");
+		const variantLabel = getStyles("label");
+		const variantButton = getStyles("button");
+		const variantIcon = getStyles("icon");
+		const variantLoader = getStyles("loader");
+		const variantError = getStyles("error");
+
+		// Default classes for each part of the component
+		const containerModifiers = shouldUseCSS ? {
+			[`${blockClass}--error`]: hasErrors,
+			[`${blockClass}--disabled`]: disabled,
+			[`${blockClass}--has-value`]: hasValue,
+			[`${blockClass}--has-start-icon`]: hasStartIcon,
+			[`${blockClass}--has-end-content`]: hasEndContent,
+			[`${blockClass}--${variant}`]: variant !== "default",
+		} : {}
+		const containerClasses = cn(
+			shouldUseCSS ? blockClass : "",
+			containerModifiers,
+			variantContainer,
+			classes.container
+		)
 
 		const getRightElement = () => {
+			const loaderClass = shouldUseCSS ? `${blockClass}__loader` : '';
+            const buttonClass = shouldUseCSS ? `${blockClass}__button` : '';
+            const iconClass = shouldUseCSS ? `${blockClass}__icon` : '';
 			if (isLoading && loader)
 				return (
-					<div className={cn(getStyles("loader"), classes.loader)}>
+					<div className={cn(loaderClass, variantLoader, classes.loader)}>
 						{loader}
 					</div>
 				);
@@ -178,7 +211,7 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 				return (
 					<button
 						type="button"
-						className={cn(getStyles("button"), classes.button)}
+						className={cn(buttonClass, variantButton, classes.button)}
 						onClick={onToggleVisibility}
 					>
 						{passwordIcon}
@@ -189,7 +222,7 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 			if (endIcon || icon) {
 				const iconElement = endIcon || icon;
 				return (
-					<div className={cn(getStyles("icon"), classes.icon)}>
+					<div className={cn(iconClass, variantIcon, classes.icon)}>
 						{iconElement}
 					</div>
 				);
@@ -200,46 +233,29 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 
 		return (
 			<div>
-				<div className={cn(getStyles("container"), classes.container)}>
+				<div className={cn(containerClasses)}>
 					{startIcon && (
-						<div className="absolute left-[.8em] top-[45%] -translate-y-1/2 text-gray-500 z-10">
+						<div className={cn(
+                            shouldUseCSS ? `${blockClass}__start-icon` : '',
+                            variantIcon
+                        )}>
 							{startIcon}
 						</div>
 					)}
 					<input
 						ref={ref}
 						type={inputType}
-						className={cn(
-							getStyles("input"),
-							startIcon ? "pl-12" : undefined,
-							endIcon ||
-								icon ||
-								loader ||
-								(isPassword && onToggleVisibility)
-								? "pr-12"
-								: undefined,
-							className,
-							classes.input
-						)}
+						className={cn(shouldUseCSS ? `${blockClass}__field` : "", variantInput, className, classes.input)}
 						placeholder=" "
 						value={value}
 						disabled={disabled}
 						onChange={onChange}
 						{...props}
 					/>
-					<label
-						className={cn(
-							getStyles("label"),
-							startIcon ? "left-12" : undefined,
-							value
-								? "-top-0.5 -translate-y-1/2 text-[.85rem] "
-								: "",
-							classes.label
-						)}
-					>
+					<label className={cn(shouldUseCSS ? `${blockClass}__label` : "", variantLabel, classes.label)}>
 						{label}
 						{required && (
-							<span className="text-red-500 font-black ml-0.5">
+							<span className={shouldUseCSS ? `${blockClass}__required` : ""}>
 								*
 							</span>
 						)}
@@ -247,7 +263,7 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 					{getRightElement()}
 				</div>
 				{hasErrors && errorMessage && (
-					<div className={cn(getStyles("error"), classes.error)}>
+					<div className={cn(shouldUseCSS ? `${blockClass}__error` : "", variantError, classes.error)}>
 						{errorIcon ? (
 							<>{errorIcon}</>
 						) : (

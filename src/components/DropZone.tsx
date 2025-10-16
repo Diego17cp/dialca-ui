@@ -30,6 +30,10 @@ interface Props {
     errorMessage?: string;
     /** Optional icon to display when an error occurs. */
     errorIcon?: React.ReactNode;
+    /** Size of the dropzone. */
+    size?: "sm" | "md" | "lg";
+    /** Whether the dropzone is disabled. */
+    disabled?: boolean;
     /** Variant key to determine styling via `variants`. */
     variant?: string;
     /** Object mapping variant names to style definitions. */
@@ -44,6 +48,8 @@ interface Props {
         title?: string;
         description?: string;
     };
+    /** Additional className for the main container. */
+    className?: string;
 }
 
 /**
@@ -87,43 +93,99 @@ export const DropZone: React.FC<Props> = ({
     errorIcon,
     errorMessage,
     hasErrors = false,
+    size = "md",
+    disabled = false,
     variant = "default",
-    variants,
-    extendDefault,
-    classes
+    variants: customVariants = {},
+    extendDefault = true,
+    classes = {},
+    className = "",
 }) => {
-    const { getStyles } = useDropZoneVariantStyles(
+    const { getStyles, shouldUseCSS } = useDropZoneVariantStyles(
         variant,
-        variants,
+        customVariants,
         { hasErrors, isDragging },
         extendDefault
     );
 
+    // CSS classes
+    const blockClass = "dialca-dropzone";
+    const cssContainerClass = shouldUseCSS ? blockClass : '';
+    const cssContainerModifiers = shouldUseCSS ? {
+        [`${blockClass}--${variant}`]: variant !== 'default',
+        [`${blockClass}--${size}`]: size !== 'md',
+        [`${blockClass}--error`]: hasErrors,
+        [`${blockClass}--dragging`]: isDragging,
+        [`${blockClass}--disabled`]: disabled,
+    } : {};
+
+    const containerWrapperClasses = cn(
+        cssContainerClass,
+        cssContainerModifiers,
+        getStyles("container"),
+        classes.container,
+        className
+    );
+
+    const containerClasses = cn(shouldUseCSS ? `${blockClass}__container` : ``);
+
     return (
-        <div>
+        <div className={containerWrapperClasses}>
             <div
-                className={cn(getStyles("container"), classes?.container)}
-                onClick={onClick}
-                onDragOver={onDragOver}
-                onDragLeave={onDragLeave}
-                onDrop={onDrop}
+                className={containerClasses}
+                onClick={disabled ? undefined : onClick}
+                onDragOver={disabled ? undefined : onDragOver}
+                onDragLeave={disabled ? undefined : onDragLeave}
+                onDrop={disabled ? undefined : onDrop}
+                role="button"
+                tabIndex={disabled ? -1 : 0}
+                aria-disabled={disabled}
+                aria-describedby={hasErrors && errorMessage ? "dropzone-error" : undefined}
+                onKeyDown={(e) => {
+                    if (!disabled && (e.key === 'Enter' || e.key === ' ')) {
+                        e.preventDefault();
+                        onClick();
+                    }
+                }}
             >
                 {children || (
                     <>
-                        <div className={cn(getStyles("icon"), classes?.icon)}>
+                        <div className={cn(
+                            shouldUseCSS ? `${blockClass}__icon` : '',
+                            hasErrors && !shouldUseCSS ? 'text-red-500' : '',
+                            getStyles("icon"), 
+                            classes?.icon
+                        )}>
                             {errorIcon && hasErrors ? errorIcon : icon}
                         </div>
-                        <p className={cn(getStyles("title"), classes?.title)}>
+                        <p className={cn(
+                            shouldUseCSS ? `${blockClass}__title` : '',
+                            hasErrors && !shouldUseCSS ? 'text-red-700' : '',
+                            getStyles("title"), 
+                            classes?.title
+                        )}>
                             {title}
                         </p>
-                        <p className={cn(getStyles("description"), classes?.description)}>
+                        <p className={cn(
+                            shouldUseCSS ? `${blockClass}__description` : '',
+                            hasErrors && !shouldUseCSS ? 'text-red-600' : '',
+                            getStyles("description"), 
+                            classes?.description
+                        )}>
                             {description}
                         </p>
                     </>
                 )}
             </div>
             {hasErrors && errorMessage && (
-                <div className={cn(getStyles("error"), classes?.error)}>
+                <div 
+                    id="dropzone-error"
+                    className={cn(
+                        shouldUseCSS ? `${blockClass}__error` : '',
+                        getStyles("error"), 
+                        classes?.error
+                    )}
+                >
                     {errorIcon}
                     {errorMessage}
                 </div>
@@ -131,3 +193,5 @@ export const DropZone: React.FC<Props> = ({
         </div>
     );
 };
+
+DropZone.displayName = "DropZone";
