@@ -18,16 +18,19 @@
     },
     "./styles": {
       "types": "./dist/styles.d.ts",
-      "default": "./dist/dialcaui.css"
+      "default": "./dist/dialca-ui.css"
     },
     "./css": {
       "types": "./dist/styles.d.ts",
-      "default": "./dist/dialcaui.css"
+      "default": "./dist/dialca-ui.css"
     }
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "tsup && postcss ./src/styles/dialcaui.css -o ./dist/dialcaui.css && copy src\\styles.d.ts dist\\styles.d.ts",
+    "build:ts": "tsup",
+    "build:css": "postcss ./src/styles/dialca-ui.css -o ./dist/dialca-ui.css",
+    "copy:types": "copy src\\styles.d.ts dist\\styles.d.ts",
+    "build": "npm run clean && npm run build:ts && npm run build:css && npm run copy:types",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "patch": "npm version patch",
