@@ -1,0 +1,83 @@
+/*!
+ * DialcaUI - A Simple React Components Library
+ * Version: 1.2.5
+ * https://github.com/Diego17cp/dialca-ui
+ *
+ *
+ * License: MIT
+ * Copyright (c) 2025 DialcaDev
+ */
+
+/* 
+============================
+DialcaUI - CSS COMPONENTS
+============================
+*/
+
+/* Import all components styles */
+@import './components/button.css';
+@import './components/checkbox.css';
+@import './components/circle-char-counter.css';
+@import './components/dropzone.css';
+@import './components/input-field.css';
+@import './components/loader.css';
+@import './components/modal.css';
+@import './components/radio-input.css';
+@import './components/searchable-select.css';
+@import './components/select.css';
+@import './components/switch.css';
+@import './components/textarea.css';
+
+/* 
+============================
+GLOBAL STYLES
+============================
+*/
+
+:root {
+    --dialca-primary: #3a7dc0;
+    --dialca-secondary: #085691;
+    --dialca-primary-light: rgba(58, 125, 192, 0.1);
+}
+
+/* 
+============================
+UTILITY CLASSES
+============================
+*/
+
+/* Screen Reader Only */
+.dialca-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 
+============================
+COMPONENT RESET
+============================
+*/
+[class*="dialca-"] {
+    box-sizing: border-box;
+}
+
+[class*="dialca-"]:before,
+[class*="dialca-"]:after {
+    box-sizing: border-box;
+}
+
+[class*="dialca-"] {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
