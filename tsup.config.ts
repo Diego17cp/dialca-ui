@@ -7,6 +7,7 @@ export default defineConfig({
     external: ["react", "react-dom"],
     sourcemap: true,
     clean: true,
-    injectStyle: true,
-    // css: true
+    injectStyle: false,
+    outDir: "dist",
+    treeshake: true,
 })
