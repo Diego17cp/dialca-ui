@@ -20,8 +20,23 @@ export * from './components/SearchableSelect';
 export * from './utils/classNames';
 
 // ==================
+// Hooks
+// ==================
+export * from "./hooks/useButtonVariants";
+export * from "./hooks/useCheckboxVariants";
+export * from "./hooks/useDropzoneVariants";
+export * from "./hooks/useInputVariants";
+export * from "./hooks/useLoaderVariants";
+export * from "./hooks/useModalVariants";
+export * from "./hooks/useRadioVariants";
+export * from "./hooks/useSearchableSelectVariants";
+export * from "./hooks/useSelectVariants";
+export * from "./hooks/useDropzoneVariants";
+export * from "./hooks/useSwitchVariants";
+export * from "./hooks/useTxtAreaVariants";
+
+// ==================
 // Tipos
 // ==================
 
 import './types.d.ts';
-
