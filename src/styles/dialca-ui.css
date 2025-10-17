@@ -58,26 +58,3 @@ UTILITY CLASSES
     white-space: nowrap;
     border: 0;
 }
-
-/* 
-============================
-COMPONENT RESET
-============================
-*/
-[class*="dialca-"] {
-    box-sizing: border-box;
-}
-
-[class*="dialca-"]:before,
-[class*="dialca-"]:after {
-    box-sizing: border-box;
-}
-
-[class*="dialca-"] {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
