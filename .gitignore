@@ -10,6 +10,9 @@ playground/dist/
 /test
 # vite.config.js
 
+# Dev files for development
+src/dev
+
 # Lock files
 pnpm-lock.yaml
 package-lock.json
