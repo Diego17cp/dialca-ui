@@ -28,7 +28,9 @@ It includes ready-to-use components with flexible styles; just import and use.
 
 ---
 
-<h2 id="installation">Installation⏬</h2>
+<h2 id="installation">Installation & Setup ⏬</h2>
+
+### 1. Install the package via your preferred package manager:
 
 ```bash
 # with Yarn
@@ -46,13 +48,25 @@ $ bun add dialca-ui
 
 <h2 id="usage">Basic Usage⚙️</h2>
 
-First, import the package styles in your css entry file:
+### 2. Import the styles in your main CSS/SCSS file:
+
+#### Method 1: Import the styles directly in your main CSS/SCSS file
 
 ```css
 @import "dialca-ui/styles";
+/* or */
+@import "dialca-ui/css";
 ```
 
-Now, you can use the components in your application:
+#### Method 2: Import the styles in your main TypeScript/JavaScript file
+
+```tsx
+import "dialca-ui/styles";
+// or
+import "dialca-ui/css";
+```
+
+### 3. Start using the components in your React application:
 
 ```tsx
 import { InputField } from 'dialca-ui';
