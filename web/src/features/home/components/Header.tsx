@@ -12,12 +12,12 @@ export const Header = () => {
     const navigationItems = [
         { 
             name: 'Docs', 
-            href: '/docs',
+            href: '/docs/overview/getting-started',
             description: 'Documentation & guides'
         },
         { 
             name: 'Components', 
-            href: '/components',
+            href: '/docs/components',
             description: 'Browse components'
         },
         { 
