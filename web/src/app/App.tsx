@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { ThemeProvider } from "./providers";
 import { LazyWrapper } from "@/core/components";
 import { HomePage } from "./routes";
-import { WebLayout } from "./layouts";
+import { DocsLayout, WebLayout } from "./layouts";
 
 function App() {
 	return (
@@ -18,7 +18,7 @@ function App() {
 								</LazyWrapper>
 							}
 						/>
-						<Route path="docs">
+						<Route path="docs" element={<DocsLayout />}>
 							<Route
 								index
 								element={
@@ -35,6 +35,7 @@ function App() {
 										</LazyWrapper>
 									}
 								/>
+								<Route path="installation" element={<>nada:v</>} />
 							</Route>
 						</Route>
 					</Route>
