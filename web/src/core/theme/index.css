@@ -1,2 +1,16 @@
+:root {
+    --titles: 'Rosario', sans-serif;
+    --body: 'Alegreya Sans', sans-serif;
+    --dialca-primary: #3a7dc0;
+    --dialca-secondary: #085691;
+}
+
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-titles: var(--titles);
+    --font-body: var(--body);
+    --color-primary: var(--dialca-primary);
+    --color-secondary: var(--dialca-secondary);
+}
