@@ -1,4 +1,3 @@
-import { Header } from "../components/Header";
 import { Link } from 'react-router';
 import { 
     HiOutlineSparkles, 
@@ -50,8 +49,7 @@ export const Home = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-300/30 to-blue-500 dark:from-gray-900 dark:via-gray-900 dark:to-blue-950/30">
-            <Header />            
+        <>
             <section className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 dark:from-blue-400/5 dark:to-purple-400/5"></div>
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24">
@@ -194,6 +192,6 @@ export const Home = () => {
                     </div>
                 </div>
             </footer>
-        </div>
+        </>
     );
 };
