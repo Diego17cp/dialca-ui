@@ -45,7 +45,7 @@ export const Header = () => {
                                 <img 
                                     src={theme === 'dark' ? logo : darkLogo} 
                                     alt="Dialca UI" 
-                                    className="h-auto w-30 transition-all duration-300 group-hover:brightness-110"
+                                    className="h-auto w-30 transition-all duration-300 group-hover:brightness-110 object-contain"
                                 />
                             </div>
                             <div className="md:flex flex-col hidden">
@@ -68,7 +68,7 @@ export const Header = () => {
                                     className="group relative px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:shadow-sm"
                                 >
                                     <span className="relative z-10">{item.name}</span>
-                                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/10 to-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                                 </Link>
                             ))}
                         </div>
@@ -100,7 +100,7 @@ export const Header = () => {
                         </button>
                         <Link
                             to="/playground"
-                            className="hidden md:flex items-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-200 hover:shadow-lg hover:scale-105 group"
+                            className="hidden md:flex items-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-primary to-secondary hover:from-sky-800 hover:to-blue-800 text-white font-medium rounded-xl transition-all duration-200 hover:shadow-lg hover:scale-105 group"
                         >
                             <HiOutlineSparkles className="size-4 group-hover:rotate-12 transition-transform duration-200" />
                             <span>Try Now</span>
