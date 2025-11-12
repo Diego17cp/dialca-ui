@@ -322,6 +322,8 @@ export const ThirdExample: React.FC<ThirdExampleProps> = ({
                         {"\n    "}
                         <span className="text-indigo-400">)</span>
                         <span className="text-gray-400">;</span>
+                        {"\n"}
+                        {"\n"}
 					</code>
 				</pre>
 			</div>

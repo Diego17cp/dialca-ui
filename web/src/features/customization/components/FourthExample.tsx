@@ -44,7 +44,7 @@ export const FourthExample = ({
 						)}
 					</button>
 				</div>
-				<pre className="text-sm font-mono overflow-x-auto">
+				<pre className="text-sm font-mono overflow-x-auto main-scroll">
 					<code>
 						<span className="text-gray-400">
 							/* Import only the components you need */
@@ -70,6 +70,8 @@ export const FourthExample = ({
 							dialca-ui/styles/components/modal.css
 						</span>
 						<span className="text-gray-400">';</span>
+						{"\n"}
+						{"\n"}
 					</code>
 				</pre>
 			</div>
@@ -90,7 +92,7 @@ export const FourthExample = ({
 						)}
 					</button>
 				</div>
-				<pre className="text-sm font-mono overflow-x-auto">
+				<pre className="text-sm font-mono overflow-x-auto main-scroll">
 					<code>
 						<span className="text-sky-300">:</span>
 						<span className="text-purple-300">root</span>{" "}
@@ -135,6 +137,8 @@ export const FourthExample = ({
 						<span className="text-gray-400">;</span>
 						{"\n"}
 						<span className="text-sky-400">{"}"}</span>
+						{"\n"}
+						{"\n"}
 					</code>
 				</pre>
 			</div>

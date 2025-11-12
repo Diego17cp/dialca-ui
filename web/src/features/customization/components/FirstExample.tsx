@@ -37,7 +37,7 @@ export const FirstExample = ({
 					)}
 				</button>
 			</div>
-			<pre className="text-sm font-mono overflow-x-auto">
+			<pre className="text-sm font-mono overflow-x-auto main-scroll">
 				<code>
                     <span className="text-violet-400">import</span>{" "}
 					<span className="text-sky-300">
@@ -138,6 +138,8 @@ export const FirstExample = ({
                     {"\n"}
                     <span className="text-indigo-400">{"}"}</span>
                     <span className="text-gray-400">;</span>
+                    {"\n"}
+                    {"\n"}
                 </code>
 			</pre>
 		</div>
