@@ -50,22 +50,22 @@ export const FourthExample = ({
 							/* Import only the components you need */
 						</span>
 						{`\n`}
-						<span className="text-purple-400">@import</span>
-						<span className="text-gray-400">'</span>{" "}
+						<span className="text-purple-400">@import</span>{" "}
+						<span className="text-gray-400">'</span>
 						<span className="text-green-200">
 							dialca-ui/styles/components/button.css
 						</span>
 						<span className="text-gray-400">';</span>
 						{`\n`}
-						<span className="text-purple-400">@import</span>
-						<span className="text-gray-400">'</span>{" "}
+						<span className="text-purple-400">@import</span>{" "}
+						<span className="text-gray-400">'</span>
 						<span className="text-green-200">
 							dialca-ui/styles/components/input-field.css
 						</span>
 						<span className="text-gray-400">';</span>
 						{`\n`}
-						<span className="text-purple-400">@import</span>
-						<span className="text-gray-400">'</span>{" "}
+						<span className="text-purple-400">@import</span>{" "}
+						<span className="text-gray-400">'</span>
 						<span className="text-green-200">
 							dialca-ui/styles/components/modal.css
 						</span>

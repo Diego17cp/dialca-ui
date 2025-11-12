@@ -156,7 +156,7 @@ export const Customization = () => {
 					<code className="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded text-sm">
 						className
 					</code>{" "}
-                    or 
+                    or {" "}
                     <code className="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded text-sm">
 						classes
 					</code>{" "}
