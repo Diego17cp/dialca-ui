@@ -44,7 +44,9 @@ export const FirstExample = ({
 						{"{ Button }"}
 					</span>{" "}
 					<span className="text-violet-400">from</span>{" "}
-					<span className="text-emerald-300">'dialca-ui'</span>;{"\n\n"}
+					<span className="text-emerald-300">'dialca-ui'</span>
+                    <span className="text-gray-400">;</span>
+                    {"\n\n"}
                     <span className="text-violet-400">export</span>{" "}
                     <span className="text-sky-300">const</span>{" "}
                     <span className="text-indigo-400">VariantExamples</span>{" "}
