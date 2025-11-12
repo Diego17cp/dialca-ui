@@ -15,7 +15,7 @@ export const SidebarItem: React.FC<{ item: NavItem }> = ({ item }) => {
 				className="flex items-center justify-between w-full px-3 py-2 text-sm font-semibold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors duration-200"
 				onClick={() => setIsExpanded(!isExpanded)}
 			>
-				<span>{item.title}</span>
+				<span className="font-titles text-lg">{item.title}</span>
 				<motion.div
 					animate={{ rotate: isExpanded ? 90 : 0 }}
 					transition={{ duration: 0.3, ease: "easeOut" }}
@@ -50,7 +50,7 @@ export const SidebarItem: React.FC<{ item: NavItem }> = ({ item }) => {
 										if (window.innerWidth < 768) closeSidebar();
 									}}
 									className={({ isActive }) => `
-										block py-2 pl-4 pr-3 text-sm border-l-2 -ml-px transition-all duration-200
+										block py-2 pl-4 pr-3 text-base border-l-2 -ml-px transition-all duration-200 font-body
 										${isActive
 											? "border-primary text-primary bg-blue-50 dark:bg-blue-950/30 font-medium"
 											: "border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600"
