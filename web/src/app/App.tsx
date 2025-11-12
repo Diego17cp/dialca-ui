@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { ThemeProvider } from "./providers";
 import { LazyWrapper } from "@/core/components";
-import { HomePage } from "./routes";
+import { CustomizationPage, GettingStartedPage, HomePage } from "./routes";
 import { DocsLayout, WebLayout } from "./layouts";
 
 function App() {
@@ -26,16 +26,28 @@ function App() {
 								}
 							/>
 							<Route path="overview">
-								<Route index element={<Navigate to="/docs/overview/getting-started" />} />
+								<Route
+									index
+									element={
+										<Navigate to="/docs/overview/getting-started" />
+									}
+								/>
 								<Route
 									path="getting-started"
 									element={
 										<LazyWrapper>
-											<div>Getting Started Page</div>
+											<GettingStartedPage />
 										</LazyWrapper>
 									}
 								/>
-								<Route path="installation" element={<>nada:v</>} />
+								<Route
+									path="customization"
+									element={
+										<LazyWrapper>
+											<CustomizationPage />
+										</LazyWrapper>
+									}
+								/>
 							</Route>
 						</Route>
 					</Route>
