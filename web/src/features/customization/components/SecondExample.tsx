@@ -71,7 +71,7 @@ export const SecondExample = ({
                     {"\n        "}
                     <span className="text-gray-400">{"<"}</span>
                     <span className="text-indigo-400">{"div"}</span>{" "}
-                    <span className="text-indigo-400">className</span>
+                    <span className="text-violet-400">className</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">space-y-4</span>
@@ -81,13 +81,13 @@ export const SecondExample = ({
                     <span className="text-gray-400">{"<"}</span>
                     <span className="text-pink-400">Button</span>
                     {"\n                "}
-                    <span className="text-indigo-400">variant</span>
+                    <span className="text-purple-400">variant</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">primary</span>
                     <span className="text-gray-300">"</span>
                     {"\n                "}
-                    <span className="text-indigo-400">className</span>
+                    <span className="text-purple-400">className</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">bg-gradient-to-r! from-pink-500! to-red-500! hover:from-pink-600! hover:to-red-600!</span>
@@ -105,19 +105,19 @@ export const SecondExample = ({
                     <span className="text-gray-400">{"</"}</span>
                     <span className="text-pink-400">InputField</span>
                     {"\n                "}
-                    <span className="text-indigo-400">label</span>
+                    <span className="text-purple-400">label</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">Custom Input</span>
                     <span className="text-gray-300">"</span>
                     {"\n                "}
-                    <span className="text-indigo-400">placeholder</span>
+                    <span className="text-purple-400">placeholder</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">Type something...</span>
                     <span className="text-gray-300">"</span>
                     {"\n                "}
-                    <span className="text-indigo-400">className</span>
+                    <span className="text-purple-400">className</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">border-2! border-purple-300! focus:border-purple-500! rounded-xl!</span>

@@ -60,7 +60,7 @@ export const FirstExample = ({
                     {"\n        "}
                     <span className="text-gray-400">{"<"}</span>
                     <span className="text-indigo-400">{"div"}</span>{" "}
-                    <span className="text-indigo-400">className</span>
+                    <span className="text-violet-400">className</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">space-x-4</span>
@@ -69,7 +69,7 @@ export const FirstExample = ({
                     {"\n            "}
                     <span className="text-gray-400">{"<"}</span>
                     <span className="text-pink-400">Button</span>{" "}
-                    <span className="text-indigo-400">variant</span>
+                    <span className="text-purple-400">variant</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">primary</span>
@@ -82,7 +82,7 @@ export const FirstExample = ({
                     {"\n            "}
                     <span className="text-gray-400">{"<"}</span>
                     <span className="text-pink-400">Button</span>{" "}
-                    <span className="text-indigo-400">variant</span>
+                    <span className="text-purple-400">variant</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">secondary</span>
@@ -95,7 +95,7 @@ export const FirstExample = ({
                     {"\n            "}
                     <span className="text-gray-400">{"<"}</span>
                     <span className="text-pink-400">Button</span>{" "}
-                    <span className="text-indigo-400">variant</span>
+                    <span className="text-purple-400">variant</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">outline</span>
@@ -108,7 +108,7 @@ export const FirstExample = ({
                     {"\n            "}
                     <span className="text-gray-400">{"<"}</span>
                     <span className="text-pink-400">Button</span>{" "}
-                    <span className="text-indigo-400">variant</span>
+                    <span className="text-purple-400">variant</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">ghost</span>
@@ -121,7 +121,7 @@ export const FirstExample = ({
                     {"\n            "}
                     <span className="text-gray-400">{"<"}</span>
                     <span className="text-pink-400">Button</span>{" "}
-                    <span className="text-indigo-400">variant</span>
+                    <span className="text-purple-400">variant</span>
                     <span className="text-gray-400">=</span>
                     <span className="text-gray-300">"</span>
                     <span className="text-green-200">danger</span>
