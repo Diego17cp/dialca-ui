@@ -16,3 +16,7 @@ export const ThemingPage = lazyPage(
 	() => import("@/features/theming/pages/Theming"),
 	"Theming"
 );
+export const ComponentsPage = lazyPage(
+	() => import("@/features/components/pages/ComponentsList"),
+	"ComponentsList"
+);

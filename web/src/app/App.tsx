@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { ThemeProvider } from "./providers";
 import { LazyWrapper } from "@/core/components";
-import { CustomizationPage, GettingStartedPage, HomePage, ThemingPage } from "./routes";
+import { ComponentsPage, CustomizationPage, GettingStartedPage, HomePage, ThemingPage } from "./routes";
 import { DocsLayout, WebLayout } from "./layouts";
 
 function App() {
@@ -53,6 +53,14 @@ function App() {
 									element={
 										<LazyWrapper>
 											<ThemingPage />
+										</LazyWrapper>
+									}
+								/>
+								<Route
+									path="components"
+									element={
+										<LazyWrapper>
+											<ComponentsPage />
 										</LazyWrapper>
 									}
 								/>
