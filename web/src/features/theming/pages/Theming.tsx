@@ -432,7 +432,7 @@ export const Theming = () => {
 
 				<div className="grid md:grid-cols-2 gap-6">
 					<Link
-						to="/docs/components/button"
+						to="/docs/overview/components"
 						className="group p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
 					>
 						<div className="flex items-center justify-between mb-4">
