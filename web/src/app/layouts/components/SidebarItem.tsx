@@ -20,7 +20,7 @@ export const SidebarItem: React.FC<{ item: NavItem }> = ({ item }) => {
 					animate={{ rotate: isExpanded ? 90 : 0 }}
 					transition={{ duration: 0.3, ease: "easeOut" }}
 				>
-					<HiOutlineChevronRight className="size-4" />
+					<HiOutlineChevronRight className="size-5" />
 				</motion.div>
 			</button>
 
