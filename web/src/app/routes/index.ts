@@ -12,3 +12,7 @@ export const CustomizationPage = lazyPage(
 	() => import("@/features/customization/pages/Customization"),
 	"Customization"
 );
+export const ThemingPage = lazyPage(
+	() => import("@/features/theming/pages/Theming"),
+	"Theming"
+);
