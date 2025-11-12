@@ -1,53 +1,12 @@
 import { useSidebar } from "@/core/hooks/useSidebar";
 import { SidebarItem } from "./SidebarItem";
+import { navigation } from "../constants";
 
 export interface NavItem {
     title: string;
     href?: string;
     children?: NavItem[];
 }
-
-const navigation: NavItem[] = [
-    {
-        title: "Overview",
-        children: [
-            {
-                title: "Getting Started",
-                href: "/docs/overview/getting-started",
-            },
-            { title: "Installation", href: "/docs/overview/installation" },
-            { title: "Customization", href: "/docs/overview/customization" },
-            { title: "Typography", href: "/docs/overview/typography" },
-        ],
-    },
-    {
-        title: "Components",
-        children: [
-            { title: "Button", href: "/docs/components/button" },
-            { title: "Input", href: "/docs/components/input" },
-            { title: "Modal", href: "/docs/components/modal" },
-            { title: "Card", href: "/docs/components/card" },
-            { title: "Badge", href: "/docs/components/badge" },
-            { title: "Avatar", href: "/docs/components/avatar" },
-        ],
-    },
-    {
-        title: "Layout",
-        children: [
-            { title: "Container", href: "/docs/layout/container" },
-            { title: "Grid", href: "/docs/layout/grid" },
-            { title: "Stack", href: "/docs/layout/stack" },
-        ],
-    },
-    {
-        title: "Theming",
-        children: [
-            { title: "Colors", href: "/docs/theming/colors" },
-            { title: "Dark Mode", href: "/docs/theming/dark-mode" },
-            { title: "Custom Themes", href: "/docs/theming/custom-themes" },
-        ],
-    },
-];
 
 export const Sidebar = () => {
     const { isOpen, closeSidebar } = useSidebar();
