@@ -8,6 +8,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 @plugin "tailwind-scrollbar";
+@import "dialca-ui/styles";
 
 @theme {
     --font-titles: var(--titles);
