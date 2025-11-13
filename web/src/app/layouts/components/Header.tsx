@@ -2,7 +2,7 @@ import logo from '@/assets/logo.webp';
 import darkLogo from '@/assets/dark-logo.webp';
 import { useTheme } from '@/core/hooks/useTheme';
 import { RxGithubLogo, RxMoon, RxSun } from 'react-icons/rx';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { TbMenuDeep } from 'react-icons/tb';
 import { HiOutlineSparkles } from 'react-icons/hi2';
 
@@ -17,7 +17,7 @@ export const Header = () => {
         },
         { 
             name: 'Components', 
-            href: '/docs/components',
+            href: '/docs/overview/components',
             description: 'Browse components'
         },
         { 
@@ -45,7 +45,7 @@ export const Header = () => {
                                 <img 
                                     src={theme === 'dark' ? logo : darkLogo} 
                                     alt="Dialca UI" 
-                                    className="h-auto w-30 transition-all duration-300 group-hover:brightness-110 object-contain"
+                                    className="h-20 md:h-auto w-30 transition-all duration-300 group-hover:brightness-110 object-contain"
                                 />
                             </div>
                             <div className="md:flex flex-col hidden">
@@ -61,15 +61,17 @@ export const Header = () => {
                     <nav className="hidden lg:flex items-center">
                         <div className="flex items-center space-x-1 bg-gray-50/80 dark:bg-gray-800/50 rounded-full p-1 backdrop-blur-sm">
                             {navigationItems.map((item) => (
-                                <Link
+                                <NavLink
                                     key={item.name}
                                     to={item.href}
                                     title={item.description}
-                                    className="group relative px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:shadow-sm"
+                                    className={({ isActive }) => `group relative px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:bg-white dark:hover:bg-gray-700 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:shadow-sm
+                                        ${isActive ? 'bg-gradient-to-tr from-blue-400/10 to-primary/50 shadow-sm' : 'bg-transparent'}
+                                    `}
                                 >
                                     <span className="relative z-10">{item.name}</span>
                                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/10 to-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                                </Link>
+                                </NavLink>
                             ))}
                         </div>
                     </nav>
