@@ -65,6 +65,22 @@ function App() {
 									}
 								/>
 							</Route>
+							<Route path="components">
+								<Route
+									index
+									element={
+										<Navigate to="/docs/overview/components" />
+									}
+								/>
+								<Route
+									path=":componentName"
+									element={
+										<LazyWrapper>
+											<ComponentsPage />
+										</LazyWrapper>
+									}
+								/>
+							</Route>
 						</Route>
 					</Route>
 				</Routes>
