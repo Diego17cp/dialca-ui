@@ -20,3 +20,7 @@ export const ComponentsPage = lazyPage(
 	() => import("@/features/components/pages/ComponentsList"),
 	"ComponentsList"
 );
+export const ComponentPage = lazyPage(
+	() => import("@/features/components/pages/Component"),
+	"Component"
+);
