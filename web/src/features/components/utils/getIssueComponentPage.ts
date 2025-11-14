@@ -1,0 +1,1 @@
+export const getIssueComponentPage = (componentName: string): string => `https://github.com/diego17cp/dialca-ui/issues/new?title=[${componentName}]%20Issue`

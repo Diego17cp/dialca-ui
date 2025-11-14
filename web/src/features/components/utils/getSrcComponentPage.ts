@@ -1,0 +1,1 @@
+export const getSrcComponentPage = (componentName: string): string => `https://github.com/Diego17cp/dialca-ui/blob/main/src/components/${componentName}.tsx`;
