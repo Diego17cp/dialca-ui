@@ -93,7 +93,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
                     <div className="bg-gray-900 dark:bg-gray-800">
                         <div className="p-4">
                             {CodeDisplayComponent ? (
-                                <pre className="font-mono text-sm overflow-x-auto">
+                                <pre className="font-mono text-sm overflow-x-auto main-scroll">
                                     <CodeDisplayComponent />
                                 </pre>
                             ) : (
