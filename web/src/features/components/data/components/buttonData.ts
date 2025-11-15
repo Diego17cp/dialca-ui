@@ -1,4 +1,4 @@
-import { BasicButtonExample, BasicUsage, SizesCode, SizesExample, StatesCode, StatesExample, VariantsCode, VariantsExample } from "../../components/Button";
+import { BasicButtonExample, BasicUsage, CustomizationCode, CustomizationExample, SizesCode, SizesExample, StatesCode, StatesExample, VariantsCode, VariantsExample } from "../../components/Button";
 import { getIssueComponentPage, getPlaygroundPage, getSrcComponentPage } from "../../utils";
 
 const basicUsageCode = `import { Button } from 'dialca-ui';
@@ -48,7 +48,59 @@ const sizesCode = `// Small size
 <Button size="lg">Large</Button>
 
 // Extra Large size
-<Button size="xl">Extra Large</Button>`
+<Button size="xl">Extra Large</Button>`;
+const customizationCode = `// Example 1: Extending existing variant
+const extendedVariants = {
+    'gradient-primary': {
+        normal: {
+            container: "bg-gradient-to-r from-blue-500 to-purple-600 text-white border-0 shadow-lg",
+            content: "font-semibold",
+            icon: "text-white",
+            loader: "border-white/30 border-t-white"
+        },
+        hover: {
+            container: "bg-gradient-to-r from-blue-600 to-purple-700 transform scale-105",
+            content: "font-semibold",
+            icon: "text-white",
+            loader: "border-white/30 border-t-white"
+        }
+    }
+};
+
+// Usage with extended variant
+<Button 
+    variant="gradient-primary"
+    variants={extendedVariants}
+>
+    Gradient Button
+</Button>
+
+// Example 2: Completely custom variant
+const customVariants = {
+    'neon-cyber': {
+        normal: {
+            container: "bg-black border-2 border-cyan-400 text-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)] font-mono uppercase tracking-wider p-4 rounded-md",
+            content: "text-sm font-bold",
+            icon: "text-cyan-400",
+            loader: "border-cyan-400/30 border-t-cyan-400"
+        },
+        hover: {
+            container: "bg-cyan-400/10 border-cyan-300 text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.8)]",
+            content: "text-sm font-bold",
+            icon: "text-cyan-300",
+            loader: "border-cyan-300/30 border-t-cyan-300"
+        }
+    }
+};
+
+// Usage with custom variant (no defaults)
+<Button 
+    variant="neon-cyber"
+    variants={customVariants}
+    extendDefault={false}
+>
+    Neon Button
+</Button>`;
 
 export const buttonData = {
 	name: "Button",
@@ -81,6 +133,14 @@ export const buttonData = {
 			component: SizesExample,
 			codeDisplay: SizesCode,
 		},
+        {
+            id: "customization",
+            title: "Customizing Button Variants",
+            description: "Example of creating and using custom variants for the Button component by extending or overriding default styles.",
+            component: CustomizationExample,
+            codeDisplay: CustomizationCode,
+            code: customizationCode,
+        }
 	],
 	api: {
 		props: [
