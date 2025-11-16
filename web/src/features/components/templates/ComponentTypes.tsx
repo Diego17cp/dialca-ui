@@ -24,7 +24,7 @@ export const ComponentTypes: React.FC<ComponentTypesProps> = ({ types }) => {
                             </div>
                             <div className="p-4">
                                 <div className="bg-gray-900 dark:bg-gray-800 rounded-lg p-4 mb-4">
-                                    <pre className="font-mono text-sm text-gray-300 overflow-x-auto">
+                                    <pre className="font-mono text-sm text-gray-300 overflow-x-auto main-scroll">
                                         <code>
                                             <span className="text-violet-400">interface</span>{" "}
                                             <span className="text-purple-400">{type.name.split('.').pop()}</span>
@@ -58,6 +58,7 @@ export const ComponentTypes: React.FC<ComponentTypesProps> = ({ types }) => {
                                             ))}
                                             {"\n"}
                                             <span className="text-indigo-400">{"}"}</span>
+                                            {"\n\n"}
                                         </code>
                                     </pre>
                                 </div>
