@@ -84,12 +84,6 @@ export const VariantsCode = () => {
             <span className="text-green-200">dark</span>
             <span className="text-gray-400">"</span>
             {"\n  "}
-            <span className="text-indigo-400">variants</span>
-            <span className="text-gray-400">=</span>
-            <span className="text-purple-400">{"{"}</span>
-            <span className="text-gray-300">darkVariants</span>
-            <span className="text-purple-400">{"}"}</span>
-            {"\n  "}
             <span className="text-indigo-400">startIcon</span>
             <span className="text-gray-400">=</span>
             <span className="text-purple-400">{"{"}</span>
@@ -191,12 +185,6 @@ export const VariantsCode = () => {
             <span className="text-gray-400">="</span>
             <span className="text-green-200">dark</span>
             <span className="text-gray-400">"</span>
-            {"\n  "}
-            <span className="text-indigo-400">variants</span>
-            <span className="text-gray-400">=</span>
-            <span className="text-purple-400">{"{"}</span>
-            <span className="text-gray-300">darkVariants</span>
-            <span className="text-purple-400">{"}"}</span>
             {"\n  "}
             <span className="text-indigo-400">required</span>
             {"\n"}
