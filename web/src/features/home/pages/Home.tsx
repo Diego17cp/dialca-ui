@@ -13,8 +13,11 @@ import {
 import { RxGithubLogo } from 'react-icons/rx';
 import {  HiOutlineCode } from 'react-icons/hi';
 import { StatsSection } from "@/core/components";
+import { useDocTitle } from '@/core/hooks';
+import { pageTitles } from '@/core/constants';
 
 export const Home = () => {
+    useDocTitle(pageTitles.HOME);
     const features = [
         {
             icon: HiOutlineCode,

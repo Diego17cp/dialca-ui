@@ -12,8 +12,12 @@ import { CodeExample } from "../components/CodeExample";
 import { Imports } from "../components/Imports";
 import { InstallCommands } from "../components/InstallCommands";
 import { features } from "../constants";
+import { useDocTitle } from "@/core/hooks";
+import { pageTitles } from "@/core/constants";
 
 export const GettingStarted = () => {
+	useDocTitle(pageTitles.GETTING_STARTED)
+
 	const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
 	const copyToClipboard = (text: string, index: number) => {

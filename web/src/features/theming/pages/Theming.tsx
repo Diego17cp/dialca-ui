@@ -15,8 +15,11 @@ import {
 import { FirstExample } from "../components/FirstExample";
 import { SecondExample } from "../components/SecondExample";
 import { ThirdExample } from "../components/ThirdExample";
+import { useDocTitle } from "@/core/hooks";
+import { pageTitles } from "@/core/constants";
 
 export const Theming = () => {
+	useDocTitle(pageTitles.THEMING)
 	const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
 	const copyToClipboard = (text: string, index: number) => {

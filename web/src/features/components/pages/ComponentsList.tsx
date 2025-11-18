@@ -6,8 +6,11 @@ import {
 } from 'react-icons/hi2';
 import { componentsList } from '../constants/components';
 import { PiPuzzlePieceDuotone } from 'react-icons/pi';
+import { useDocTitle } from '@/core/hooks';
+import { pageTitles } from '@/core/constants';
 
 export const ComponentsList = () => {
+    useDocTitle(pageTitles.COMPONENTS_LIST);
     const newComponentsCount = componentsList.filter(component => component.isNew).length;
     const totalComponents = componentsList.length;
 

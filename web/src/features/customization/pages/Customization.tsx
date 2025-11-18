@@ -16,8 +16,12 @@ import { FirstExample } from "../components/FirstExample";
 import { SecondExample } from "../components/SecondExample";
 import { ThirdExample } from "../components/ThirdExample";
 import { FourthExample } from "../components/FourthExample";
+import { useDocTitle } from "@/core/hooks";
+import { pageTitles } from "@/core/constants";
 
 export const Customization = () => {
+	useDocTitle(pageTitles.CUSTOMIZATION);
+	
 	const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
 	const copyToClipboard = (text: string, index: number) => {
