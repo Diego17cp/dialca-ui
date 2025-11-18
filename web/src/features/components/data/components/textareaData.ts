@@ -7,6 +7,7 @@ import {
     TxtAreaCustomizationCode,
 } from "../../components/TxtArea";
 import type { ComponentData } from "../../types";
+import { getIssueComponentPage, getPlaygroundPage, getSrcComponentPage } from "../../utils";
 
 const basicUsageCode = `import { TxtArea } from 'dialca-ui';
 import { useState } from 'react';
@@ -204,6 +205,9 @@ const customVariants = {
 export const textareaData: ComponentData = {
 	name: "Textarea",
 	description: "A multi-line text input field for user input.",
+	srcUrl: getSrcComponentPage("TxtArea"),
+	issueUrl: getIssueComponentPage("TxtArea"),
+	playgroundUrl: getPlaygroundPage("TxtArea"),
 	basicUsage: basicUsageCode,
 	basicUsageDisplay: BasicTxtAreaUsage,
 	basicUsageComponent: BasicTxtAreaExample,
