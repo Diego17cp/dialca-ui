@@ -20,7 +20,7 @@ export const navigation: NavItem[] = [
             { title: "Checkbox", href: "/docs/components/checkbox" },
             { title: "Circle Char Counter", href: "/docs/components/circle-char-counter" },
             { title: "Drop Zone", href: "/docs/components/drop-zone" },
-            { title: "Input", href: "/docs/components/input" },
+            { title: "Input", href: "/docs/components/input-field" },
             { title: "Loader", href: "/docs/components/loader" },
             { title: "Modal", href: "/docs/components/modal" },
             { title: "Radio", href: "/docs/components/radio" },
