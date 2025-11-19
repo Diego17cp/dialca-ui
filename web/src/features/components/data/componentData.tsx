@@ -5,6 +5,7 @@ import {
 	inputFieldData,
 	circleCharCounterData,
 	textareaData,
+	loaderData
 } from "./components";
 
 export const componentsData: Record<string, ComponentData> = {
@@ -12,5 +13,6 @@ export const componentsData: Record<string, ComponentData> = {
 	checkbox: checkboxData,
 	"circle-char-counter": circleCharCounterData,
 	"input-field": inputFieldData,
+	loader: loaderData,
 	textarea: textareaData,
 };
