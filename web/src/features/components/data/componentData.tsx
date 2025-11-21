@@ -6,7 +6,8 @@ import {
 	circleCharCounterData,
 	textareaData,
 	loaderData,
-	radioData
+	radioData,
+	switchData
 } from "./components";
 
 export const componentsData: Record<string, ComponentData> = {
@@ -16,5 +17,6 @@ export const componentsData: Record<string, ComponentData> = {
 	"input-field": inputFieldData,
 	loader: loaderData,
 	radio: radioData,
+	switch: switchData,
 	textarea: textareaData,
 };
