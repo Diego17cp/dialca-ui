@@ -161,7 +161,7 @@ export const CustomizationExample: React.FC = () => {
                             label="Quantum State"
                             description="Neither true nor false"
                             indeterminate={customIndeterminate}
-                            onCheckedChange={(checked) => {
+                            onCheckedChange={() => {
                                 setCustomIndeterminate(false);
                                 // Handle the checked state after indeterminate
                             }}
