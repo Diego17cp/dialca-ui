@@ -25,7 +25,7 @@ export const componentsList = [
     },
     {
         name: "Input",
-        url: "/docs/components/input",
+        url: "/docs/components/input-field",
         description: "Text input field with label, validation, error states, and various input types support",
         isNew: false,
     },
