@@ -7,7 +7,8 @@ import {
 	textareaData,
 	loaderData,
 	radioData,
-	switchData
+	switchData,
+	selectData,
 } from "./components";
 
 export const componentsData: Record<string, ComponentData> = {
@@ -17,6 +18,7 @@ export const componentsData: Record<string, ComponentData> = {
 	"input-field": inputFieldData,
 	loader: loaderData,
 	radio: radioData,
+	select: selectData,
 	switch: switchData,
 	textarea: textareaData,
 };

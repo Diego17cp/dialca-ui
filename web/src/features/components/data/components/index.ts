@@ -4,5 +4,6 @@ export * from "./circleCharCounterData";
 export * from "./inputFieldData";
 export * from "./loaderData";
 export * from "./radioData";
+export * from "./selectData";
 export * from "./switchData";
 export * from "./textareaData";
