@@ -9,6 +9,7 @@ import {
 	radioData,
 	switchData,
 	selectData,
+	searchableSelectData,
 } from "./components";
 
 export const componentsData: Record<string, ComponentData> = {
@@ -18,6 +19,7 @@ export const componentsData: Record<string, ComponentData> = {
 	"input-field": inputFieldData,
 	loader: loaderData,
 	radio: radioData,
+	"searchable-select": searchableSelectData,
 	select: selectData,
 	switch: switchData,
 	textarea: textareaData,
