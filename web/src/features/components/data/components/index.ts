@@ -3,6 +3,7 @@ export * from "./checkboxData";
 export * from "./circleCharCounterData";
 export * from "./inputFieldData";
 export * from "./loaderData";
+export * from "./modalData";
 export * from "./radioData";
 export * from "./searchableSelectData";
 export * from "./selectData";
