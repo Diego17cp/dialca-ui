@@ -1,6 +1,7 @@
 export * from "./buttonData";
 export * from "./checkboxData";
 export * from "./circleCharCounterData";
+export * from "./dropzoneData";
 export * from "./inputFieldData";
 export * from "./loaderData";
 export * from "./modalData";
