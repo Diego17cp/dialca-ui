@@ -416,7 +416,7 @@ export const switchData: ComponentData = {
 			},
 			{
 				name: "classes",
-				type: `{ container?: string; wrapper?: string; track?: string; thumb?: string; thumbInner?: string; trackOverlay?: string; label?: string; description?: string; error?: string; }`,
+				type: `DialcaUI.SwitchVariant`,
 				description:
 					"Custom CSS classes for styling different parts of the switch component.",
 			},

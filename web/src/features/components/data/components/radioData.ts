@@ -326,7 +326,7 @@ export const radioData: ComponentData = {
 			},
 			{
 				name: "classes",
-				type: "{ container?: string; radio?: string; label?: string; text?: string; description?: string; error?: string; }",
+				type: "DialcaUI.RadioVariant",
 				description:
 					"Custom classes for styling different parts of the radio input(s).",
 			},

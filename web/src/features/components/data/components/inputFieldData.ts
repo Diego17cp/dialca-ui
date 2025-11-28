@@ -342,7 +342,7 @@ export const inputFieldData: ComponentData = {
 			},
 			{
 				name: "classes",
-				type: "{ container?: string; input?: string; label?: string; icon?: string; button?: string; error?: string; loader?: string }",
+				type: "DialcaUI.InputVariant",
 				required: false,
 				description: "Custom CSS classes to override styles for specific parts of the component.",
 			}

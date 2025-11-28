@@ -222,7 +222,8 @@ export const buttonData = {
             },
             {
                 name: "classes",
-                type: "{ container?: string; content?: string; icon?: string; loader?: string; }",
+                type: "DialcaUI.ButtonVariant",
+                // type: "{ container?: string; content?: string; icon?: string; loader?: string; }",
                 required: false,
                 description: "Custom classes for styling.",
             },
@@ -349,33 +350,6 @@ export const buttonData = {
                 }
             ]
         },
-        {
-            name: "DialcaUI.BaseStates",
-            type: "interface",
-            description: "Base interface that provides common states for all DialcaUI components.",
-            properties: [
-                {
-                    name: "normal",
-                    type: "ComponentVariant",
-                    description: "Default state styling"
-                },
-                {
-                    name: "focused",
-                    type: "ComponentVariant",
-                    description: "Focused state styling"
-                },
-                {
-                    name: "disabled",
-                    type: "ComponentVariant",
-                    description: "Disabled state styling"
-                },
-                {
-                    name: "error",
-                    type: "ComponentVariant",
-                    description: "Error state styling"
-                }
-            ]
-        }
     ],
 	srcUrl: getSrcComponentPage("Button"),
 	issueUrl: getIssueComponentPage("Button"),

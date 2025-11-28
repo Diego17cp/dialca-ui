@@ -379,7 +379,7 @@ export const textareaData: ComponentData = {
 			},
 			{
 				name: "classes",
-				type: "{ container?: string; textarea?: string; label?: string; icon?: string; charCounter?: string; error?: string; loader?: string }",
+				type: "DialcaUI.TxtAreaVariant",
 				required: false,
 				description:
 					"Custom CSS classes to override styles for specific parts of the component.",

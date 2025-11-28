@@ -435,7 +435,7 @@ export const selectData: ComponentData = {
 			},
 			{
 				name: "classes",
-				type: "{ container?: string; input?: string; label?: string; icon?: string; error?: string; menu?: string; option?: string; arrow?: string; selectedOption?: string; }",
+				type: "DialcaUI.SelectVariant",
 				description:
 					"Custom classes for different parts of the select component for advanced styling.",
 			},

@@ -466,7 +466,7 @@ export const dropzoneData: ComponentData = {
 			},
 			{
 				name: "classes",
-				type: "DropzoneClasses",
+				type: "DialcaUI.DropzoneVariant",
 				description:
 					"Optional additional class names for specific sub-elements.",
 			},
@@ -478,39 +478,6 @@ export const dropzoneData: ComponentData = {
 		],
 	},
 	types: [
-		{
-			name: "DropzoneClasses",
-			type: "interface",
-			description:
-				"Object specifying additional class names for DropZone sub-elements.",
-			properties: [
-				{
-					name: "container",
-					type: "string",
-					description: "CSS class for the main drop zone container.",
-				},
-				{
-					name: "error",
-					type: "string",
-					description: "CSS class for the error message container.",
-				},
-				{
-					name: "icon",
-					type: "string",
-					description: "CSS class for the icon element.",
-				},
-				{
-					name: "title",
-					type: "string",
-					description: "CSS class for the title element.",
-				},
-				{
-					name: "description",
-					type: "string",
-					description: "CSS class for the description element.",
-				},
-			],
-		},
 		{
 			name: "DialcaUI.DropZoneStates",
 			type: "interface",

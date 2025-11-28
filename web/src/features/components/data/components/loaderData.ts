@@ -250,7 +250,7 @@ export const loaderData: ComponentData = {
 			},
 			{
 				name: "classes",
-				type: "{ container?: string; outerRing?: string; innerRing?: string; content?: string; }",
+				type: "DialcaUI.LoaderVariant",
 				description:
 					"Allows adding extra classes to specific loader elements for custom styling.",
 			},

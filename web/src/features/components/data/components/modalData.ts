@@ -501,7 +501,7 @@ export const modalData: ComponentData = {
 			},
 			{
 				name: "classes",
-				type: "ModalClasses",
+				type: "DialcaUI.ModalVariant",
 				description:
 					"Allows overriding specific class names for different parts of the modal component.",
 			},
@@ -514,45 +514,6 @@ export const modalData: ComponentData = {
 		],
 	},
 	types: [
-		{
-			name: "ModalClasses",
-			type: "interface",
-			description:
-				"Interface for customizing class names of Modal component parts.",
-			properties: [
-				{
-					name: "overlay",
-					type: "string",
-					description:
-						"CSS class for the modal overlay backdrop element",
-				},
-				{
-					name: "container",
-					type: "string",
-					description: "CSS class for the modal container element",
-				},
-				{
-					name: "header",
-					type: "string",
-					description: "CSS class for the modal header element",
-				},
-				{
-					name: "title",
-					type: "string",
-					description: "CSS class for the modal title element",
-				},
-				{
-					name: "closeButton",
-					type: "string",
-					description: "CSS class for the modal close button element",
-				},
-				{
-					name: "content",
-					type: "string",
-					description: "CSS class for the modal content element",
-				},
-			],
-		},
 		{
 			name: "DialcaUI.ModalStates",
 			type: "interface",
