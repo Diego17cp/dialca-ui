@@ -15,6 +15,30 @@
     --font-body: var(--body);
     --color-primary: var(--dialca-primary);
     --color-secondary: var(--dialca-secondary);
+    --animate-zoom-in: zoom-in 0.2s ease-in-out forwards;
+    --animate-zoom-out: zoom-out 0.2s ease-in-out forwards;
+
+    @keyframes zoom-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%) scale(0.95) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-100%) scale(1) translateY(0px);
+    }
+}
+
+@keyframes zoom-out {
+    0% {
+        opacity: 1;
+        transform: translateY(-100%) scale(1) translateY(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%) scale(0.95) translateY(10px);
+    }
+}
 }
 
 .main-scroll {
