@@ -233,7 +233,7 @@ export const Customization = () => {
 					</Link>
 
 					<Link
-						to="/docs/advanced/theming"
+						to="/docs/overview/theming"
 						className="group p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-secondary/50 dark:hover:border-secondary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
 					>
 						<div className="flex items-center justify-between mb-4">
