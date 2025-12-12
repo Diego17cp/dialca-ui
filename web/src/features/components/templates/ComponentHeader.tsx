@@ -3,7 +3,7 @@ import {
     HiOutlineCube,
     HiOutlineCodeBracket,
     HiOutlineExclamationTriangle,
-    HiOutlinePlay,
+    // HiOutlinePlay,
     HiOutlineArrowTopRightOnSquare
 } from 'react-icons/hi2';
 import { CodeBlock } from '../components/CodeBlock';
@@ -78,7 +78,7 @@ export const ComponentHeader: React.FC<ComponentHeaderProps> = ({
                             <HiOutlineArrowTopRightOnSquare className="w-3 h-3 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200" />
                         </a>
                     )}
-                    
+{/*                     
                     {playgroundUrl && (
                         <a
                             href={playgroundUrl}
@@ -90,7 +90,7 @@ export const ComponentHeader: React.FC<ComponentHeaderProps> = ({
                             <span>Playground</span>
                             <HiOutlineArrowTopRightOnSquare className="w-3 h-3 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200" />
                         </a>
-                    )}
+                    )} */}
                 </div>
             )}
             <div className="grid gap-6 mb-8">
