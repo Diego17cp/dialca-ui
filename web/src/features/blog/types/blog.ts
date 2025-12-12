@@ -7,4 +7,5 @@ export interface BlogPost {
     introduction: string;
     content: React.ReactNode;
     imgUrl: string;
+    author?: string;
 }
