@@ -24,3 +24,7 @@ export const ComponentPage = lazyPage(
 	() => import("@/features/components/pages/Component"),
 	"Component"
 );
+export const BlogPage = lazyPage(
+	() => import("@/features/blog/pages/Blog"),
+	"Blog"
+);
