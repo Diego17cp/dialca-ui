@@ -4,4 +4,5 @@ export const pageTitles = {
     CUSTOMIZATION: 'Customization - Overview - DialcaUI',
     THEMING: 'Theming - Overview - DialcaUI',
     COMPONENTS_LIST: 'Components - Overview - DialcaUI',
+    BLOG: 'Blog - DialcaUI',
 }
