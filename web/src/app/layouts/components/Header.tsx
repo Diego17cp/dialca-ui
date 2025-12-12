@@ -20,11 +20,11 @@ export const Header = () => {
             href: '/docs/overview/components',
             description: 'Browse components'
         },
-        { 
-            name: 'Playground', 
-            href: '/playground',
-            description: 'Try components live'
-        },
+        // { 
+        //     name: 'Playground', 
+        //     href: '/playground',
+        //     description: 'Try components live'
+        // },
         { 
             name: 'Blog', 
             href: '/blog',
@@ -101,7 +101,7 @@ export const Header = () => {
                             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300"></div>
                         </button>
                         <Link
-                            to="/playground"
+                            to="/docs/overview/getting-started"
                             className="hidden md:flex items-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-primary to-secondary hover:from-sky-800 hover:to-blue-800 text-white font-medium rounded-xl transition-all duration-200 hover:shadow-lg hover:scale-105 group"
                         >
                             <HiOutlineSparkles className="size-4 group-hover:rotate-12 transition-transform duration-200" />

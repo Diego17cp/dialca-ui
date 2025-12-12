@@ -76,11 +76,11 @@ export const Home = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
                             <Link
-                                to="/playground"
+                                to="/docs/overview/getting-started"
                                 className="group inline-flex items-center space-x-3 bg-gradient-to-r from-primary to-secondary hover:from-sky-800 hover:to-blue-800 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:scale-105"
                             >
                                 <HiOutlinePlay className="size-5 group-hover:scale-110 transition-transform duration-200" />
-                                <span>Try Playground</span>
+                                <span>Install now</span>
                                 <HiOutlineArrowRight className="size-4 group-hover:translate-x-1 transition-transform duration-200" />
                             </Link>
                             
