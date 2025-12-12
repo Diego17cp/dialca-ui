@@ -1,3 +1,6 @@
 export * from "./LatestPost"
 export * from "./CommunitySection"
 export * from "./BlogPostCard"
+export * from "./PostNotFound"
+export * from "./PostHeader"
+export * from "./PostContent"
