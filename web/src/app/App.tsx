@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { ThemeProvider } from "./providers";
 import { LazyWrapper } from "@/core/components";
-import { ComponentPage, ComponentsPage, CustomizationPage, GettingStartedPage, HomePage, ThemingPage } from "./routes";
+import { BlogPage, BlogPostPage, ComponentPage, ComponentsPage, CustomizationPage, GettingStartedPage, HomePage, ThemingPage } from "./routes";
 import { DocsLayout, WebLayout } from "./layouts";
 
 function App() {
@@ -81,6 +81,24 @@ function App() {
 									}
 								/>
 							</Route>
+						</Route>
+						<Route path="blog" element={<DocsLayout />}>
+							<Route
+								index
+								element={
+									<LazyWrapper>
+										<BlogPage />
+									</LazyWrapper>
+								}
+							/>
+							<Route
+								path="post/:postSlug"
+								element={
+									<LazyWrapper>
+										<BlogPostPage />
+									</LazyWrapper>
+								}
+							/>
 						</Route>
 					</Route>
 				</Routes>
