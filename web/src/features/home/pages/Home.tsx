@@ -15,6 +15,8 @@ import {  HiOutlineCode } from 'react-icons/hi';
 import { StatsSection } from "@/core/components";
 import { useDocTitle } from '@/core/hooks';
 import { pageTitles } from '@/core/constants';
+import { BiCheck } from 'react-icons/bi';
+import { Footer } from '../components/Footer';
 
 export const Home = () => {
     useDocTitle(pageTitles.HOME);
@@ -100,8 +102,6 @@ export const Home = () => {
                                 <RxGithubLogo className="size-5 group-hover:scale-110 transition-transform duration-200" />
                                 <span className="font-medium">Star on GitHub</span>
                             </a>
-                            {/* <span className="hidden sm:block">•</span>
-                            <span className="text-sm">MIT License</span> */}
                         </div>
                     </div>
                 </div>
@@ -138,63 +138,140 @@ export const Home = () => {
                     </div>
                 </div>
             </section>
-            <section className="py-24 bg-gradient-to-r from-primary to-secondary">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl md:text-5xl font-titles font-bold text-white mb-6">
-                        Ready to Build Amazing UIs?
-                    </h2>
-                    <p className="text-2xl text-blue-100 mb-12 max-w-2xl mx-auto font-body">
-                        Join developers who are already building faster with Dialca UI.
-                    </p>
-                    
-                    <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                        <Link
-                            to="/docs/overview/getting-started"
-                            className="group inline-flex items-center space-x-3 bg-white text-blue-600 font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:scale-105"
-                        >
-                            <span>Get Started</span>
-                            <HiOutlineArrowRight className="size-4 group-hover:translate-x-1 transition-transform duration-200" />
-                        </Link>
-                        
-                        <Link
-                            to="/docs/components"
-                            className="group inline-flex items-center space-x-3 border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:bg-white/10 hover:scale-105"
-                        >
-                            <span>Browse Components</span>
-                        </Link>
+            <section className="relative py-24 overflow-hidden bg-gray-50 dark:bg-gray-900">
+                <div className="absolute inset-0 opacity-30 dark:opacity-20">
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: `radial-gradient(circle at 1px 1px, rgb(59 130 246 / 0.15) 1px, transparent 0)`,
+                        backgroundSize: '40px 40px'
+                    }}></div>
+                </div>
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-2xl overflow-hidden">
+                        <div className="bg-gradient-to-r from-primary to-secondary p-1">
+                            <div className="h-2"></div>
+                        </div>
+                        <div className="p-8 md:p-12 lg:p-16">
+                            <div className="text-center mb-12">
+                                <div className="inline-flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                                    <HiOutlineSparkles className="size-4" />
+                                    <span>Start Building Today</span>
+                                </div>
+                                <h2 className="text-3xl md:text-5xl font-titles font-bold text-gray-900 dark:text-white mb-6">
+                                    Ready to Build Amazing UIs?
+                                </h2>
+                                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto font-body">
+                                    Join developers who are already building faster with Dialca UI.
+                                </p>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                                <div className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
+                                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                                        12+
+                                    </div>
+                                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                                        Components
+                                    </div>
+                                </div>
+                                <div className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
+                                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                                        100%
+                                    </div>
+                                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                                        TypeScript
+                                    </div>
+                                </div>
+                                <div className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
+                                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                                        MIT
+                                    </div>
+                                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                                        Open Source
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="grid md:grid-cols-3 gap-6 mb-12">
+                                <div className="flex items-start gap-3">
+                                    <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                                        <BiCheck className='text-green-600 dark:text-green-400 text-2xl' />
+                                    </div>
+                                    <div>
+                                        <div className="font-semibold text-gray-900 dark:text-white mb-1">
+                                            Zero Configuration
+                                        </div>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                                            Install and start using immediately
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                                        <BiCheck className='text-blue-600 dark:text-blue-400 text-2xl' />
+                                    </div>
+                                    <div>
+                                        <div className="font-semibold text-gray-900 dark:text-white mb-1">
+                                            Fully Documented
+                                        </div>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                                            Comprehensive guides and examples
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <div className="flex-shrink-0 w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                                        <BiCheck className='text-purple-600 dark:text-purple-400 text-2xl' />
+                                    </div>
+                                    <div>
+                                        <div className="font-semibold text-gray-900 dark:text-white mb-1">
+                                            Active Development
+                                        </div>
+                                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                                            Regular updates and improvements
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                                <Link
+                                    to="/docs/overview/getting-started"
+                                    className="group inline-flex items-center space-x-3 bg-gradient-to-r from-primary to-secondary hover:from-blue-700 hover:to-sky-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-xl hover:scale-105"
+                                >
+                                    <span>Get Started</span>
+                                    <HiOutlineArrowRight className="size-4 group-hover:translate-x-1 transition-transform duration-200" />
+                                </Link>
+                                
+                                <Link
+                                    to="/docs/components"
+                                    className="group inline-flex items-center space-x-3 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:border-primary dark:hover:border-secondary text-gray-900 dark:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:scale-105"
+                                >
+                                    <HiOutlinePuzzlePiece className="size-5 group-hover:scale-110 transition-transform duration-200" />
+                                    <span>Browse Components</span>
+                                </Link>
+                            </div>
+                            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                                <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-sm text-gray-600 dark:text-gray-400">
+                                    <div className="flex items-center gap-2">
+                                        <RxGithubLogo className="w-5 h-5" />
+                                        <span>Open Source on GitHub</span>
+                                    </div>
+                                    <span className="hidden md:block">•</span>
+                                    <div className="flex items-center gap-2">
+                                        <HiOutlineBookOpen className="w-5 h-5" />
+                                        <span>MIT License</span>
+                                    </div>
+                                    <span className="hidden md:block">•</span>
+                                    <div className="flex items-center gap-2">
+                                        <HiOutlineSparkles className="w-5 h-5" />
+                                        <span>Production Ready</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            <footer className="bg-gray-900 dark:bg-black border-t border-gray-800 dark:border-gray-700">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-                        <div className="flex items-center space-x-2 text-gray-400">
-                            <span>Created by</span>
-                            <a 
-                                href="https://github.com/Diego17cp" 
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-primary hover:text-blue-300 font-medium transition-colors duration-200"
-                            >
-                                Dialcadev
-                            </a>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                            <a 
-                                href="https://github.com/Diego17cp/dialca-ui" 
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
-                            >
-                                <RxGithubLogo className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-                                <span>Source Code</span>
-                            </a>
-                            <span className="text-gray-600">•</span>
-                            <span className="text-gray-400 text-sm">&copy; 2025 Dialca UI</span>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </>
     );
 };
