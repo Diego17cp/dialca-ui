@@ -30,20 +30,4 @@ export const navigation: NavItem[] = [
             { title: "Textarea", href: "/docs/components/textarea" },
         ],
     },
-    {
-        title: "Layout",
-        children: [
-            { title: "Container", href: "/docs/layout/container" },
-            { title: "Grid", href: "/docs/layout/grid" },
-            { title: "Stack", href: "/docs/layout/stack" },
-        ],
-    },
-    {
-        title: "Theming",
-        children: [
-            { title: "Colors", href: "/docs/theming/colors" },
-            { title: "Dark Mode", href: "/docs/theming/dark-mode" },
-            { title: "Custom Themes", href: "/docs/theming/custom-themes" },
-        ],
-    },
 ];
