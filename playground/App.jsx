@@ -159,10 +159,11 @@ export function App() {
 				<TxtArea
 					label="Comentarios"
 					variant="dark"
+					disabled
 					allowResize={true}
 					hasCharCount={true}
 					charCountType="bottom"
-					value={txtArea}
+					value={"txtArea"}
 					onChange={(e) => setTxtArea(e.target.value)}
 				/>
 				<TxtArea
@@ -259,7 +260,6 @@ export function App() {
 					onDrop={() => {}}
 					onClick={() => {}}
 					// description="JPG, PNG, WEBP. Máximo 5MB por imagen"
-					icon={<FaCloudArrowUp />}
 					// hasErrors
 					// errorMessage="Solo se permiten imágenes"
 					// errorIcon={<FaCircleExclamation />}
@@ -557,6 +557,7 @@ export function App() {
 					]}
 					onChange={(e) => setSelectedOption(e.target.value)}
 					icon={<FaEnvelope />}
+					hasErrors
 					variant="minimal"
 					classes={{
 						container: "mt-5",
@@ -1084,7 +1085,6 @@ export function App() {
 				<h3 className="text-lg font-semibold text-gray-900 mb-4">
 					Switches
 				</h3>
-
 				{/* Switch básico */}
 				<Switch
 					enabled={notifications}
@@ -1149,7 +1149,7 @@ export function App() {
 					onToggle={setDarkMode}
 					label="⚡ Neon Mode"
 					description="Activate cyberpunk theme"
-					variant="larga"
+					variant="large"
 				/>
 
 				{/* Switch variante card */}
@@ -1264,6 +1264,8 @@ export function App() {
 						onChange={setCountry}
 						placeholder="Search country..."
 						label="Country"
+						hasErrors
+						errorMessage="Please select a country"
 						variant="dark"
 					/>
 				</div>

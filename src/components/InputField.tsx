@@ -264,7 +264,7 @@ export const InputField = forwardRef<HTMLInputElement, InputProps>(
 					{getRightElement()}
 				</div>
 				{hasErrors && errorMessage && (
-					<div className={cn(shouldUseCSS ? `${blockClass}__error` : "", variantError, classes.error)}>
+					<div className={cn(shouldUseCSS ? `${blockClass} ${blockClass}__error` : "", variantError, classes.error)}>
 						{errorIcon ? (
 							<>{errorIcon}</>
 						) : (

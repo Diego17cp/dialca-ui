@@ -65,6 +65,8 @@ export interface SearchableSelectProps {
     rotateIcon?: boolean;
     /** Size of the select */
     size?: "sm" | "md" | "lg";
+    /** If true, marks the select as required */
+    required?: boolean;
 }
 
 /**
@@ -113,6 +115,7 @@ export const SearchableSelect = ({
     isClearable = false,
     clearIcon = <FaRegCircleXmark />,
     rotateIcon = true,
+    required = false,
 }: SearchableSelectProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState("");
@@ -287,6 +290,11 @@ export const SearchableSelect = ({
                     )}
                 >
                     {label}
+                    {/** Show asterisk if required */}
+                    {required && (<span style={{
+                        marginLeft: 3,
+                        color: "red"
+                    }}>*</span>)}
                 </label>
             )}
 
@@ -342,10 +350,15 @@ export const SearchableSelect = ({
                     <span
                         className={cn(
                             shouldUseCSS ? `${blockClass}__input-icon` : ``,
-                            rotateIcon && isOpen && !shouldUseCSS ? 'rotate-180' : '',
+                            shouldUseCSS && !rotateIcon ? `${blockClass}__input-icon--no-rotate` : '',
                             getStyles("inputIcon"),
                             classes.inputIcon
                         )}
+                        style={!shouldUseCSS && rotateIcon && isOpen ? {
+                            transform: 'translateY(-50%) rotate(180deg)',
+                        } : !shouldUseCSS ? {
+                            transform: 'translateY(-50%)',
+                        } : undefined}
                     >
                         {dropdownIcon}
                     </span>

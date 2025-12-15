@@ -74,7 +74,7 @@ Select Component Styles
     display: flex;
     align-items: center;
     gap: .5rem;
-    color: var(--select-text);
+    /* color: var(--select-text); */
 }
 .dialca-select__placeholder {
     color: var(--select-placeholder);
@@ -107,7 +107,7 @@ Select Component Styles
     position: absolute;
     right: .75rem;
     top: 50%;
-    transform: translateY(-50%);
+    translate: 0 -50%;
     animation: spin 1s linear infinite;
 }
 
@@ -219,6 +219,7 @@ MODIFIERS
     opacity: .7;
 }
 .dialca-select--disabled .dialca-select__label {
+    background-color: #f3f4f6;
     color: #6b7280;
 }
 .dialca-select--disabled .dialca-select__arrow {
@@ -238,6 +239,9 @@ MODIFIERS
     transform: translateY(-50%);
     font-size: .85rem;
     color: var(--select-border-focus);
+}
+.dialca-select--focused.dialca-select--error .dialca-select__label {
+    color: var(--select-border--error);
 }
 
 /* Modifier: Open */
@@ -340,6 +344,18 @@ VARIANTS
 .dialca-select--dark.dialca-select--error .dialca-select__label {
     color: var(--select-border--error);
 }
+.dialca-select--dark.dialca-select--focused.dialca-select--error .dialca-select__label {
+    color: var(--select-border--error);
+}
+.dialca-select--dark.dialca-select--disabled .dialca-select__field {
+    background-color: #374151;
+    color: #9ca3af; 
+    opacity: 1;
+}
+.dialca-select--dark.dialca-select--disabled .dialca-select__label {
+    background-color: #374151;
+    color: #9ca3af;
+}
 
 /* Variant: Minimal */
 .dialca-select--minimal .dialca-select__field {
@@ -359,6 +375,9 @@ VARIANTS
     left: 0;
     padding: 0;
     background-color: transparent;
+}
+.dialca-select--minimal.dialca-select--error.dialca-select--focused .dialca-select__field {
+    border-bottom-color: var(--select-border--error);
 }
 .dialca-select--minimal .dialca-select__arrow {
     right: 0;
@@ -395,7 +414,7 @@ ANIMATIONS & ACCESSIBILITY
         transition: none;
     }
     
-    .dialca-select__loader {
+    .dialca-select__ {
         animation: none;
     }
 }

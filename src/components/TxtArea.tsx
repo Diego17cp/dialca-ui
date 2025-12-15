@@ -166,7 +166,7 @@ export const TxtArea = ({
     const percentage = (currentLength / maxLength) * 100;
 
     const getCounterColor = () => {
-        if (percentage >= 90) return 'dialca-textarea__counter--danger';
+        if (percentage >= 90) return 'dialca-textarea__counter--error';
         if (percentage >= 75) return 'dialca-textarea__counter--warning';
         return 'dialca-textarea__counter--normal';
     };

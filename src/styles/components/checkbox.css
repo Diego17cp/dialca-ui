@@ -222,6 +222,9 @@ MODIFIERS
 .dialca-checkbox--focused .dialca-checkbox__background {
     box-shadow: 0 0 0 2px var(--checkbox-focus-ring);
 }
+.dialca-checkbox--error-checked.dialca-checkbox--focused .dialca-checkbox__background {
+    box-shadow: 0 0 0 2px #fecaca;
+}
 /* Modifier: Hover */
 .dialca-checkbox--hover .dialca-checkbox__input-container {
     transform: scale(1.05);

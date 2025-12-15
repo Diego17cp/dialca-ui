@@ -197,6 +197,7 @@ VARIANTS
 .dialca-radio--dark.dialca-radio--error {
     --radio-error: #f87171;
     --radio-error-dark: #f87171;
+    --radio-border: #f87171;
 }
 /* Radio Group */
 .dialca-radio-group {

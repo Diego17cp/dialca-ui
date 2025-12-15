@@ -136,18 +136,18 @@ MODIFIERS
     padding: 0;
 }
 /* Modifier: Centered (default) */
-.dialca-modal--center .dialca-modal__overlay {
+.dialca-modal--center.dialca-modal__overlay {
     align-items: center;
     justify-content: center;
 }
 /* Modifier: Top Aligned */
-.dialca-modal--top .dialca-modal__overlay {
+.dialca-modal--top.dialca-modal__overlay {
     align-items: flex-start;
     justify-content: center;
     padding-top: 4rem;
 }
 /* Modifier: Bottom Aligned */
-.dialca-modal--bottom .dialca-modal__overlay {
+.dialca-modal--bottom.dialca-modal__overlay {
     align-items: flex-end;
     justify-content: center;
     padding-bottom: 4rem;
@@ -287,11 +287,11 @@ ANIMATIONS & ACCESSIBILITY
         padding: 0.5rem;
     }
     
-    .dialca-modal--top .dialca-modal__overlay {
+    .dialca-modal--top.dialca-modal__overlay {
         padding-top: 2rem;
     }
     
-    .dialca-modal--bottom .dialca-modal__overlay {
+    .dialca-modal--bottom.dialca-modal__overlay {
         padding-bottom: 2rem;
     }
     

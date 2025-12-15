@@ -182,6 +182,14 @@
     border-color: var(--input-border);
     border-radius: 1px;
 }
+.dialca-input--dark.dialca-input--disabled .dialca-input__field {
+    background-color: #374151;
+    color: #9ca3af;
+}
+.dialca-input--dark.dialca-input--disabled .dialca-input__label {
+    color: #9ca3af;
+    background-color: #374151;
+}
 .dialca-input--dark .dialca-input__field:focus {
     border-color: var(--input-border-focus);
     box-shadow: 0 0 0 2px var(--input-ring-focus);

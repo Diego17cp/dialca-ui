@@ -190,6 +190,9 @@ MODIFIERS
 .dialca-searchable-select--error .dialca-searchable-select__input-icon {
     color: var(--searchable-select-border-error);
 }
+.dialca-searchable-select--error.dialca-searchable-select--focused .dialca-searchable-select__input-icon {
+    color: #dc2626;
+}
 /* Modifier: Disabled State */
 .dialca-searchable-select--disabled {
     opacity: 0.6;
@@ -218,6 +221,9 @@ MODIFIERS
 /* Modifier: Open State */
 .dialca-searchable-select--open .dialca-searchable-select__input-icon {
     transform: translateY(-50%) rotate(180deg);
+}
+.dialca-searchable-select__input-icon--no-rotate {
+    transform: translateY(-50%) !important;
 }
 /* Modifier: Hover State */
 .dialca-searchable-select--hover .dialca-searchable-select__input {
@@ -315,6 +321,9 @@ VARIANTS
     box-shadow: none;
     outline: none;
 }
+.dialca-searchable-select--minimal.dialca-searchable-select--error.dialca-searchable-select--focused .dialca-searchable-select__input {
+    border-color: var(--searchable-select-border-error);
+}
 .dialca-searchable-select--minimal .dialca-searchable-select__dropdown {
     border: none;
     border-top: 1px solid var(--searchable-select-menu-border);
@@ -341,6 +350,9 @@ VARIANTS
 }
 .dialca-searchable-select--dark .dialca-searchable-select__option {
     color: var(--searchable-select-text);
+}
+.dialca-searchable-select--dark.dialca-searchable-select--error .dialca-searchable-select__label {
+    color: #f87171;
 }
 .dialca-searchable-select--dark.dialca-searchable-select--error {
     --searchable-select-border-error: #f87171;

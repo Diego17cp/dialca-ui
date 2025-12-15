@@ -24,6 +24,7 @@ declare global {
         }
 
         interface DropZoneVariant {
+            wrapper?: string
             container?: string
             title?: string
             icon?: string

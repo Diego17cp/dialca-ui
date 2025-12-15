@@ -43,6 +43,7 @@ interface Props {
     extendDefault?: boolean;
     /** Optional additional class names for specific sub-elements. */
     classes?: {
+        wrapper?: string;
         container?: string;
         error?: string;
         icon?: string;
@@ -80,14 +81,14 @@ export const DropZone: React.FC<Props> = ({
     onDragLeave,
     onDrop,
     onClick,
-    description = "Formatos soportados: JPG, PNG, WEBP. Máximo 5MB por imagen",
+    description = "Supported Formats: PNG, JPG, WEBP. Max size: 5MB each.",
     children,
     icon = <FaCloudArrowUp />,
     title = (
         <>
-            Arrastra y suelta tus archivos aquí o{" "}
+            Drag & Drop your files here or{" "}
             <span className="text-[#085691]">
-                haz click para buscar
+                click to upload
             </span>
         </>
     ),
@@ -123,12 +124,16 @@ export const DropZone: React.FC<Props> = ({
     const containerWrapperClasses = cn(
         cssContainerClass,
         cssContainerModifiers,
-        getStyles("container"),
-        classes.container,
+        getStyles("wrapper"),
+        classes.wrapper,
         className
     );
 
-    const containerClasses = cn(shouldUseCSS ? `${blockClass}__container` : ``);
+    const containerClasses = cn(
+        classes.container,
+        getStyles("container"),
+        shouldUseCSS ? `${blockClass}__container` : ``
+    );
 
     return (
         <div className={containerWrapperClasses}>

@@ -208,6 +208,15 @@ VARIANTS
     color: var(--textarea-text);
     border-radius: 2px;
 }
+.dialca-textarea--dark.dialca-textarea--disabled .dialca-textarea__field {
+    background-color: #374151;
+    color: #9ca3af;
+    opacity: 1;
+}
+.dialca-textarea--dark.dialca-textarea--disabled .dialca-textarea__label {
+    color: #9ca3af;
+    background-color: #374151;
+}
 .dialca-textarea--dark .dialca-textarea__field::-webkit-scrollbar-track {
     background: #4b5563;
 }
@@ -239,6 +248,10 @@ VARIANTS
 .dialca-textarea--dark.dialca-textarea--error .dialca-textarea__icon {
     color: #f87171;
 }
+.dialca-textarea--dark.dialca-textarea--error .dialca-textarea__field:focus + .dialca-textarea__label,
+.dialca-textarea--dark .dialca-textarea__field:not(:placeholder-shown) + .dialca-textarea__label {
+    color: #f87171;
+}
 /* Variant: Resizable */
 .dialca-textarea--resizable .dialca-textarea__field {
     border-color: #a855f7;
@@ -267,6 +280,9 @@ VARIANTS
     border-bottom-color: var(--textarea-border-focus);
     box-shadow: none;
     outline: none;
+}
+.dialca-textarea--minimal.dialca-textarea--error .dialca-textarea__field:focus {
+    border-bottom-color: var(--textarea-border-error);
 }
 .dialca-textarea--minimal .dialca-textarea__label {
     left: 0;

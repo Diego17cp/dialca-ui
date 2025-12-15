@@ -23,7 +23,7 @@ Switch Component Styles
     --switch-error: #ef4444;
     --switch-focus-ring: rgba(59, 125, 192, .5);
 
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: var(--switch-gap);
     padding: .75rem;
