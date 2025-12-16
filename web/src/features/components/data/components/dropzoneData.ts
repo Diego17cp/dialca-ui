@@ -473,7 +473,7 @@ export const dropzoneData: ComponentData = {
 			{
 				name: "className",
 				type: "string",
-				description: "Additional className for the main container.",
+				description: "Additional className for the outer wrapper element.",
 			},
 		],
 	},
@@ -520,6 +520,12 @@ export const dropzoneData: ComponentData = {
 			description:
 				"Interface defining style properties for a DropZone variant.",
 			properties: [
+				{
+					name: "wrapper",
+					type: "string",
+					description:
+						"CSS class for the outer wrapper of the drop zone.",
+				},
 				{
 					name: "container",
 					type: "string",

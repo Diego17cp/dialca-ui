@@ -368,6 +368,12 @@ export const searchableSelectData: ComponentData = {
 					"Label for the searchable select component, above the input field.",
 			},
 			{
+				name: "required",
+				type: "boolean",
+				default: "false",
+				description: "Shows a required asterisk (*) if set to true.",
+			},
+			{
 				name: "disabled",
 				type: "boolean",
 				default: "false",
